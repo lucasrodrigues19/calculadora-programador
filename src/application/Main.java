@@ -13,9 +13,14 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/MainView.fxml"));
-			ScrollPane parent= loader.load();
-			Scene scene = new Scene(parent);
+			ScrollPane scrollPane= loader.load();
+			
+			scrollPane.setFitToHeight(true);
+			scrollPane.setFitToWidth(true);
+			
+			Scene scene = new Scene(scrollPane);
 			primaryStage.setScene(scene);
+		//	primaryStage.setTitle("C - P");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
