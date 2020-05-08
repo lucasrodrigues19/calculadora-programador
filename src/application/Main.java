@@ -9,16 +9,18 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	public static Scene mainScene;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/MainView.fxml"));
 			ScrollPane scrollPane= loader.load();
 			
-			scrollPane.setFitToHeight(true);
+			scrollPane.setFitToHeight(true); //para que o scrollPane acompanhe o conteudo 
 			scrollPane.setFitToWidth(true);
 			
 			Scene scene = new Scene(scrollPane);
+			mainScene = scene;
 			primaryStage.setScene(scene);
 		//	primaryStage.setTitle("C - P");
 			primaryStage.show();

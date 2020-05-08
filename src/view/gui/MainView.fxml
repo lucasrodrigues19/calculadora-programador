@@ -10,12 +10,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="295.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="297.0" prefHeight="368.0" prefWidth="297.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
    <content>
       <VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;">
          <children>
             <MenuBar style="-fx-padding: 5; -fx-background-color: #DEB887; -fx-color: #FFF;">
               <menus>
+                  <Menu fx:id="menuInicio" mnemonicParsing="false" text="INICIO">
+                     <items>
+                        <MenuItem fx:id="menuItemHome" mnemonicParsing="false" onAction="#onMenuItemHomeAction" text="HOME" />
+                     </items>
+                  </Menu>
                 <Menu fx:id="menuIAjuda" mnemonicParsing="false" style="-fx-text-fill: #FFF;" text="AJUDA">
                   <items>
                     <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="SOBRE" />
