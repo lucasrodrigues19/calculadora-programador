@@ -12,4 +12,18 @@ public class Alerts {
 		alert.setContentText(contenet);
 		alert.show();
 	}
+	public static void showAlertError(String contenet) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("ERRO");
+		alert.setHeaderText(null);
+		alert.setContentText(contenet);
+		alert.show();
+	}
+	public static void showAlertInformations(String contenet) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("AVISO!");
+		alert.setHeaderText(null);
+		alert.setContentText(contenet);
+		alert.show();
+	}
 }
