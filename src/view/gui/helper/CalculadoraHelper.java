@@ -26,7 +26,7 @@ public class CalculadoraHelper {
 	 * @param mainScene
 	 * @param execut
 	 */
-	public <T> void loadView(String path, Scene mainScene, Consumer<T> execut) {
+	public synchronized <T> void  loadView(String path, Scene mainScene, Consumer<T> execut) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			VBox newView = loader.load();
@@ -60,7 +60,7 @@ public class CalculadoraHelper {
 	 * @param path
 	 * @param mainScene
 	 */
-	public void loadMainView(String path, Scene mainScene) {
+	public synchronized void loadMainView(String path, Scene mainScene) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			ScrollPane scrollPane = loader.load();
@@ -84,7 +84,7 @@ public class CalculadoraHelper {
 	 *                    carregada
 	 * @param parentStage stage pai que a dialog aparecera em cima
 	 */
-	public <T> void loadViewDialog(String path, Consumer<T> executar, Stage parentStage) {
+	public synchronized <T> void loadViewDialog(String path, Consumer<T> executar, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			VBox vbox = loader.load();
