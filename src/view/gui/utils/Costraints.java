@@ -19,13 +19,13 @@ public class Costraints {
 	 * Metodo usado para que o textField aceite apenas caracters
 	 * @param textField
 	 */
-	public static void textFieldChar(TextField textField) {
-		textField.textProperty().addListener((obs,valorAnterior,novoValor)->{
-			if(novoValor != null && novoValor.matches("\\d*")) {
-				textField.setText(valorAnterior);
-			}
-		});
-	}
+//	public static void textFieldChar(TextField textField) {
+//		textField.textProperty().addListener((obs,valorAnterior,novoValor)->{
+//			if(novoValor != null && !novoValor.matches("\n")) {
+//				textField.setText(valorAnterior);
+//			}
+//		});
+//	}
 	/**
 	 * Metodo usado para que o text field aceite apenas um maximo de caracteres
 	 * @param textField

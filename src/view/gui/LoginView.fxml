@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.LoginViewController">
    <children>
       <Pane prefHeight="313.0" prefWidth="296.0">
          <children>
-            <Button layoutX="114.0" layoutY="236.0" mnemonicParsing="false"  style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+            <Button fx:id="btLogin" layoutX="114.0" layoutY="236.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
@@ -20,22 +20,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField layoutX="52.0" layoutY="95.0" promptText="EMAL" style="-fx-color: #CD853F;">
+            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAL" style="-fx-color: #CD853F;">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </TextField>
-            <TextField layoutX="52.0" layoutY="158.0" promptText="TELEFONE" style="-fx-color: #CD853F;">
+            <TextField fx:id="txtTelefone" layoutX="52.0" layoutY="158.0" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" style="-fx-color: #CD853F;">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </TextField>
-            <Label layoutX="52.0" layoutY="69.0" text="EMAIL" textFill="PERU">
+            <Label fx:id="lblEmail" layoutX="52.0" layoutY="69.0" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="135.0" text="TELEFONE" textFill="PERU">
+            <Label fx:id="lblTelefone" layoutX="53.0" layoutY="135.0" onMouseClicked="#onMouseClickLblTelefoneAction" text="TELEFONE" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>

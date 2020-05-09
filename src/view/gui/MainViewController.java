@@ -88,12 +88,12 @@ public class MainViewController implements Initializable {
 
 	}
 
-	public void setWithHeigt() {
+	private void setWithHeigt() {
 		scrollMain.setFitToHeight(true);
 		scrollMain.setFitToWidth(true);
 	}
 
-	public void hidenControls() {
+	private void hidenControls() {
 		menuInicio.setVisible(false);
 	}
 
