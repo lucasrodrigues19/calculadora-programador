@@ -3,6 +3,9 @@ package view.gui.helper;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+import com.sun.javadoc.ThrowsTag;
+
+import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,7 +29,10 @@ public class CalculadoraHelper {
 	 * @param mainScene
 	 * @param execut
 	 */
-	public synchronized <T> void  loadView(String path, Scene mainScene, Consumer<T> execut) {
+	public synchronized <T> void  loadView(String path, Scene mainScene, Consumer<T> execut)throws MyException {
+		if(path == null || mainScene == null) 
+				throw new MyException("Parametros nulos");
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			VBox newView = loader.load();
@@ -48,8 +54,8 @@ public class CalculadoraHelper {
 				execut.accept(controller);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new MyException(e.getMessage());
 		}
 
 	}
@@ -60,7 +66,10 @@ public class CalculadoraHelper {
 	 * @param path
 	 * @param mainScene
 	 */
-	public synchronized void loadMainView(String path, Scene mainScene) {
+	public synchronized void loadMainView(String path, Scene mainScene)throws MyException {
+		if(path == null || mainScene == null)
+			throw new MyException("Parametros nulos");
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			ScrollPane scrollPane = loader.load();
@@ -69,7 +78,8 @@ public class CalculadoraHelper {
 
 			mainScene.setRoot(scrollPane);
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
 		}
 	}
 
@@ -84,14 +94,17 @@ public class CalculadoraHelper {
 	 *                    carregada
 	 * @param parentStage stage pai que a dialog aparecera em cima
 	 */
-	public synchronized <T> void loadViewDialog(String path, Consumer<T> executar, Stage parentStage) {
+	public synchronized <T> void loadViewDialog(String path, Consumer<T> execut, Stage parentStage)throws MyException {
+		if(path == null || parentStage == null) 
+			throw new MyException("Parametros nulos");
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			VBox vbox = loader.load();
 
-			if (executar != null) {
+			if (execut != null) {
 				T controller = loader.getController();
-				executar.accept(controller);
+				execut.accept(controller);
 			}
 			Scene scene = new Scene(vbox);
 			Stage dialogStage = new Stage();
@@ -100,8 +113,9 @@ public class CalculadoraHelper {
 			dialogStage.initOwner(parentStage);// stage pai do dialogStage
 			dialogStage.initModality(Modality.WINDOW_MODAL); // vai dizer o comportamento da janela
 			dialogStage.showAndWait();// vai abrir em cima do stage pai, e vai ter um comportmento modal
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
+			throw new MyException(e.getMessage());
 		}
 
 	}
@@ -113,7 +127,10 @@ public class CalculadoraHelper {
 	 * @param event
 	 * @return
 	 */
-	public Stage getStageAtual(ActionEvent event) {
+	public Stage getStageAtual(ActionEvent event) throws MyException{
+		if(event == null)
+			throw new MyException("Parametro nulo");
+		
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}
 
@@ -124,7 +141,10 @@ public class CalculadoraHelper {
 	 * @param event
 	 * @return
 	 */
-	public Stage getStageAtual(MouseEvent event) {
+	public Stage getStageAtual(MouseEvent event)throws MyException {
+		if(event == null)
+			throw new MyException("Parametro nulo");
+		
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}
 
@@ -133,7 +153,10 @@ public class CalculadoraHelper {
 	 * @param scene
 	 * @return
 	 */
-	public Stage getStageAtual(Scene scene) {
+	public Stage getStageAtual(Scene scene) throws MyException{
+		if(scene == null)
+			throw new MyException("Parametro nulo");
+		
 		return (Stage) scene.getWindow();
 	}
 

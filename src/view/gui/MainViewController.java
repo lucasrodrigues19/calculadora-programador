@@ -4,14 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.stage.Stage;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 
@@ -45,7 +44,7 @@ public class MainViewController implements Initializable {
 			System.out.println(btEntrar.getText());
 			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, null);
 			menuInicio.setVisible(true);
-		} catch (Exception e) {
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
@@ -69,7 +68,7 @@ public class MainViewController implements Initializable {
 
 		try {
 			helper.loadViewDialog("/view/gui/AboutView.fxml", null, helper.getStageAtual(Main.mainScene));
-		} catch (Exception e) {
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
@@ -82,7 +81,7 @@ public class MainViewController implements Initializable {
 		try {
 			helper.loadMainView("/view/gui/MainView.fxml", Main.mainScene);
 			menuInicio.setVisible(false);
-		} catch (Exception e) {
+		} catch (MyException e) {
 			Alerts.showAlertError(e.getMessage());
 		}
 

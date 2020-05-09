@@ -40,6 +40,8 @@
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </Label>
+            <Label fx:id="lblErroEmail" layoutX="243.0" layoutY="100.0" textFill="#e81212" />
+            <Label fx:id="lblErroTelefone" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
          </children>
       </Pane>
    </children>

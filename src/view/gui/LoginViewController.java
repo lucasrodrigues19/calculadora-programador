@@ -3,6 +3,7 @@ package view.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ex.MyRuntimeException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,12 +19,18 @@ import view.gui.utils.Costraints;
 public class LoginViewController implements Initializable {
 
 	CalculadoraHelper helper = new CalculadoraHelper();
-
+	MyRuntimeException runtimeEx;
 	@FXML
 	private Label lblEmail;
 	
 	@FXML
 	private Label lblTelefone;
+	
+	@FXML
+	private Label lblErroTelefone;
+	
+	@FXML
+	private Label lblErroEmail;
 	
 	@FXML
 	private TextField txtEmail;
@@ -38,10 +45,9 @@ public class LoginViewController implements Initializable {
 	private void onBtLoginAction(ActionEvent event) {
 		try {
 			System.out.println(btLogin.getText());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			Alerts.showAlertError(e.getMessage());
+			checkTextFields();
+		} catch (MyRuntimeException e) {
+			setMsgErros(e);
 		}
 	}
 	@FXML
@@ -112,7 +118,32 @@ public class LoginViewController implements Initializable {
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
+	private void checkTextFields() {
+		runtimeEx = new MyRuntimeException();
+		
+		if(txtEmail.getText().length() <= 0 || "".equals(txtEmail) || txtEmail == null) {
+			runtimeEx.addErros("email", "Vazio");
+		}else {
+			lblErroEmail.setText("");
+		}
+		if(txtTelefone.getText().length() <= 0 || "".equals(txtTelefone) || txtTelefone== null) {
+			runtimeEx.addErros("telefone", "Vazio");
+		}else {
+			lblErroTelefone.setText("");
+		}
+		if(runtimeEx.getErros().size() > 0)
+			throw runtimeEx;
+		
+	}
 	
+	private void setMsgErros(MyRuntimeException erros) {
+		if(erros.getErros().containsKey("telefone"))
+		lblErroTelefone.setText(erros.getErros().get("telefone"));
+		
+		if(erros.getErros().containsKey("email"))
+		lblErroEmail.setText(erros.getErros().get("email"));
+	}
 
 	private void initializeNodesConstraints() {
 		Costraints.textFieldInteger(txtTelefone);
