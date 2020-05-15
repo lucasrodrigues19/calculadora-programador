@@ -1,16 +1,17 @@
 package modelo.dao.impl;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import db.DB;
-import modelo.dao.HistoricoDAO;
 import modelo.dao.UsuarioDAO;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
@@ -66,11 +67,11 @@ public class UsuarioDAOI implements UsuarioDAO {
 			ps.setString(1, usuario.getUsunome());
 			ps.setString(2, usuario.getUsuemail());
 			ps.setString(3, usuario.getUsutelefone());
-			
-			int rows= ps.executeUpdate();
-			if(rows == 0)
+
+			int rows = ps.executeUpdate();
+			if (rows == 0)
 				throw new SQLException("Nemhum registro inserido");
-			
+
 			rs = ps.getGeneratedKeys();
 			usuario.setUsuid(rs.getInt(1));
 			con.commit();
@@ -90,8 +91,6 @@ public class UsuarioDAOI implements UsuarioDAO {
 		}
 	}
 
-	
-
 	@Override
 	public void update(Usuario usuario) {
 		if (usuario == null)
@@ -106,11 +105,11 @@ public class UsuarioDAOI implements UsuarioDAO {
 			ps.setString(1, usuario.getUsunome());
 			ps.setString(2, usuario.getUsuemail());
 			ps.setString(3, usuario.getUsutelefone());
-			
-			int rows= ps.executeUpdate();
-			if(rows == 0)
+
+			int rows = ps.executeUpdate();
+			if (rows == 0)
 				throw new SQLException("Nemhum registro atualizado");
-			
+
 			con.commit();
 
 		} catch (SQLException e) {
@@ -138,10 +137,10 @@ public class UsuarioDAOI implements UsuarioDAO {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, usuario.getUsuid());
-			int rows= ps.executeUpdate();
-			if(rows == 0)
+			int rows = ps.executeUpdate();
+			if (rows == 0)
 				throw new SQLException("Nemhum registro deletado");
-			
+
 			con.commit();
 
 		} catch (SQLException e) {
@@ -160,22 +159,35 @@ public class UsuarioDAOI implements UsuarioDAO {
 	}
 
 	@Override
-	public Usuario findID(Integer usuid) {
+	public Usuario findByID(Integer usuid) {
 		if (usuid == null)
 			throw new IllegalArgumentException("usuario nulo");
 
-		sql = "DELETE FROM usuario WHERE usuid = ?";
+		sql = "SELECT usuario.* , logs.logid, logs.logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid WHERE usuario.usuid = ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		Map<Integer, Usuario> mapUsuairo = new HashMap<Integer, Usuario>();
 		Usuario usuario = null;
+		Logs logs = null;
 		try {
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, usuid);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				usuario = getUsuarioRS(rs);
+			while (rs.next()) {
+				// usuario 1 - N logs
+				// usuario 1 - N historico
+				// um unico usuario vai apontar para varios logs que ele tem
+				logs = getLogsRS(rs);
+				usuario = mapUsuairo.get(rs.getInt("usuid"));
+				if (usuario == null) {
+					usuario = getUsuarioRS(rs);
+					mapUsuairo.put(rs.getInt("usuid"), usuario);
+				}
+
+				logs.setLogusuario(usuario);
+				usuario.getUsulogs().add(logs);
 			}
-			
+
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -192,51 +204,67 @@ public class UsuarioDAOI implements UsuarioDAO {
 	}
 
 	@Override
-	public Usuario findHistorico(Integer hisid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Usuario findLog(Integer logid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Usuario> findDateLog(Date logdate, Integer usuid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Usuario> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+
+		sql = "SELECT usuario.* , logs.logid, logs.logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid ORDER by usuario.usuid";
+		ResultSet rs = null;
+		Statement st = null;
+		List<Usuario> result = new ArrayList<Usuario>();
+		Map<Integer, Usuario> mapUsuairo = new HashMap<Integer, Usuario>();
+		Logs logs = null;
+		Usuario usuario = null;
+		try {
+			st = (Statement) con.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				// usuario 1 - N logs
+				// usuario 1 - N historico
+				// um unico usuario vai apontar para varios logs que ele tem
+				logs = getLogsRS(rs);
+				usuario = mapUsuairo.get(rs.getInt("usuid"));
+				if (usuario == null) {
+					usuario = getUsuarioRS(rs);
+					mapUsuairo.put(rs.getInt("usuid"), usuario);
+					result.add(usuario);
+				}
+
+				logs.setLogusuario(usuario);
+				usuario.getUsulogs().add(logs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.closeResultSet(rs);
+			DB.closeStatment(st);
+		}
+
+		return result;
 	}
 
-	private Historico getHistoricoRS(ResultSet rs) throws SQLException {
-		Historico historico = new Historico();
-		historico.setHisid(rs.getInt("hisid"));
-		historico.setHisdado(rs.getString("hisdado"));
-		return historico;
-	}
+//	private Historico getHistoricoRS(ResultSet rs) throws SQLException {
+//		Historico historico = new Historico();
+//		historico.setHisid(rs.getInt("hisid"));
+//		historico.setHisdado(rs.getString("hisdado"));
+//		return historico;
+//	}
+
 	private Usuario getUsuarioRS(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
 		usuario.setUsuid(rs.getInt("usuid"));
 		usuario.setUsunome(rs.getString("usunome"));
 		usuario.setUsuemail(rs.getString("usuemail"));
 		usuario.setUsutelefone(rs.getString("usutelefone"));
-		usuario.getUsuhistorico().addAll(null);
-		usuario.getUsulogs().addAll(null);
+		usuario.setUsulogs(new ArrayList<Logs>());
+		usuario.setUsuhistorico(new ArrayList<Historico>());
 		return usuario;
 	}
+
 	private Logs getLogsRS(ResultSet rs) throws SQLException {
 		Logs logs = new Logs();
-		
-		logs.setLogid(rs.getInt("logid"));
-		logs.setLogdata(new java.util.Date(rs.getDate("logdata").getTime()));
+
+		logs.setLogid(rs.getInt("logs.logid"));
+		logs.setLogdata(new java.util.Date(rs.getDate("logs.logdata").getTime()));
 		return logs;
-		
+
 	}
 }

@@ -1,0 +1,4 @@
+user=seuusuario
+password=suasenha
+dburl=jdbc:mysql://localhost:3306/seubanco?allowPublicKeyRetrieval=true
+useSSL=false

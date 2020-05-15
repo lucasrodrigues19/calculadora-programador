@@ -1,25 +1,23 @@
 package modelo.dao;
 
-import java.sql.Date;
 import java.util.List;
 
-import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
 
 public interface LogsDAO {
 
 
-	void save(Logs logs,Usuario usuario);
+	void save(Logs logs);
 
 	void delete(Logs logs);
 
-	Historico findID(Integer logid);
+	Logs findByID(Integer logid);
 
-	Historico findUser(Integer hisusuid);
+	List<Logs> findByUser(Usuario usuario);
 	
-	List<Usuario> findDateLog(Date logdate);
+	List<Logs> findByDateLog(Logs logs);
 
-	List<Historico> findAll();
+	List<Logs> findAll();
 
 }

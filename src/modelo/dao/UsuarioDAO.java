@@ -1,6 +1,5 @@
 package modelo.dao;
 
-import java.sql.Date;
 import java.util.List;
 
 import modelo.entites.Usuario;
@@ -15,13 +14,7 @@ public interface UsuarioDAO {
 
 	void delete(Usuario usuario);
 
-	Usuario findID(Integer usuid);
-
-	Usuario findHistorico(Integer hisid);
-
-	Usuario findLog(Integer logid);
-
-	List<Usuario> findDateLog(Date logdate, Integer usuid);
+	Usuario findByID(Integer usuid);
 
 	List<Usuario> findAll();
 
