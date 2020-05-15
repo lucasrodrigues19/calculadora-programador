@@ -10,10 +10,10 @@ public class Logs {
 	private Usuario 		logusuario;
 	
 	
-	public Logs(Integer logid, Date logdata, Integer logusuid, Usuario logusuario) {
+	public Logs(Integer logid, Date logdata, Usuario logusuario) {
 		this.logid = logid;
 		this.logdata = logdata;
-		this.logusuid = logusuid;
+		this.logusuid = logusuario.getUsuid();
 		this.logusuario = logusuario;
 	}
 
@@ -41,16 +41,13 @@ public class Logs {
 		return logusuid;
 	}
 
-	public void setLogusuid(Integer logusuid) {
-		this.logusuid = logusuid;
-	}
-
 	public Usuario getLogusuario() {
 		return logusuario;
 	}
 
 	public void setLogusuario(Usuario logusuario) {
 		this.logusuario = logusuario;
+		this.logusuid = logusuario.getUsuid();
 	}
 
 	@Override

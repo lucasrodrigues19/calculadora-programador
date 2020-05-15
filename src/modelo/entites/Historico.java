@@ -8,10 +8,10 @@ public class Historico {
 	private Usuario 		hisusuario;
 	
 	
-	public Historico(Integer hisid, String hisdado, Integer hisusuid, Usuario hisusuario) {
+	public Historico(Integer hisid, String hisdado, Usuario hisusuario) {
 		this.hisid = hisid;
 		this.hisdado = hisdado;
-		this.hisusuid = hisusuid;
+		this.hisusuid = hisusuario.getUsuid();
 		this.hisusuario = hisusuario;
 	}
 
@@ -39,16 +39,13 @@ public class Historico {
 		return hisusuid;
 	}
 
-	public void setHisusuid(Integer hisusuid) {
-		this.hisusuid = hisusuid;
-	}
-
 	public Usuario getHisusuario() {
 		return hisusuario;
 	}
 
 	public void setHisusuario(Usuario hisusuario) {
 		this.hisusuario = hisusuario;
+		this.hisusuid = hisusuario.getUsuid();
 	}
 
 	@Override

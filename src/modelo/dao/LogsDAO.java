@@ -10,7 +10,7 @@ import modelo.entites.Usuario;
 public interface LogsDAO {
 
 
-	void save(Logs logs);
+	void save(Logs logs,Usuario usuario);
 
 	void delete(Logs logs);
 

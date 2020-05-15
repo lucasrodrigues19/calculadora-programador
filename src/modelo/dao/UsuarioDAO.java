@@ -7,7 +7,7 @@ import modelo.entites.Usuario;
 
 public interface UsuarioDAO {
 
-	void login(Usuario usuario);
+	Boolean login(Usuario usuario);
 
 	void save(Usuario usuario);
 
