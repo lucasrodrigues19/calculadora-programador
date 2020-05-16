@@ -25,9 +25,9 @@ import view.gui.utils.Costraints;
 public class CadastroViewController implements Initializable {
 
 	private Usuario usuario;
-	
+
 	private UsuarioService usuarioService;
-	
+
 	private CalculadoraHelper helper = new CalculadoraHelper();
 	// id
 	@FXML
@@ -76,15 +76,18 @@ public class CadastroViewController implements Initializable {
 			usuarioService.saveOrUpdate(usuario);
 			fecharView(helper.getStageAtual(event));
 			Alerts.showAlertInformations("Dados salvos!!");
+
 		} catch (MySQLException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
-		}catch(MyException e) {
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
+		} catch (MyRuntimeException e) {
+			setMsgErros(e);
 		}
 	}
-	
+
 	// NomeAction
 	@FXML
 	private void onKeyTxtNomeAction(KeyEvent event) {
@@ -99,7 +102,7 @@ public class CadastroViewController implements Initializable {
 		lblNome.setVisible(false);
 	}
 
-	//EmailAction
+	// EmailAction
 	@FXML
 	private void onKeyTxtEmailAction(KeyEvent event) {
 		if (txtEmail.getText().length() > 0)
@@ -113,7 +116,7 @@ public class CadastroViewController implements Initializable {
 		lblEmail.setVisible(false);
 	}
 
-	//TelefoneAction
+	// TelefoneAction
 	@FXML
 	private void onKeyTxtTelefoneAction(KeyEvent event) {
 		if (txtTelefone.getText().length() > 0)
@@ -126,6 +129,7 @@ public class CadastroViewController implements Initializable {
 	private void onMouseClickLblTelefoneAction(KeyEvent event) {
 		lblTelefone.setVisible(false);
 	}
+
 	private void hidenControls() {
 		lblEmail.setVisible(false);
 		lblTelefone.setVisible(false);
@@ -134,74 +138,75 @@ public class CadastroViewController implements Initializable {
 	}
 
 	public void setMsgErros(MyRuntimeException e) {
-		lblNomeErro.setText((e.getErros().containsKey("nome")?e.getErros().get("nome"):""));
-		lblEmailErro.setText((e.getErros().containsKey("email")?e.getErros().get("email"):""));
-		lblTelefoneErro.setText((e.getErros().containsKey("telefone")?e.getErros().get("telefone"):""));
+		lblNomeErro.setText((e.getErros().containsKey("nome") ? e.getErros().get("nome") : ""));
+		lblEmailErro.setText((e.getErros().containsKey("email") ? e.getErros().get("email") : ""));
+		lblTelefoneErro.setText((e.getErros().containsKey("telefone") ? e.getErros().get("telefone") : ""));
 	}
 
-	private void getDadosCadastro() {
-		if(usuario == null)
+	private synchronized void getDadosCadastro() {
+		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
-		
+
 		MyRuntimeException runtimeEx = new MyRuntimeException();
 		usuario.setUsuid(CalculadoraUtils.tryParseInt(txtId.getText()));
-		
-		if(txtEmail.getText().length() <= 0 || "".trim().equals(txtEmail.getText()) || txtEmail == null) 
+
+		if (txtEmail.getText().length() <= 0 || "".trim().equals(txtEmail.getText()) || txtEmail == null)
 			runtimeEx.addErros("email", "Vazio");
-		
-		if (txtTelefone.getText().length() <= 0 || "".trim().equals(txtTelefone.getText()) || txtTelefone == null) 
+
+		if (txtTelefone.getText().length() <= 0 || "".trim().equals(txtTelefone.getText()) || txtTelefone == null)
 			runtimeEx.addErros("telefone", "Vazio");
-		
-		if (txtNome.getText().length() <= 0 || "".trim().equals(txtNome.getText()) || txtNome== null) 
+
+		if (txtNome.getText().length() <= 0 || "".trim().equals(txtNome.getText()) || txtNome == null)
 			runtimeEx.addErros("nome", "Vazio");
-		
+
 		if (runtimeEx.getErros().size() > 0)
 			throw runtimeEx;
 
 		usuario.setUsunome(txtNome.getText());
 		usuario.setUsuemail(txtEmail.getText());
 		usuario.setUsutelefone(txtTelefone.getText());
-		
 
 	}
+
 	public void atualizarDadosFormCadastro() {
-		if(usuario == null)
+		if (usuario == null)
 			throw new IllegalArgumentException("Usuario nulo");
-		
-		if(usuario.getUsuid() != null)
-		txtId.setText(Integer.toString(usuario.getUsuid()));
-		
-		if(usuario.getUsunome() != null)
-		txtNome.setText(usuario.getUsunome());
-		
-		if(usuario.getUsuemail() != null)
-		txtEmail.setText(usuario.getUsuemail());
-		
-		if(usuario.getUsutelefone() != null)
-		txtTelefone.setText(usuario.getUsutelefone());
+
+		if (usuario.getUsuid() != null)
+			txtId.setText(Integer.toString(usuario.getUsuid()));
+
+		if (usuario.getUsunome() != null)
+			txtNome.setText(usuario.getUsunome());
+
+		if (usuario.getUsuemail() != null)
+			txtEmail.setText(usuario.getUsuemail());
+
+		if (usuario.getUsutelefone() != null)
+			txtTelefone.setText(usuario.getUsutelefone());
 	}
-	
+
 	public void checkTextField() {
 		if (txtTelefone.getText().length() > 0)
 			lblTelefone.setVisible(true);
-		
+
 		if (txtNome.getText().length() > 0)
 			lblNome.setVisible(true);
-		
+
 		if (txtEmail.getText().length() > 0)
 			lblEmail.setVisible(true);
 	}
-	
+
 	private void initializeNodesConstraints() {
 		Costraints.textFieldInteger(txtTelefone);
 		Costraints.textFieldMaxLength(txtEmail, 40);
 		Costraints.textFieldMaxLength(txtNome, 30);
 		Costraints.textFieldMaxLength(txtTelefone, 11);
 	}
-	
+
 	private void fecharView(Stage stageAtual) {
 		stageAtual.close();
 	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
