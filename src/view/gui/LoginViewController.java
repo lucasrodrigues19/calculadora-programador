@@ -3,6 +3,7 @@ package view.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ex.MyException;
 import ex.MyRuntimeException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,9 +38,12 @@ public class LoginViewController implements Initializable {
 	
 	@FXML
 	private TextField txtTelefone;
-
+	
 	@FXML
 	private Button btLogin;
+	
+	@FXML
+	private Button btCadastro;
 	
 	@FXML
 	private void onBtLoginAction(ActionEvent event) {
@@ -48,6 +52,15 @@ public class LoginViewController implements Initializable {
 			checkTextFields();
 		} catch (MyRuntimeException e) {
 			setMsgErros(e);
+		}
+	}
+	@FXML
+	private void onBtCadastroAction(ActionEvent event) {
+		try {
+			helper.loadViewDialog("/view/gui/CadastroView.fxml", null, helper.getStageAtual(event));
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
 		}
 	}
 	@FXML

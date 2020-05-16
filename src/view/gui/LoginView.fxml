@@ -12,7 +12,7 @@
    <children>
       <Pane prefHeight="313.0" prefWidth="296.0">
          <children>
-            <Button fx:id="btLogin" layoutX="114.0" layoutY="236.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+            <Button fx:id="btLogin" layoutX="104.0" layoutY="203.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
@@ -42,6 +42,14 @@
             </Label>
             <Label fx:id="lblErroEmail" layoutX="243.0" layoutY="100.0" textFill="#e81212" />
             <Label fx:id="lblErroTelefone" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
+            <Button fx:id="btCadastro" layoutX="87.0" layoutY="249.0" mnemonicParsing="false" onAction="#onBtCadastroAction" style="-fx-background-color: white; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="CADASTRO" textFill="PERU">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
    </children>
