@@ -25,8 +25,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 		//	primaryStage.setTitle("C - P");
 			primaryStage.show();
-			DB.getConnection("db.propierties");
-			DB.closeConnection();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

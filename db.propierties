@@ -1,4 +1,4 @@
-user=root
-password=lucasDoido.019!
-dburl=jdbc:mysql://localhost:3306/calculadora?allowPublicKeyRetrieval=true
+user=seuuser
+password=suasenha
+dburl=jdbc:mysql://localhost:3306/seubanco?allowPublicKeyRetrieval=true
 useSSL=false

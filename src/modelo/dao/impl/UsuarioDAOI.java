@@ -61,7 +61,6 @@ public class UsuarioDAOI implements UsuarioDAO {
 
 		sql = "INSERT INTO usuario VALUES (default,?,?,?)";
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		try {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -73,22 +72,19 @@ public class UsuarioDAOI implements UsuarioDAO {
 			if (rows == 0)
 				throw new SQLException("Nemhum registro inserido");
 
-			rs = ps.getGeneratedKeys();
-			usuario.setUsuid(rs.getInt(1));
 			con.commit();
 
 		} catch (SQLException e) {
 			try {
 				con.rollback();
 				e.printStackTrace();
-				throw new MySQLException("Erro na transanção");
+				throw new MySQLException("Erro na transanção: "+e.getMessage());
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				throw new MySQLException("Erro no rollback");
+				throw new MySQLException("Erro no rollback: "+e.getMessage());
 			}
 		} finally {
 			DB.closeStatment(ps);
-			DB.closeResultSet(rs);
 		}
 	}
 

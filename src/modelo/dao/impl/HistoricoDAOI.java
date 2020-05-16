@@ -2,12 +2,20 @@ package modelo.dao.impl;
 
 import java.util.List;
 
+import com.mysql.jdbc.Connection;
+
 import modelo.dao.HistoricoDAO;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 
 public class HistoricoDAOI implements HistoricoDAO {
+	private Connection con;
+	private String sql;
 
+	public HistoricoDAOI(Connection con) {
+		this.con = con;
+	}
+	
 	@Override
 	public void save(Historico historico) {
 		// TODO Auto-generated method stub

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="395.0" prefWidth="364.0" style="-fx-background-color: #FFDEAD;;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="395.0" prefWidth="364.0" style="-fx-background-color: #FFDEAD;;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.CadastroViewController">
    <children>
       <Pane prefHeight="380.0" prefWidth="363.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 7px; -fx-background-radius: 7px;">
          <children>
@@ -30,36 +30,48 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField disable="true" editable="false" promptText="ID" GridPane.rowIndex="1" />
-                  <TextField promptText="NOME" GridPane.rowIndex="3" />
-                  <TextField promptText="EMAIL" GridPane.rowIndex="5" />
-                  <TextField promptText="TELEFONE" GridPane.rowIndex="7" />
-                  <Label text="ID" textFill="PERU">
+                  <TextField fx:id="txtId" disable="true" editable="false" promptText="ID" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font></TextField>
+                  <TextField fx:id="txtNome" onKeyTyped="#onKeyTxtNomeAction" promptText="NOME" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font></TextField>
+                  <TextField fx:id="txtEmail" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font></TextField>
+                  <TextField fx:id="txtTelefone" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font></TextField>
+                  <Label fx:id="lblId" text="ID" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="NOME" textFill="PERU" GridPane.rowIndex="2">
+                  <Label fx:id="lblNome" onMouseClicked="#onMouseClickLblNomeAction" text="NOME" textFill="PERU" GridPane.rowIndex="2">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="EMAIL" textFill="PERU" GridPane.rowIndex="4">
+                  <Label fx:id="lblEmail" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU" GridPane.rowIndex="4">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="TELEFONE" textFill="PERU" GridPane.rowIndex="6">
+                  <Label fx:id="lblTelefone" onMouseClicked="#onMouseClickLblTelefoneAction" text="TELEFONE" textFill="PERU" GridPane.rowIndex="6">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="lblNomeErro" textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lblEmailErro" textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="lblTelefoneErro" textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
-            <Button layoutX="151.0" layoutY="314.0" mnemonicParsing="false" style="-fx-background-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" text="SALVAR" textFill="WHITE">
+            <Button fx:id="btSalvar" layoutX="151.0" layoutY="314.0" mnemonicParsing="false" onAction="#onButtonSalvarAction" style="-fx-background-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" text="SALVAR" textFill="WHITE">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>

@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import modelo.entites.Usuario;
+import modelo.services.UsuarioService;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 
@@ -42,7 +44,10 @@ public class MainViewController implements Initializable {
 	private void onBtLoginAction() {
 		try {
 			System.out.println(btEntrar.getText());
-			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, null);
+			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, (LoginViewController controller)->{
+				controller.setUsuario(new Usuario());
+				controller.setUsuarioService(new UsuarioService());
+			});
 			menuInicio.setVisible(true);
 		} catch (MyException e) {
 			e.printStackTrace();
