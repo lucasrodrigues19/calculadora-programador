@@ -12,6 +12,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import db.DB;
+import db.ex.MySQLException;
 import modelo.dao.UsuarioDAO;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
@@ -79,12 +80,12 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				System.out.println("Erro na transanção");
+				e.printStackTrace();
+				throw new MySQLException("Erro na transanção");
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				System.out.println("Erro no rollback");
+				throw new MySQLException("Erro no rollback");
 			}
-			e.printStackTrace();
 		} finally {
 			DB.closeStatment(ps);
 			DB.closeResultSet(rs);
@@ -92,7 +93,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 	}
 
 	@Override
-	public void update(Usuario usuario) {
+	public void update(Usuario usuario){
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 
@@ -115,12 +116,13 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				System.out.println("Erro na transanção");
+				e.printStackTrace();
+				throw new MySQLException("Erro na transanção");
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				System.out.println("Erro no rollback");
+				throw new MySQLException("Erro no rollback");
 			}
-			e.printStackTrace();
+			
 		} finally {
 			DB.closeStatment(ps);
 		}
@@ -146,12 +148,12 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				System.out.println("Erro na transanção");
+				e.printStackTrace();
+				throw new MySQLException("Erro na transanção");
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				System.out.println("Erro no rollback");
+				throw new MySQLException("Erro no rollback");
 			}
-			e.printStackTrace();
 		} finally {
 			DB.closeStatment(ps);
 		}
