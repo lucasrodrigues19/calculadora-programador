@@ -20,7 +20,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAL" style="-fx-color: #CD853F;">
+            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-color: #CD853F;">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
