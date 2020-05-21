@@ -231,7 +231,7 @@ public class LogsDAOI implements LogsDAO {
 
 				logs = getLogsRS(rs);
 				logs.setLogusuario(usuario);
-				// no usuario de todos os logs sera setado toda sua lista de logs, pois é para o
+				// no usuario de todos os logs, sera setado toda sua lista de logs, pois é para o
 				// mesmo usuario que todos os logs apontam
 				usuario.getUsulogs().add(logs);
 				result.add(logs);
