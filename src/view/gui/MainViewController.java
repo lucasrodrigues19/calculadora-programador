@@ -11,7 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
@@ -47,6 +49,8 @@ public class MainViewController implements Initializable {
 			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, (LoginViewController controller)->{
 				controller.setUsuario(new Usuario());
 				controller.setUsuarioService(new UsuarioService());
+				controller.setLogs(new Logs());
+				controller.setLogsService(new LogsService());
 			});
 			menuInicio.setVisible(true);
 		} catch (MyException e) {

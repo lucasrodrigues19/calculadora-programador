@@ -185,7 +185,7 @@ public class CadastroViewController implements Initializable {
 			txtTelefone.setText(usuario.getUsutelefone());
 	}
 
-	public void checkTextField() {
+	public void setTextFields() {
 		if (txtTelefone.getText().length() > 0)
 			lblTelefone.setVisible(true);
 
@@ -227,7 +227,6 @@ public class CadastroViewController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeNodesConstraints();
 		hidenControls();
-		checkTextField();
 	}
 
 }

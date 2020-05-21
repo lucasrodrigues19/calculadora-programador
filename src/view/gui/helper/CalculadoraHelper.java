@@ -3,21 +3,19 @@ package view.gui.helper;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import com.sun.javadoc.ThrowsTag;
-
+import application.Main;
 import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.stage.StageStyle;
 
 public class CalculadoraHelper {
 
@@ -29,10 +27,10 @@ public class CalculadoraHelper {
 	 * @param mainScene
 	 * @param execut
 	 */
-	public synchronized <T> void  loadView(String path, Scene mainScene, Consumer<T> execut)throws MyException {
-		if(path == null || mainScene == null) 
-				throw new MyException("Parametros nulos");
-		
+	public synchronized <T> void loadView(String path, Scene mainScene, Consumer<T> execut) throws MyException {
+		if (path == null || mainScene == null)
+			throw new MyException("Parametros nulos");
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			VBox newView = loader.load();
@@ -66,10 +64,10 @@ public class CalculadoraHelper {
 	 * @param path
 	 * @param mainScene
 	 */
-	public synchronized void loadMainView(String path, Scene mainScene)throws MyException {
-		if(path == null || mainScene == null)
+	public synchronized void loadMainView(String path, Scene mainScene) throws MyException {
+		if (path == null || mainScene == null)
 			throw new MyException("Parametros nulos");
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			ScrollPane scrollPane = loader.load();
@@ -94,10 +92,10 @@ public class CalculadoraHelper {
 	 *                    carregada
 	 * @param parentStage stage pai que a dialog aparecera em cima
 	 */
-	public synchronized <T> void loadViewDialog(String path, Consumer<T> execut, Stage parentStage)throws MyException {
-		if(path == null || parentStage == null) 
+	public synchronized <T> void loadViewDialog(String path, Consumer<T> execut, Stage parentStage) throws MyException {
+		if (path == null || parentStage == null)
 			throw new MyException("Parametros nulos");
-		
+
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			VBox vbox = loader.load();
@@ -127,10 +125,10 @@ public class CalculadoraHelper {
 	 * @param event
 	 * @return
 	 */
-	public Stage getStageAtual(ActionEvent event) throws MyException{
-		if(event == null)
+	public Stage getStageAtual(ActionEvent event) throws MyException {
+		if (event == null)
 			throw new MyException("Parametro nulo");
-		
+
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}
 
@@ -141,23 +139,83 @@ public class CalculadoraHelper {
 	 * @param event
 	 * @return
 	 */
-	public Stage getStageAtual(MouseEvent event)throws MyException {
-		if(event == null)
+	public Stage getStageAtual(MouseEvent event) throws MyException {
+		if (event == null)
 			throw new MyException("Parametro nulo");
-		
+
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}
 
 	/**
 	 * Método responsavel para pegar o stage atual atraves do scene
+	 * 
 	 * @param scene
 	 * @return
 	 */
-	public Stage getStageAtual(Scene scene) throws MyException{
-		if(scene == null)
+	public Stage getStageAtual(Scene scene) throws MyException {
+		if (scene == null)
 			throw new MyException("Parametro nulo");
-		
+
 		return (Stage) scene.getWindow();
+	}
+
+	/**
+	 * Retorna para a MainView e fechar a view Atual
+	 * 
+	 * @param stageThis stage da sua view atual
+	 * @param mainScene 
+	 * @throws MyException
+	 */
+	public void openMainView(Stage stageThis, Scene mainScene) throws MyException {
+		try {
+			stageThis.close();
+			Stage stageParent = new Stage();
+			stageParent.setScene(mainScene);
+			stageParent.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Abre uma view e fecha a atual
+	 * 
+	 * @param <T>
+	 * @param pathParent caminho da view para abrir
+	 * @param stageThis  stage da view para fechar
+	 * @throws MyException
+	 */
+	public <T> void openParentView(String pathParent, Stage stageThis, Consumer<T> executar) throws MyException {
+
+		try {
+			
+			FXMLLoader loaderParent = new FXMLLoader(getClass().getResource(pathParent));
+			Parent nodeParent = loaderParent.load();
+			// executa a fuçao passada como parametro da controler que ira ser aberta
+			if (executar != null) {
+				T controller = loaderParent.getController();
+				executar.accept(controller);
+			}
+			Scene sceneParent = new Scene(nodeParent);
+
+			Stage stageParent = new Stage();
+			stageParent.setScene(sceneParent);
+			stageParent.setResizable(false);//para não ser maximizada
+			//stageParent.initStyle(StageStyle.UNDECORATED); //desbilita os 3 botoes(maximizar,minimizar e fechar)
+			stageThis.close();
+			stageParent.show();
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		}
+
 	}
 
 }

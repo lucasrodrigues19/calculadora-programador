@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.AmbientLight?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,46 +12,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="766.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="766.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MenuViewController">
    <content>
       <VBox prefHeight="489.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD;">
          <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #DEB887;;">
+            <Pane prefHeight="63.0" prefWidth="764.0">
+               <children>
+                  <Button fx:id="btFechar" layoutX="698.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonFecharction" style="-fx-background-color: #FFDEAD; -fx-background-radius: 7px; -fx-border-color: #DEB887; -fx-border-radius: 7px;" text="Voltar" textFill="BURLYWOOD">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <ToolBar fx:id="toolBarMenu" prefHeight="38.0" prefWidth="673.0" style="-fx-background-color: #DEB887;;">
               <items>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opçoes" textFill="PERU">
+                  <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opçoes" textFill="PERU">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Perfil" />
-                      <MenuItem mnemonicParsing="false" text="Operaçoes" />
-                        <MenuItem mnemonicParsing="false" text="Inicio" />
+                      <MenuItem fx:id="menuItemPerfil" mnemonicParsing="false" text="Perfil" />
+                      <MenuItem fx:id="menuItemOperacoes" mnemonicParsing="false" text="Operaçoes" />
                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </MenuButton>
               </items>
             </ToolBar>
             <AmbientLight color="CHARTREUSE" lightOn="true" />
-            <Pane prefHeight="447.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD;">
+            <Pane prefHeight="447.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 8px; -fx-border-color: #deb887; -fx-background-radius: 7px;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="171.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="133.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="212.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="174.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="248.0" layoutY="171.0" prefHeight="84.0" prefWidth="47.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
+                  <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="235.0" layoutY="133.0" prefHeight="84.0" prefWidth="47.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="306.0" layoutY="171.0" prefHeight="82.0" prefWidth="259.0" text="* Programador" textFill="BURLYWOOD">
+                  <Label layoutX="293.0" layoutY="133.0" prefHeight="82.0" prefWidth="259.0" style="-fx-background-radius: 7px;" text="* Programador" textFill="BURLYWOOD">
                      <font>
                         <Font name="DejaVu Sans Bold" size="25.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                   </Label>
                   <Label layoutX="272.0" layoutY="353.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
                   <Label layoutX="345.0" layoutY="369.0" text="2020" textFill="BURLYWOOD" />
+                  <Label fx:id="lblInfoUsuario" alignment="CENTER" layoutX="478.0" layoutY="6.0" textAlignment="CENTER" textFill="BURLYWOOD">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

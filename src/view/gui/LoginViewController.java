@@ -1,6 +1,7 @@
 package view.gui;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import ex.MyException;
@@ -13,7 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import utils.CalculadoraUtils;
 import view.gui.helper.CalculadoraHelper;
@@ -27,6 +30,10 @@ public class LoginViewController implements Initializable {
 	private MyRuntimeException runtimeEx;
 
 	private Usuario usuario;
+	
+	private Logs logs;
+	
+	private LogsService logsService;
 
 	private UsuarioService usuarioService;
 
@@ -57,10 +64,29 @@ public class LoginViewController implements Initializable {
 	@FXML
 	private void onBtLoginAction(ActionEvent event) {
 		try {
-			System.out.println(btLogin.getText());
 			getDadosLogin();
-		} catch (MyRuntimeException e) {
+			usuario = getUsuarioService().login(getUsuario());
+			if(getUsuario().getUsuid() != null) {
+				setDadosLog();
+				helper.openParentView("/view/gui/MenuView.fxml", helper.getStageAtual(event), (MenuViewController controller)->{
+					controller.setLogs(getLogs());
+					controller.setLogsService(getLogsService());
+					controller.setUsuario(getUsuario());
+					controller.setUsuarioService(getUsuarioService());
+					controller.setInfoUsuario();
+					controller.salvarLog();
+				});
+			}else {
+				Alerts.showAlertInformations("Por favor, verifique seus dados!");
+			}
+		}catch(MyRuntimeException e) {
 			setMsgErros(e);
+		}catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}catch(Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
 		}
 	}
 
@@ -72,7 +98,7 @@ public class LoginViewController implements Initializable {
 				controller.setUsuario(usuario);
 				controller.setUsuarioService(usuarioService);
 				controller.atualizarDadosFormCadastro();
-				controller.checkTextField();
+				controller.setTextFields();
 			}, helper.getStageAtual(event));
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -110,7 +136,7 @@ public class LoginViewController implements Initializable {
 	}
 
 	private void getDadosLogin() {
-		if (usuario == null)
+		if (getUsuario() == null)
 			throw new IllegalArgumentException("usuario nulo");
 
 		runtimeEx = new MyRuntimeException();
@@ -125,8 +151,8 @@ public class LoginViewController implements Initializable {
 		if (runtimeEx.getErros().size() > 0)
 			throw runtimeEx;
 
-		usuario.setUsuemail(txtEmail.getText());
-		usuario.setUsutelefone(txtTelefone.getText());
+		getUsuario().setUsuemail(txtEmail.getText());
+		getUsuario().setUsutelefone(txtTelefone.getText());
 	}
 
 	private void setMsgErros(MyRuntimeException erros) {
@@ -141,6 +167,10 @@ public class LoginViewController implements Initializable {
 		
 		if(txtTelefone != null)
 		usuario.setUsutelefone(txtTelefone.getText());
+	}
+	private void setDadosLog() {
+		logs.setLogdata(new Date());
+		logs.setLogusuario(usuario);
 	}
 	private void initializeNodesConstraints() {
 		Costraints.textFieldInteger(txtTelefone);
@@ -168,6 +198,22 @@ public class LoginViewController implements Initializable {
 
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
+	}
+
+	public Logs getLogs() {
+		return logs;
+	}
+
+	public void setLogs(Logs logs) {
+		this.logs = logs;
+	}
+
+	public LogsService getLogsService() {
+		return logsService;
+	}
+
+	public void setLogsService(LogsService logsService) {
+		this.logsService = logsService;
 	}
 
 	@Override
