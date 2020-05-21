@@ -28,7 +28,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 	}
 
 	@Override
-	public Boolean login(Usuario usuario) {
+	public Usuario login(Usuario usuario) {
 		if (con == null)
 			throw new IllegalArgumentException("Conexao nula");
 
@@ -41,9 +41,9 @@ public class UsuarioDAOI implements UsuarioDAO {
 			ps.setString(1, usuario.getUsuemail());
 			ps.setString(2, usuario.getUsutelefone());
 			rs = ps.executeQuery();
-			Integer id = rs.getInt("usuid");
-			if (id != null)
-				return true;
+			while(rs.next()) {
+				usuario = getUsuarioRS(rs);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 			DB.closeResultSet(rs);
 			DB.closeStatment(ps);
 		}
-		return false;
+		return usuario;
 	}
 
 	@Override

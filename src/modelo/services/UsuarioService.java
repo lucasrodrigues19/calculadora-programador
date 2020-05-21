@@ -9,7 +9,7 @@ import modelo.entites.Usuario;
 
 public class UsuarioService {
 	
-	public Boolean login(Usuario usuario) {
+	public Usuario login(Usuario usuario) {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 		try {
