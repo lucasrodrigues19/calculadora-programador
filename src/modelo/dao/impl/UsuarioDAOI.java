@@ -41,7 +41,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 			ps.setString(1, usuario.getUsuemail());
 			ps.setString(2, usuario.getUsutelefone());
 			rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				usuario = getUsuarioRS(rs);
 			}
 
@@ -78,10 +78,10 @@ public class UsuarioDAOI implements UsuarioDAO {
 			try {
 				con.rollback();
 				e.printStackTrace();
-				throw new MySQLException("Erro na transanção: "+e.getMessage());
+				throw new MySQLException("Erro na transanção: " + e.getMessage());
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				throw new MySQLException("Erro no rollback: "+e.getMessage());
+				throw new MySQLException("Erro no rollback: " + e.getMessage());
 			}
 		} finally {
 			DB.closeStatment(ps);
@@ -89,7 +89,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 	}
 
 	@Override
-	public void update(Usuario usuario){
+	public void update(Usuario usuario) {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 
@@ -118,7 +118,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 				e2.printStackTrace();
 				throw new MySQLException("Erro no rollback");
 			}
-			
+
 		} finally {
 			DB.closeStatment(ps);
 		}
@@ -248,6 +248,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 
 	private Usuario getUsuarioRS(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
+
 		usuario.setUsuid(rs.getInt("usuid"));
 		usuario.setUsunome(rs.getString("usunome"));
 		usuario.setUsuemail(rs.getString("usuemail"));

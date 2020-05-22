@@ -143,7 +143,7 @@ public class CadastroViewController implements Initializable {
 		lblTelefoneErro.setText((e.getErros().containsKey("telefone") ? e.getErros().get("telefone") : ""));
 	}
 
-	private synchronized void getDadosCadastro() {
+	private void getDadosCadastro() {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 

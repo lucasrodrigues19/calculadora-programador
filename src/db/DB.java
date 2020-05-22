@@ -10,6 +10,9 @@ import java.util.Properties;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import db.ex.MySQLException;
+import ex.MyException;
+
 public class DB {
 
 	private static Connection con = null;
@@ -28,6 +31,9 @@ public class DB {
 				System.out.println("Conexao com o banco realizada");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new MySQLException(e.getMessage());
+			}catch(MyException e) {
+				e.printStackTrace();
 			}
 		}
 		return con;
@@ -43,6 +49,7 @@ public class DB {
 				System.out.println("Conexao com o banco fechada");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new MySQLException(e.getMessage());
 			}
 		}
 	}
@@ -58,6 +65,7 @@ public class DB {
 				System.out.println("ResultSet fechada");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new MySQLException(e.getMessage());
 			}
 		}
 	}
@@ -73,6 +81,7 @@ public class DB {
 				System.out.println("Statement fechada");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new MySQLException(e.getMessage());
 			}
 		}
 	}
@@ -82,8 +91,9 @@ public class DB {
 	 * @param path	Caminho do arquivo
 	 * 				
 	 * @return
+	 * @throws MyException 
 	 */
-	private static Properties loadProperties(String path) {
+	private static Properties loadProperties(String path) throws MyException {
 
 		try (FileInputStream fis = new FileInputStream(path)) {
 			Properties prop = new Properties();
@@ -91,7 +101,7 @@ public class DB {
 			return prop;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
+			throw new MyException(e.getMessage());
 		}
 
 	}

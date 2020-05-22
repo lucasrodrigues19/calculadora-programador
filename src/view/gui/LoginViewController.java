@@ -18,12 +18,13 @@ import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
+import observer.DadoAlteradoListener;
 import utils.CalculadoraUtils;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 import view.gui.utils.Costraints;
 
-public class LoginViewController implements Initializable {
+public class LoginViewController implements Initializable,DadoAlteradoListener {
 
 	private CalculadoraHelper helper = new CalculadoraHelper();
 
@@ -75,6 +76,7 @@ public class LoginViewController implements Initializable {
 					controller.setUsuarioService(getUsuarioService());
 					controller.setInfoUsuario();
 					controller.salvarLog();
+					inscreverMeSubject(controller);
 				});
 			}else {
 				Alerts.showAlertInformations("Por favor, verifique seus dados!");
@@ -221,5 +223,14 @@ public class LoginViewController implements Initializable {
 		initializeNodesConstraints();
 		hidenControls();
 	}
-
+	public void resetLabelsErros() {
+		lblErroEmail.setText("");
+		lblErroTelefone.setText("");
+	}
+	
+	@Override
+	public void onDadosAlterados() {
+		resetLabelsErros();
+	}
+	
 }

@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToolBar;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
@@ -26,10 +28,11 @@ public class MainViewController implements Initializable {
 	private ScrollPane scrollMain;
 
 	@FXML
-	private MenuItem menuInicio;
+	private ToolBar toolBarMenu;
+	
 	@FXML
-	private MenuItem menuAjuda;
-
+	private MenuButton menuButtonOpcoes;
+	
 	@FXML
 	private MenuItem menuItemSobre;
 
@@ -52,7 +55,7 @@ public class MainViewController implements Initializable {
 				controller.setLogs(new Logs());
 				controller.setLogsService(new LogsService());
 			});
-			menuInicio.setVisible(true);
+			menuItemHome.setVisible(true);
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
@@ -86,10 +89,10 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private void onMenuItemHomeAction() {
-		System.out.println(menuInicio.getText());
+		System.out.println(menuItemHome.getText());
 		try {
 			helper.loadMainView("/view/gui/MainView.fxml", Main.mainScene);
-			menuInicio.setVisible(false);
+			menuItemHome.setVisible(false);
 		} catch (MyException e) {
 			Alerts.showAlertError(e.getMessage());
 		}
@@ -102,7 +105,7 @@ public class MainViewController implements Initializable {
 	}
 
 	private void hidenControls() {
-		menuInicio.setVisible(false);
+		menuItemHome.setVisible(false);
 	}
 
 	@Override

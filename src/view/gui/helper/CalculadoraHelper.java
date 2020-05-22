@@ -193,6 +193,12 @@ public class CalculadoraHelper {
 			
 			FXMLLoader loaderParent = new FXMLLoader(getClass().getResource(pathParent));
 			Parent nodeParent = loaderParent.load();
+			
+			
+			if(nodeParent instanceof ScrollPane) {
+				((ScrollPane) nodeParent).setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
+				((ScrollPane) nodeParent).setFitToWidth(true);
+			}
 			// executa a fuçao passada como parametro da controler que ira ser aberta
 			if (executar != null) {
 				T controller = loaderParent.getController();

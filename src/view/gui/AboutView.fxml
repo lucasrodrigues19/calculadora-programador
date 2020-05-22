@@ -1,34 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="222.0" prefWidth="617.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="263.0" prefWidth="640.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="198.0" prefWidth="326.0" style="-fx-background-color: #FFDEAD;">
+      <Pane prefHeight="250.0" prefWidth="640.0" style="-fx-background-color: #FFDEAD;">
          <children>
-            <Label layoutX="37.0" layoutY="21.0" text="Calculadora-programador" textFill="#ba5a25">
+            <Label layoutX="129.0" layoutY="22.0" text="Calculadora-programador" textFill="#ba5a25">
                <font>
-                  <Font name="DejaVu Sans Bold" size="13.0" />
-               </font></Label>
-            <Label layoutX="29.0" layoutY="75.0" text="Aplicaçao desenvolvida para efetuar as quatro operações basicas aritimeticas" textFill="#9a8634">
+                  <Font name="DejaVu Sans Bold" size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></Label>
+            <Label layoutX="29.0" layoutY="75.0" text="Aplicaçao desenvolvida para efetuar as quatro operações basicas " textFill="#9a8634">
                <font>
 	<Font name="DejaVu Sans Bold" size="13.0" />
-               </font></Label>
-            <Label layoutX="30.0" layoutY="91.0" text="e conversao de numeros binarios, decimais e hexadecimais" textFill="#9a8634">
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></Label>
+            <Label layoutX="515.0" layoutY="75.0" text="aritimeticas" textFill="PERU">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+            <Label layoutX="30.0" layoutY="91.0" text="e conversao de numeros " textFill="#9a8634">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
-               </font></Label>
-            <Label layoutX="22.0" layoutY="129.0" text="Clique em ENTRAR para usar a aplicaçao sem o historico ser salvo permanente" textFill="#9a8634">
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></Label>
+            <Label layoutX="213.0" layoutY="91.0" text="binarios, decimais e hexadecimais" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
-               </font></Label>
-             <Label layoutX="22.0" layoutY="154.0" text="Clique em LOGIN para usar a aplicaçao com historico salvo permanente" textFill="#9a8634">
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+            <Label layoutX="23.0" layoutY="131.0" text="Clique em " textFill="#9a8634">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
-               </font></Label>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+            <Label layoutX="188.0" layoutY="131.0" text="para usar a aplicaçao sem o historico salvo permanente" textFill="#9a8634">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></Label>
+            <Label layoutX="22.0" layoutY="165.0" text="Clique em " textFill="#9a8634">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+             <Label layoutX="185.0" layoutY="163.0" text=" para usar a aplicaçao com o historico salvo permanente" textFill="#9a8634">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></Label>
+            <Button layoutX="102.0" layoutY="125.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #fff; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: #CD853F;" text="ENTRAR" textFill="PERU">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Button>
+            <Button layoutX="104.0" layoutY="159.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" style="-fx-background-color: #CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: #fff;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Button>
+            <Label alignment="CENTER" layoutX="213.0" layoutY="202.0" text="\@copyrigth - Lucas Rodrigues" textFill="PERU">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+            <Label alignment="CENTER" layoutX="286.0" layoutY="223.0" text="2020" textFill="PERU" />
          </children>
       </Pane>
    </children>

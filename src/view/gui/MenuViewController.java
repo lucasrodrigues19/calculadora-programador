@@ -1,6 +1,8 @@
 package view.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -18,24 +20,28 @@ import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
+import observer.DadoAlteradoListener;
+import subject.NotificaDadoAlteradoListner;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 
-public class MenuViewController implements Initializable {
+public class MenuViewController implements Initializable,NotificaDadoAlteradoListner {
 
 	private CalculadoraHelper helper = new CalculadoraHelper();
 
+	private List<DadoAlteradoListener> listeners = new ArrayList<>();
+
 	private UsuarioService usuarioService;
 
-	private  Usuario usuario;
+	private Usuario usuario;
 
-	private  LogsService logsService;
+	private LogsService logsService;
 
 	private Logs logs;
 
 	@FXML
 	private Label lblInfoUsuario;
-	
+
 	@FXML
 	private ToolBar toolBarMenu;
 
@@ -54,12 +60,13 @@ public class MenuViewController implements Initializable {
 	@FXML
 	private void onButtonFecharction(ActionEvent event) {
 		try {
-			helper.openMainView(helper.getStageAtual(event),Main.mainScene);
-		}catch(MyException e) {
+			helper.openMainView(helper.getStageAtual(event), Main.mainScene);
+			notificarListener();
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
-		
+
 	}
 
 	public UsuarioService getUsuarioService() {
@@ -96,23 +103,29 @@ public class MenuViewController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
+
 	}
 
-	
 	private void fecharView(Stage stageAtual) {
-		stageAtual.close();		
+		stageAtual.close();
 	}
+
 	public void setInfoUsuario() {
-		if(getUsuario() == null)
-				throw new IllegalArgumentException("usuario nulo");
-		
-		if(getUsuario().getUsuemail() != null)
+		if (getUsuario() == null)
+			throw new IllegalArgumentException("usuario nulo");
+
+		if (getUsuario().getUsuemail() != null)
 			lblInfoUsuario.setText(getUsuario().getUsuemail());
 	}
+
 	public void salvarLog() {
 		getLogsService().save(getLogs());
 	}
+
+	@Override
+	public List<DadoAlteradoListener> getListeners() {
+		return listeners;
+	}
+
 	
 }

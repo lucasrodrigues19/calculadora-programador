@@ -8,7 +8,7 @@ import modelo.dao.factory.DaoFactory;
 import modelo.entites.Usuario;
 
 public class UsuarioService {
-	
+
 	public Usuario login(Usuario usuario) {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
@@ -67,7 +67,7 @@ public class UsuarioService {
 			throw new MySQLException(e.getMessage());
 		}
 	}
-	
+
 	private UsuarioDAO getUsuarioDAO() {
 		return DaoFactory.getUsuarioDAO();
 	}

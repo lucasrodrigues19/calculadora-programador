@@ -2,38 +2,31 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="297.0" prefHeight="368.0" prefWidth="297.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
+<ScrollPane fx:id="scrollMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="297.0" prefHeight="368.0" prefWidth="297.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
    <content>
       <VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;">
          <children>
-            <MenuBar style="-fx-padding: 5; -fx-background-color: #DEB887; -fx-color: #FFF;">
-              <menus>
-                  <Menu fx:id="menuInicio" mnemonicParsing="false" text="INICIO">
-                     <items>
+            <ToolBar fx:id="toolBarMenu" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #DEB887;">
+               <items>
+                  <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opções" textFill="PERU">
+                    <items>
                         <MenuItem fx:id="menuItemHome" mnemonicParsing="false" onAction="#onMenuItemHomeAction" text="HOME" />
-                     </items>
-                  </Menu>
-                <Menu fx:id="menuIAjuda" mnemonicParsing="false" style="-fx-text-fill: #FFF;" text="AJUDA">
-                  <items>
                     <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="SOBRE" />
-                  </items>
-                </Menu>
-              </menus>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </MenuBar>
+                    </items>
+                  </MenuButton>
+               </items>
+            </ToolBar>
             <Pane prefHeight="313.0" prefWidth="296.0">
                <children>
-                  <Button fx:id="btLogin" layoutX="114.0" layoutY="111.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+                  <Button fx:id="btLogin" layoutX="112.0" layoutY="111.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
@@ -41,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btEntrar" layoutX="109.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
+                  <Button fx:id="btEntrar" layoutX="108.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
