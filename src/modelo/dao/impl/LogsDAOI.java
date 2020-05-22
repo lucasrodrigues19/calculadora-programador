@@ -1,5 +1,6 @@
 package modelo.dao.impl;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,12 +14,14 @@ import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.ex.MySQLException;
+import ex.MyException;
 import modelo.dao.LogsDAO;
 import modelo.dao.UsuarioDAO;
 import modelo.dao.factory.DaoFactory;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import utils.DataUtils;
 
 public class LogsDAOI implements LogsDAO {
 	private Connection con;
@@ -38,7 +41,7 @@ public class LogsDAOI implements LogsDAO {
 		try {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
-			ps.setDate(1, new java.sql.Date(logs.getLogdata().getTime()));
+			ps.setTimestamp(1, DataUtils.parseTimeStamp(logs.getLogdata()));
 			ps.setInt(2, logs.getLogusuid());
 			int rows = ps.executeUpdate();
 			if (rows <= 0)
@@ -54,6 +57,9 @@ public class LogsDAOI implements LogsDAO {
 				e2.printStackTrace();
 				throw new MySQLException("Erro no rollback: " + e.getMessage());
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MySQLException("Erro: " + e.getMessage());
 		} finally {
 			DB.closeStatment(ps);
 		}
@@ -215,7 +221,7 @@ public class LogsDAOI implements LogsDAO {
 		Map<Integer, Usuario> mapUsusario = new HashMap<Integer, Usuario>();
 
 		try {
-			st =  (Statement) con.createStatement();
+			st = (Statement) con.createStatement();
 			rs = st.executeQuery(sql);
 			Usuario usuario = null;
 			Logs logs = null;
@@ -230,7 +236,8 @@ public class LogsDAOI implements LogsDAO {
 
 				logs = getLogsRS(rs);
 				logs.setLogusuario(usuario);
-				// no usuario de todos os logs, sera setado toda sua lista de logs, pois é para o
+				// no usuario de todos os logs, sera setado toda sua lista de logs, pois é para
+				// o
 				// mesmo usuario que todos os logs apontam
 				usuario.getUsulogs().add(logs);
 				result.add(logs);
@@ -270,7 +277,17 @@ public class LogsDAOI implements LogsDAO {
 		Logs logs = new Logs();
 
 		logs.setLogid(rs.getInt("logid"));
-		logs.setLogdata(new java.util.Date(rs.getDate("logdata").getTime()));
+		try {
+			// formata a data que vem, depois da um parse
+			logs.setLogdata(DataUtils.parse(DataUtils.format(rs.getDate("logdata"), "dd/MM/yyyy HH:mm:ss"),
+					"dd/MM/yyyy HH:mm:ss"));
+		} catch (MyException e) {
+			e.printStackTrace();
+			throw new SQLException(e.getMessage());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e.getMessage());
+		}
 		return logs;
 
 	}

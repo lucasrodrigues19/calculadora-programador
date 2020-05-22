@@ -3,7 +3,6 @@ package view.gui.helper;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import application.Main;
 import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class CalculadoraHelper {
 

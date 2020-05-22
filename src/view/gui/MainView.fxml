@@ -26,7 +26,7 @@
             </ToolBar>
             <Pane prefHeight="313.0" prefWidth="296.0">
                <children>
-                  <Button fx:id="btLogin" layoutX="112.0" layoutY="111.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+                  <Button fx:id="btLogin" layoutX="108.0" layoutY="111.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btEntrar" layoutX="108.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
+                  <Button fx:id="btEntrar" layoutX="104.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>

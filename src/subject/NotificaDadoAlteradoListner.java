@@ -5,7 +5,7 @@ import java.util.List;
 import observer.DadoAlteradoListener;
 
 /**
- * Objeto(subject) que notifica o object(observer), quando um dadono subject  for alterado.
+ * Objeto(subject) que notifica outro object(observer), quando um dado no subject  for alterado.
  * @author lucas.rodrigues
  *
  */

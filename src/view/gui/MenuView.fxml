@@ -44,6 +44,11 @@
             <AmbientLight color="CHARTREUSE" lightOn="true" />
             <Pane prefHeight="447.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 8px; -fx-border-color: #deb887; -fx-background-radius: 7px;">
                <children>
+                  <Label fx:id="lblInfoUsuario" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="6.0" prefHeight="16.0" prefWidth="282.0" textAlignment="CENTER" textFill="BURLYWOOD">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font>
+                  </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="133.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
                      <font>
                         <Font name="System Bold" size="25.0" />
@@ -69,11 +74,6 @@
                   </Label>
                   <Label layoutX="272.0" layoutY="353.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
                   <Label layoutX="345.0" layoutY="369.0" text="2020" textFill="BURLYWOOD" />
-                  <Label fx:id="lblInfoUsuario" alignment="CENTER" layoutX="478.0" layoutY="6.0" textAlignment="CENTER" textFill="BURLYWOOD">
-                     <font>
-                        <Font name="DejaVu Sans Bold" size="13.0" />
-                     </font>
-                  </Label>
                </children>
             </Pane>
          </children>

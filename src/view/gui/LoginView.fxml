@@ -12,6 +12,28 @@
    <children>
       <Pane prefHeight="313.0" prefWidth="296.0">
          <children>
+            <Label fx:id="lblEmail" layoutX="52.0" layoutY="69.0" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-color: #CD853F;">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="lblErroEmail" layoutX="243.0" layoutY="100.0" textFill="#e81212" />
+            <Label fx:id="lblTelefone" layoutX="53.0" layoutY="135.0" onMouseClicked="#onMouseClickLblTelefoneAction" text="TELEFONE" textFill="PERU">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtTelefone" layoutX="52.0" layoutY="158.0" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" style="-fx-color: #CD853F;">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="lblErroTelefone" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
             <Button fx:id="btLogin" layoutX="104.0" layoutY="203.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
@@ -20,28 +42,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-color: #CD853F;">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="13.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="txtTelefone" layoutX="52.0" layoutY="158.0" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" style="-fx-color: #CD853F;">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="13.0" />
-               </font>
-            </TextField>
-            <Label fx:id="lblEmail" layoutX="52.0" layoutY="69.0" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblTelefone" layoutX="53.0" layoutY="135.0" onMouseClicked="#onMouseClickLblTelefoneAction" text="TELEFONE" textFill="PERU">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblErroEmail" layoutX="243.0" layoutY="100.0" textFill="#e81212" />
-            <Label fx:id="lblErroTelefone" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
             <Button fx:id="btCadastro" layoutX="87.0" layoutY="249.0" mnemonicParsing="false" onAction="#onBtCadastroAction" style="-fx-background-color: white; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="CADASTRO" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />

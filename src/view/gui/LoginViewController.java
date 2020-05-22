@@ -19,21 +19,21 @@ import modelo.entites.Usuario;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
-import utils.CalculadoraUtils;
+import utils.DataUtils;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 import view.gui.utils.Costraints;
 
-public class LoginViewController implements Initializable,DadoAlteradoListener {
+public class LoginViewController implements Initializable, DadoAlteradoListener {
 
 	private CalculadoraHelper helper = new CalculadoraHelper();
 
 	private MyRuntimeException runtimeEx;
 
 	private Usuario usuario;
-	
+
 	private Logs logs;
-	
+
 	private LogsService logsService;
 
 	private UsuarioService usuarioService;
@@ -67,26 +67,27 @@ public class LoginViewController implements Initializable,DadoAlteradoListener {
 		try {
 			getDadosLogin();
 			usuario = getUsuarioService().login(getUsuario());
-			if(getUsuario().getUsuid() != null) {
+			if (getUsuario().getUsuid() != null) {
 				setDadosLog();
-				helper.openParentView("/view/gui/MenuView.fxml", helper.getStageAtual(event), (MenuViewController controller)->{
-					controller.setLogs(getLogs());
-					controller.setLogsService(getLogsService());
-					controller.setUsuario(getUsuario());
-					controller.setUsuarioService(getUsuarioService());
-					controller.setInfoUsuario();
-					controller.salvarLog();
-					inscreverMeSubject(controller);
-				});
-			}else {
+				helper.openParentView("/view/gui/MenuView.fxml", helper.getStageAtual(event),
+						(MenuViewController controller) -> {
+							controller.setLogs(getLogs());
+							controller.setLogsService(getLogsService());
+							controller.setUsuario(getUsuario());
+							controller.setUsuarioService(getUsuarioService());
+							controller.setInfoUsuario();
+							controller.salvarLog();
+							inscreverMeSubject(controller);
+						});
+			} else {
 				Alerts.showAlertInformations("Por favor, verifique seus dados!");
 			}
-		}catch(MyRuntimeException e) {
+		} catch (MyRuntimeException e) {
 			setMsgErros(e);
-		}catch (MyException e) {
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
@@ -164,16 +165,22 @@ public class LoginViewController implements Initializable,DadoAlteradoListener {
 	}
 
 	private void setDadosUsuario() {
-		if(txtEmail != null)
-		usuario.setUsuemail(txtEmail.getText());
-		
-		if(txtTelefone != null)
-		usuario.setUsutelefone(txtTelefone.getText());
+		if (txtEmail != null)
+			usuario.setUsuemail(txtEmail.getText());
+
+		if (txtTelefone != null)
+			usuario.setUsutelefone(txtTelefone.getText());
 	}
-	private void setDadosLog() {
-		logs.setLogdata(new Date());
-		logs.setLogusuario(usuario);
+
+	private void setDadosLog() throws MyException {
+		// formata a data que vem, depois da um parse
+		if (getUsuario() != null && getUsuario().getUsuid() != null) {
+			logs.setLogdata(
+					DataUtils.parse(DataUtils.format(new Date(), "dd/MM/yyyy HH:mm:ss"), "dd/MM/yyyy HH:mm:ss"));
+			logs.setLogusuario(usuario);
+		}
 	}
+
 	private void initializeNodesConstraints() {
 		Costraints.textFieldInteger(txtTelefone);
 		Costraints.textFieldMaxLength(txtEmail, 40);
@@ -223,14 +230,17 @@ public class LoginViewController implements Initializable,DadoAlteradoListener {
 		initializeNodesConstraints();
 		hidenControls();
 	}
+
 	public void resetLabelsErros() {
 		lblErroEmail.setText("");
 		lblErroTelefone.setText("");
 	}
-	
+
 	@Override
 	public void onDadosAlterados() {
 		resetLabelsErros();
+		usuario = new Usuario();
+		logs = new Logs();
 	}
-	
+
 }

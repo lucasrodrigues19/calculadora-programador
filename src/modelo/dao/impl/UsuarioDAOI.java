@@ -13,10 +13,12 @@ import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.ex.MySQLException;
+import ex.MyException;
 import modelo.dao.UsuarioDAO;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import utils.DataUtils;
 
 public class UsuarioDAOI implements UsuarioDAO {
 
@@ -262,7 +264,16 @@ public class UsuarioDAOI implements UsuarioDAO {
 		Logs logs = new Logs();
 
 		logs.setLogid(rs.getInt("logs.logid"));
-		logs.setLogdata(new java.util.Date(rs.getDate("logs.logdata").getTime()));
+		try {
+			//formata a data que vim, e depois da um parse
+			logs.setLogdata(DataUtils.parse(DataUtils.format(rs.getDate("logs.logdata"), "dd/MM/yyyy HH:mm:ss"), "dd/MM/yyyy HH:mm:ss"));
+		} catch (MyException e) {
+			e.printStackTrace();
+			throw new SQLException(e.getMessage());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e.getMessage());
+		}
 		return logs;
 
 	}

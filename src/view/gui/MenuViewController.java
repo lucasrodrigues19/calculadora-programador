@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
-import javafx.stage.Stage;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
@@ -106,9 +105,9 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 
 	}
 
-	private void fecharView(Stage stageAtual) {
-		stageAtual.close();
-	}
+//	private void fecharView(Stage stageAtual) {
+//		stageAtual.close();
+//	}
 
 	public void setInfoUsuario() {
 		if (getUsuario() == null)
