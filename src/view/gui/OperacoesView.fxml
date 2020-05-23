@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<VBox prefHeight="489.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #DEB887;;">
+        <items>
+          <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Calculadora" textFill="BURLYWOOD">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #fff;" text="Conversor" textFill="BURLYWOOD">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #fff;" text="Historico" textFill="BURLYWOOD">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+      <Pane prefHeight="443.0" prefWidth="764.0">
+         <children>
+            <Label layoutX="285.0" layoutY="370.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
+            <Label layoutX="358.0" layoutY="392.0" text="2020" textFill="BURLYWOOD" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
