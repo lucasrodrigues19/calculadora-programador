@@ -10,11 +10,14 @@ import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
+import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
@@ -24,7 +27,7 @@ import subject.NotificaDadoAlteradoListner;
 import view.gui.helper.CalculadoraHelper;
 import view.gui.utils.Alerts;
 
-public class MenuViewController implements Initializable,NotificaDadoAlteradoListner {
+public class MenuViewController implements Initializable, NotificaDadoAlteradoListner {
 
 	private CalculadoraHelper helper = new CalculadoraHelper();
 
@@ -37,6 +40,9 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 	private LogsService logsService;
 
 	private Logs logs;
+
+	@FXML
+	ScrollPane menuScrollPane;
 
 	@FXML
 	private Label lblInfoUsuario;
@@ -54,10 +60,13 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 	private MenuItem menuItemOperacoes;
 
 	@FXML
-	private Button btFechar;
+	private Button btSair;
 
 	@FXML
-	private void onButtonFecharction(ActionEvent event) {
+	private Button btVoltar;
+
+	@FXML
+	private void onButtonSairAction(ActionEvent event) {
 		try {
 			helper.openMainView(helper.getStageAtual(event), Main.mainScene);
 			notificarListener();
@@ -66,6 +75,48 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 			Alerts.showAlertError(e.getMessage());
 		}
 
+	}
+
+	@FXML
+	private void onButtonVoltarAction(ActionEvent event) {
+		try {
+			helper.backView("/view/gui/MenuView.fxml", getMenuViewScene(), (MenuViewController controller)->{
+				controller.setUsuario(getUsuario());
+				controller.setUsuarioService(getUsuarioService());
+				//controller.setHistorico(new Historico());
+				controller.setInfoUsuario();
+			});
+			btVoltar.setVisible(false);
+			notificarListener();
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+
+	}
+
+	@FXML
+	private void onMenuItemOperacoesAction() {
+		try {
+			helper.loadView("/view/gui/OperacoesView.fxml", getMenuViewScene(),
+					(OperacoesViewController controller) -> {
+						controller.setUsuario(getUsuario());
+						controller.setUsuarioService(getUsuarioService());
+						controller.setScenePai(getMenuViewScene());
+						controller.setHistorico(new Historico());
+					});
+			btVoltar.setVisible(true);
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private Scene getMenuViewScene() {
+		return menuScrollPane.getScene();
 	}
 
 	public UsuarioService getUsuarioService() {
@@ -102,12 +153,15 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		hiddenControlls();
 	}
 
 //	private void fecharView(Stage stageAtual) {
 //		stageAtual.close();
 //	}
+	private void hiddenControlls() {
+		btVoltar.setVisible(false);
+	}
 
 	public void setInfoUsuario() {
 		if (getUsuario() == null)
@@ -126,5 +180,4 @@ public class MenuViewController implements Initializable,NotificaDadoAlteradoLis
 		return listeners;
 	}
 
-	
 }

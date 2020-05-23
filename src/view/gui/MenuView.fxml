@@ -12,13 +12,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="766.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MenuViewController">
+<ScrollPane fx:id="menuScrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="766.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MenuViewController">
    <content>
       <VBox prefHeight="489.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD;">
          <children>
             <Pane prefHeight="63.0" prefWidth="764.0">
                <children>
-                  <Button fx:id="btFechar" layoutX="698.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonFecharction" style="-fx-background-color: #FFDEAD; -fx-background-radius: 7px; -fx-border-color: #DEB887; -fx-border-radius: 7px;" text="Voltar" textFill="BURLYWOOD">
+                  <Button fx:id="btSair" layoutX="698.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonSairAction" style="-fx-background-color: #FFDEAD; -fx-background-radius: 7px; -fx-border-color: #ffff; -fx-border-radius: 7px;" text="Sair" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btVoltar" layoutX="622.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonVoltarAction" style="-fx-background-color: #fff; -fx-background-radius: 7px; -fx-border-color: #DEB887; -fx-border-radius: 7px;" text="Voltar" textFill="BURLYWOOD">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -33,7 +41,7 @@
                   <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opçoes" textFill="PERU">
                     <items>
                       <MenuItem fx:id="menuItemPerfil" mnemonicParsing="false" text="Perfil" />
-                      <MenuItem fx:id="menuItemOperacoes" mnemonicParsing="false" text="Operaçoes" />
+                      <MenuItem fx:id="menuItemOperacoes" mnemonicParsing="false" onAction="#onMenuItemOperacoesAction" text="Operaçoes" />
                     </items>
                      <cursor>
                         <Cursor fx:constant="HAND" />

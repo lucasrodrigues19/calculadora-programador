@@ -55,23 +55,29 @@ public class CalculadoraHelper {
 		}
 
 	}
+	
 
 	/**
-	 * Metodo responsavel por carregar a Mainview
+	 * Metodo responsavel por carregar a view Pai
+	 * @param <T>
 	 * 
 	 * @param path
 	 * @param mainScene
 	 */
-	public synchronized void loadMainView(String path, Scene mainScene) throws MyException {
+	public synchronized <T> void backView(String path, Scene mainScene, Consumer<T>execut) throws MyException {
 		if (path == null || mainScene == null)
 			throw new MyException("Parametros nulos");
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			ScrollPane scrollPane = loader.load();
+			
 			scrollPane.setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
 			scrollPane.setFitToWidth(true);
-
+			if (execut != null) {
+				T controller = loader.getController();
+				execut.accept(controller);
+			}
 			mainScene.setRoot(scrollPane);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,7 +184,7 @@ public class CalculadoraHelper {
 	}
 
 	/**
-	 * Abre uma view e fecha a atual
+	 * Abre uma nova view e fecha a atual
 	 * 
 	 * @param <T>
 	 * @param pathParent caminho da view para abrir
@@ -221,5 +227,16 @@ public class CalculadoraHelper {
 		}
 
 	}
+
+	/**
+	 * Retorna a scene da view de acordo com o evento 
+	 * @param event	ActionEvent
+	 * @return
+	 */
+	public Scene getSceneAtual(ActionEvent event) {
+		return (Scene)((Node)event.getSource()).getScene();
+	}
+
+
 
 }

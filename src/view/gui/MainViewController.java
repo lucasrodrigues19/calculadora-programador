@@ -91,7 +91,7 @@ public class MainViewController implements Initializable {
 	private void onMenuItemHomeAction() {
 		System.out.println(menuItemHome.getText());
 		try {
-			helper.loadMainView("/view/gui/MainView.fxml", Main.mainScene);
+			helper.backView("/view/gui/MainView.fxml", Main.mainScene,null);
 			menuItemHome.setVisible(false);
 		} catch (MyException e) {
 			Alerts.showAlertError(e.getMessage());
