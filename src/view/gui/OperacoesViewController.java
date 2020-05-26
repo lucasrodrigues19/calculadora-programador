@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
@@ -23,6 +24,8 @@ public class OperacoesViewController implements Initializable {
 	private UsuarioService usuarioService;
 
 	private Usuario usuario;
+	
+	private String btStyle;
 
 	//private HistoricoService historicoService;
 
@@ -43,15 +46,40 @@ public class OperacoesViewController implements Initializable {
 	private Button btHistorico;
 	
 	@FXML
-	private void onBtCalculadora(ActionEvent event) {
+	private void onBtCalculadoraAction(ActionEvent event) {
 		try {
-			helper.loadView("/view/gui/CalculadoraView.fxml", helper.getSceneAtual(event), null);
+			helper.loadView("/view/gui/CalculadoraView.fxml", helper.getSceneAtual(event),2, (CalculadoraViewController controller)->{
+				controller.setUsuario(getUsuario());
+				controller.setUsuarioService(getUsuarioService());
+				//controller.setHistorico(new Historico());
+			});
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+	@FXML
+	private void onMouseBtCalculadoraHouver(MouseEvent event) {
+		try {
+			btStyle = btCalculadora.getStyle();
+			btCalculadora.setStyle(btCalculadora.getStyle()+"-fx-background-color: gray");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	}
+	@FXML
+	private void onMouseBtCalculadoraOut(MouseEvent event) {
+		try {
+			btCalculadora.setStyle(btStyle);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
 	
+	}
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}

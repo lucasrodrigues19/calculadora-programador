@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
@@ -7,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.OperacoesViewController">
+<VBox maxHeight="566.0" maxWidth="770.0" minHeight="566.0" minWidth="770.0" prefHeight="566.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.OperacoesViewController">
    <children>
       <ToolBar fx:id="toolBarMenu" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #DEB887;;">
         <items>
-          <Button fx:id="btCalculadora" defaultButton="true" mnemonicParsing="false" onAction="#onBtCalculadora" style="-fx-background-color: #fff;" text="Calculadora" textFill="BURLYWOOD">
+          <Button fx:id="btCalculadora" defaultButton="true" mnemonicParsing="false" onAction="#onBtCalculadoraAction" onMouseEntered="#onMouseBtCalculadoraHouver" onMouseExited="#onMouseBtCalculadoraOut" style="-fx-background-color: #fff;" text="Calculadora" textFill="BURLYWOOD">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
@@ -28,10 +30,34 @@
             </Button>
         </items>
       </ToolBar>
-      <Pane prefHeight="443.0" prefWidth="764.0">
+      <AmbientLight color="CHARTREUSE" lightOn="true" />
+      <Pane prefHeight="524.0" prefWidth="770.0" style="-fx-border-color: #deb887; -fx-background-radius: 7; -fx-border-radius: 7;">
          <children>
-            <Label layoutX="285.0" layoutY="370.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
-            <Label layoutX="358.0" layoutY="392.0" text="2020" textFill="BURLYWOOD" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="224.0" layoutY="155.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="224.0" layoutY="197.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="273.0" layoutY="155.0" prefHeight="84.0" prefWidth="47.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="334.0" layoutY="156.0" prefHeight="82.0" prefWidth="259.0" style="-fx-background-radius: 7px;" text="* Programador" textFill="BURLYWOOD">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </Label>
+            <Label layoutX="302.0" layoutY="419.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
+            <Label layoutX="375.0" layoutY="441.0" text="2020" textFill="BURLYWOOD" />
          </children>
       </Pane>
    </children>

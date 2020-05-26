@@ -1,6 +1,8 @@
 package view.gui.helper;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import ex.MyException;
@@ -24,23 +26,29 @@ public class CalculadoraHelper {
 	 * @param path
 	 * @param mainScene
 	 * @param execut
+	 * 
 	 */
-	public synchronized <T> void loadView(String path, Scene mainScene, Consumer<T> execut) throws MyException {
+	public synchronized <T> void loadView(String path, Scene mainScene, int qtdNodesViewPai, Consumer<T> execut)
+			throws MyException {
 		if (path == null || mainScene == null)
 			throw new MyException("Parametros nulos");
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+		List<Node> nodesMain = new ArrayList<Node>();
 		try {
 			VBox newView = loader.load();
 			ScrollPane scrolPane = ((ScrollPane) mainScene.getRoot());
 
 			VBox mainVBox = (VBox) scrolPane.getContent();
-			Node nodeMain = mainVBox.getChildren().get(0);
+			for (int i = 0; i < qtdNodesViewPai; i++) {
+				nodesMain.add(mainVBox.getChildren().get(i));
+			}
 
-			// limpa os filhos da mainView
+			// limpa os filhos da view pai1
 			mainVBox.getChildren().clear();
-			// adiciona o primeiro filho
-			mainVBox.getChildren().add(nodeMain);
+			// adiciona os filhos da view pai
+			for (Node nodeMain : nodesMain)
+				mainVBox.getChildren().add(nodeMain);
 			// adiciona todos os filhos na view carregada
 			mainVBox.getChildren().addAll(newView.getChildren());
 
@@ -55,23 +63,23 @@ public class CalculadoraHelper {
 		}
 
 	}
-	
 
 	/**
 	 * Metodo responsavel por carregar a view Pai
+	 * 
 	 * @param <T>
 	 * 
 	 * @param path
 	 * @param mainScene
 	 */
-	public synchronized <T> void backView(String path, Scene mainScene, Consumer<T>execut) throws MyException {
+	public synchronized <T> void backView(String path, Scene mainScene, Consumer<T> execut) throws MyException {
 		if (path == null || mainScene == null)
 			throw new MyException("Parametros nulos");
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		try {
 			ScrollPane scrollPane = loader.load();
-			
+
 			scrollPane.setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
 			scrollPane.setFitToWidth(true);
 			if (execut != null) {
@@ -167,7 +175,7 @@ public class CalculadoraHelper {
 	 * Retorna para a MainView e fechar a view Atual
 	 * 
 	 * @param stageThis stage da sua view atual
-	 * @param mainScene 
+	 * @param mainScene
 	 * @throws MyException
 	 */
 	public void openMainView(Stage stageThis, Scene mainScene) throws MyException {
@@ -194,12 +202,11 @@ public class CalculadoraHelper {
 	public <T> void openParentView(String pathParent, Stage stageThis, Consumer<T> executar) throws MyException {
 
 		try {
-			
+
 			FXMLLoader loaderParent = new FXMLLoader(getClass().getResource(pathParent));
 			Parent nodeParent = loaderParent.load();
-			
-			
-			if(nodeParent instanceof ScrollPane) {
+
+			if (nodeParent instanceof ScrollPane) {
 				((ScrollPane) nodeParent).setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
 				((ScrollPane) nodeParent).setFitToWidth(true);
 			}
@@ -212,11 +219,11 @@ public class CalculadoraHelper {
 
 			Stage stageParent = new Stage();
 			stageParent.setScene(sceneParent);
-			stageParent.setResizable(false);//para não ser maximizada
-			//stageParent.initStyle(StageStyle.UNDECORATED); //desbilita os 3 botoes(maximizar,minimizar e fechar)
+			stageParent.setResizable(false);// para não ser maximizada
+			// stageParent.initStyle(StageStyle.UNDECORATED); //desbilita os 3
+			// botoes(maximizar,minimizar e fechar)
 			stageThis.close();
 			stageParent.show();
-			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -229,14 +236,13 @@ public class CalculadoraHelper {
 	}
 
 	/**
-	 * Retorna a scene da view de acordo com o evento 
-	 * @param event	ActionEvent
+	 * Retorna a scene da view de acordo com o evento
+	 * 
+	 * @param event ActionEvent
 	 * @return
 	 */
 	public Scene getSceneAtual(ActionEvent event) {
-		return (Scene)((Node)event.getSource()).getScene();
+		return (Scene) ((Node) event.getSource()).getScene();
 	}
-
-
 
 }

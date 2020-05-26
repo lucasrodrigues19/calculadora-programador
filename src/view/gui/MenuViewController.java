@@ -98,7 +98,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	@FXML
 	private void onMenuItemOperacoesAction() {
 		try {
-			helper.loadView("/view/gui/OperacoesView.fxml", getMenuViewScene(),
+			helper.loadView("/view/gui/OperacoesView.fxml", getMenuViewScene(),1,
 					(OperacoesViewController controller) -> {
 						controller.setUsuario(getUsuario());
 						controller.setUsuarioService(getUsuarioService());

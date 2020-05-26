@@ -49,7 +49,7 @@ public class MainViewController implements Initializable {
 	private void onBtLoginAction() {
 		try {
 			System.out.println(btEntrar.getText());
-			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, (LoginViewController controller)->{
+			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene,1, (LoginViewController controller)->{
 				controller.setUsuario(new Usuario());
 				controller.setUsuarioService(new UsuarioService());
 				controller.setLogs(new Logs());
