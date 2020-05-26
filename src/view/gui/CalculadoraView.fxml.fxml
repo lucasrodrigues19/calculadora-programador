@@ -1,8 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="563.0" prefWidth="772.0">
+         <children>
+            <Pane layoutX="195.0" layoutY="99.0" prefHeight="393.0" prefWidth="369.0">
+               <children>
+                  <ScrollPane layoutX="80.0" layoutY="2.0" prefHeight="132.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
+                     <content>
+                        <ListView prefHeight="130.0" prefWidth="202.0" style="-fx-background-color: #FFDEAD;" />
+                     </content>
+                  </ScrollPane>
+                  <VBox layoutX="81.0" layoutY="135.0" prefHeight="41.0" prefWidth="204.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="204.0" textFill="#dd6f07">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="203.0" text="0" textFill="PERU">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Separator layoutX="82.0" layoutY="180.0" prefHeight="7.0" prefWidth="195.0" />
+                  <GridPane layoutX="93.0" layoutY="194.0" prefHeight="192.0" prefWidth="195.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="C" textFill="PERU">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="X" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="\%" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="/" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="7" textFill="PERU" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="X" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="9" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="8" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="-" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="6" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="5" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="4" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="1" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="2" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="3" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="+" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: PERU; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="=" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="," textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="0" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+            <Label layoutX="289.0" layoutY="511.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
+            <Label layoutX="362.0" layoutY="533.0" text="2020" textFill="BURLYWOOD" />
+         </children>
+      </Pane>
+   </children>
 </VBox>
-

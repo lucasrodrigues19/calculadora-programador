@@ -14,7 +14,7 @@
 
 <ScrollPane fx:id="menuScrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="766.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MenuViewController">
    <content>
-      <VBox prefHeight="489.0" prefWidth="764.0" style="-fx-background-color: #FFDEAD;">
+      <VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;">
          <children>
             <Pane prefHeight="63.0" prefWidth="764.0">
                <children>
