@@ -10,16 +10,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import view.gui.helper.CalculadoraHelper;
+import view.gui.helper.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class OperacoesViewController implements Initializable {
 	
-	private CalculadoraHelper helper = new CalculadoraHelper();
+	private ViewHelper helper = new ViewHelper();
 	
 	private UsuarioService usuarioService;
 
@@ -52,6 +54,8 @@ public class OperacoesViewController implements Initializable {
 				controller.setUsuario(getUsuario());
 				controller.setUsuarioService(getUsuarioService());
 				//controller.setHistorico(new Historico());
+				controller.setScenePai(helper.getSceneAtual(event));
+				controller.setEventHandler();
 			});
 		} catch (MyException e) {
 			e.printStackTrace();

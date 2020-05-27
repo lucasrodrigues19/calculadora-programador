@@ -17,10 +17,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class CalculadoraHelper {
+public class ViewHelper {
 
 	/**
-	 * Metodo responsavel por carregar qualquer view
+	 * Metodo responsavel por carregar qualquer view, no scene da view pai
 	 * 
 	 * @param <T>
 	 * @param path
@@ -44,7 +44,7 @@ public class CalculadoraHelper {
 				nodesMain.add(mainVBox.getChildren().get(i));
 			}
 
-			// limpa os filhos da view pai1
+			// limpa os filhos da view pai
 			mainVBox.getChildren().clear();
 			// adiciona os filhos da view pai
 			for (Node nodeMain : nodesMain)
@@ -65,12 +65,13 @@ public class CalculadoraHelper {
 	}
 
 	/**
-	 * Metodo responsavel por carregar a view Pai
+	 * Metodo responsavel por carregar uma view e adicionar o content(Root) no scene
 	 * 
 	 * @param <T>
 	 * 
 	 * @param path
 	 * @param mainScene
+	 * @param execut 
 	 */
 	public synchronized <T> void backView(String path, Scene mainScene, Consumer<T> execut) throws MyException {
 		if (path == null || mainScene == null)
@@ -170,9 +171,19 @@ public class CalculadoraHelper {
 
 		return (Stage) scene.getWindow();
 	}
+	/**
+	 * Retorna a scene da view de acordo com o evento
+	 * 
+	 * @param event ActionEvent
+	 * @return
+	 */
+	public Scene getSceneAtual(ActionEvent event) {
+		return (Scene) ((Node) event.getSource()).getScene();
+	}
+
 
 	/**
-	 * Retorna para a MainView e fechar a view Atual
+	 * Retorna para a view Pai e fechar a view Atual
 	 * 
 	 * @param stageThis stage da sua view atual
 	 * @param mainScene
@@ -235,14 +246,5 @@ public class CalculadoraHelper {
 
 	}
 
-	/**
-	 * Retorna a scene da view de acordo com o evento
-	 * 
-	 * @param event ActionEvent
-	 * @return
-	 */
-	public Scene getSceneAtual(ActionEvent event) {
-		return (Scene) ((Node) event.getSource()).getScene();
-	}
-
+	
 }

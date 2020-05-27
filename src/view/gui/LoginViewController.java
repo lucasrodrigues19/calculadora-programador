@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import application.Main;
 import ex.MyException;
 import ex.MyRuntimeException;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import modelo.entites.Logs;
@@ -20,13 +22,13 @@ import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
 import utils.DataUtils;
-import view.gui.helper.CalculadoraHelper;
+import view.gui.helper.ViewHelper;
 import view.gui.utils.Alerts;
 import view.gui.utils.Costraints;
 
 public class LoginViewController implements Initializable, DadoAlteradoListener {
 
-	private CalculadoraHelper helper = new CalculadoraHelper();
+	private ViewHelper helper = new ViewHelper();
 
 	private MyRuntimeException runtimeEx;
 

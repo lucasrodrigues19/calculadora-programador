@@ -24,12 +24,12 @@ import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
 import subject.NotificaDadoAlteradoListner;
-import view.gui.helper.CalculadoraHelper;
+import view.gui.helper.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class MenuViewController implements Initializable, NotificaDadoAlteradoListner {
 
-	private CalculadoraHelper helper = new CalculadoraHelper();
+	private ViewHelper helper = new ViewHelper();
 
 	private List<DadoAlteradoListener> listeners = new ArrayList<>();
 

@@ -1,7 +1,7 @@
-package utils;
+package view.gui.utils;
 
 
-public class CalculadoraUtils {
+public class ViewUtils {
 
 	public static Integer tryParseInt(String num) {
 		try {

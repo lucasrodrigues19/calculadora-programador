@@ -17,12 +17,12 @@ import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
-import view.gui.helper.CalculadoraHelper;
+import view.gui.helper.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class MainViewController implements Initializable {
 
-	CalculadoraHelper helper = new CalculadoraHelper();
+	ViewHelper helper = new ViewHelper();
 
 	@FXML
 	private ScrollPane scrollMain;

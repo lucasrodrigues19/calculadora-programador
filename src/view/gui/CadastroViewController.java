@@ -16,9 +16,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import utils.CalculadoraUtils;
-import view.gui.helper.CalculadoraHelper;
+import view.gui.helper.ViewHelper;
 import view.gui.utils.Alerts;
+import view.gui.utils.ViewUtils;
 import view.gui.utils.Costraints;
 
 public class CadastroViewController implements Initializable {
@@ -27,7 +27,7 @@ public class CadastroViewController implements Initializable {
 
 	private UsuarioService usuarioService;
 
-	private CalculadoraHelper helper = new CalculadoraHelper();
+	private ViewHelper helper = new ViewHelper();
 	// id
 	@FXML
 	private Label lblId;
@@ -147,7 +147,7 @@ public class CadastroViewController implements Initializable {
 			throw new IllegalArgumentException("usuario nulo");
 
 		MyRuntimeException runtimeEx = new MyRuntimeException();
-		usuario.setUsuid(CalculadoraUtils.tryParseInt(txtId.getText()));
+		usuario.setUsuid(ViewUtils.tryParseInt(txtId.getText()));
 
 		if (txtEmail.getText().length() <= 0 || "".trim().equals(txtEmail.getText()) || txtEmail == null)
 			runtimeEx.addErros("email", "Vazio");
