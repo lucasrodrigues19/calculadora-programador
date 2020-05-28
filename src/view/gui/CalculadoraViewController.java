@@ -220,14 +220,12 @@ public class CalculadoraViewController implements Initializable {
 
 	@FXML
 	private void onBtOpePorAction(ActionEvent event) {
-		checkVirInStrNumInOpe();
 		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
 		setLblResAndOpe();
 	}// end por
 
 	@FXML
 	private void onBtIgualAction(ActionEvent event) {
-		checkVirInStrNumInOpe();
 		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
 		setLblResAndOpe();
 	}/// end igual
