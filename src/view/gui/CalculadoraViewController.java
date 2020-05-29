@@ -35,7 +35,7 @@ public class CalculadoraViewController implements Initializable {
 
 	private Historico historico;
 
-	private String strLblRes = "=";
+	private String strLblRes;
 
 	private String strLblOpe;
 
@@ -357,6 +357,18 @@ public class CalculadoraViewController implements Initializable {
 
 		return false;
 	}
+	/**
+	 * checa se pode setar o digito referente ao operador
+	 * @return
+	 */
+	private Boolean checkOperadores() {
+
+		if (digOperador) {
+			digOperador = false;
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Checa se o char no ultimo indice de strNum é uma virgula, caso for adiciona
@@ -481,14 +493,7 @@ public class CalculadoraViewController implements Initializable {
 		lblRes.setText(strLblRes);
 	}
 
-	private Boolean checkOperadores() {
-
-		if (digOperador) {
-			digOperador = false;
-			return true;
-		}
-		return false;
-	}
+	
 
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
