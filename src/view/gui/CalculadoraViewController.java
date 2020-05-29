@@ -35,7 +35,7 @@ public class CalculadoraViewController implements Initializable {
 
 	private Historico historico;
 
-	private String strLblRes;
+	private String strLblRes = "=";
 
 	private String strLblOpe;
 
@@ -47,6 +47,20 @@ public class CalculadoraViewController implements Initializable {
 
 	private Boolean virgDpsDec;
 
+	private Boolean digOperador;
+	
+	@FXML
+	private Label lblStyleMais;
+	
+	@FXML
+	private Label lblStyleMenos;
+	
+	@FXML
+	private Label lblStyleIgual;
+	
+	@FXML
+	private Label lblStyleProg;
+	
 	@FXML
 	private Button btNum1;
 
@@ -114,7 +128,6 @@ public class CalculadoraViewController implements Initializable {
 	private ListView<String> listHistorico;
 
 	public CalculadoraViewController() {
-		iniciarAtributosaCalc();
 
 	}
 
@@ -124,154 +137,172 @@ public class CalculadoraViewController implements Initializable {
 		strNum = "";
 		virgNumAntes = false;
 		virgDpsDec = true;
+		digOperador = false;
 	}
 
 	@FXML
 	private void onBtNum0Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 0
 
 	@FXML
 	private void onBtNum1Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 1
 
 	@FXML
 	private void onBtNum2Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 2
 
 	@FXML
 	private void onBtNum3Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 3
 
 	@FXML
 	private void onBtNum4Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 4
 
 	@FXML
 	private void onBtNum5Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 5
 
 	@FXML
 	private void onBtNum6Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 6
 
 	@FXML
 	private void onBtNum7Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 7
 
 	@FXML
 	private void onBtNum8Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 8
 
 	@FXML
 	private void onBtNum9Action(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), true, null);
+		setEntradaDados(((Button) event.getSource()), true, null, true);
 		setLblResAndOpe();
 	}// end num 9
 
 	@FXML
 	private void onBtVirgulaAction(ActionEvent event) {
-		if (checkSetVirgula()) {
-			setStrNumOpeResOfBt(((Button) event.getSource()), null, null);
+		if (checkVirgula()) {
+			setEntradaDados(((Button) event.getSource()), false, true, true);
 			setLblResAndOpe();
 		}
 	}// end virgula
 
 	@FXML
 	private void onBtOpeDivAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
-		setLblResAndOpe();
+		if (checkOperadores()) {
+			setEntradaDados(((Button) event.getSource()), false, true, false);
+			setLblResAndOpe();
+		}
 	}/// end div
 
 	@FXML
 	private void onBtOpeMultAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
-		setLblResAndOpe();
+		if (checkOperadores()) {
+			setEntradaDados(((Button) event.getSource()), false, true, false);
+			setLblResAndOpe();
+		}
 	}// end mult
 
 	@FXML
 	private void onBtOpeSubAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
-		setLblResAndOpe();
+		if (checkOperadores()) {
+			setEntradaDados(((Button) event.getSource()), false, true, false);
+			setLblResAndOpe();
+		}
 	}// end sub
 
 	@FXML
 	private void onBtOpeAdcAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
-		setLblResAndOpe();
+		if (checkOperadores()) {
+			setEntradaDados(((Button) event.getSource()), false, true, false);
+			setLblResAndOpe();
+		}
 	}// end adc
 
 	@FXML
 	private void onBtOpePorAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
-		setLblResAndOpe();
+		if (checkOperadores()) {
+			setEntradaDados(((Button) event.getSource()), false, true, false);
+			setLblResAndOpe();
+		}
 	}// end por
 
 	@FXML
 	private void onBtIgualAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), false, true);
+		setEntradaDados(((Button) event.getSource()), false, true, true);
 		setLblResAndOpe();
 	}/// end igual
 
 	@FXML
 	private void onBtApagarLetraAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), null, null);
+		setEntradaDados(((Button) event.getSource()), null, null, null);
 		setLblResAndOpe();
 	}// end apagar letra
 
 	@FXML
 	private void onBtApagarTudoAction(ActionEvent event) {
-		setStrNumOpeResOfBt(((Button) event.getSource()), null, null);
+		setEntradaDados(((Button) event.getSource()), null, null, null);
 		setLblResAndOpe();
 	}// end apagar tudo
 
-	private void setStrNumOpeResOfBt(Button button, Boolean virgAntes, Boolean virgDps) {
+	/**
+	 * seta os str que são entrada de dados para as operações de acordo com o Button
+	 * 
+	 * @param button
+	 * @param virgAntes dados do boolean da virgula
+	 * @param virgDps   dados do boolean da vrigula
+	 */
+	private void setEntradaDados(Button button, Boolean virgAntes, Boolean virgDps, Boolean digOpe) {
 
-		setStrCalc(button.getText(), isOpe(button.getText()));
+		setStrCalc(button.getText());
 
-		if (virgAntes != null)
-			virgNumAntes = virgAntes;
-
-		if (virgDps != null)
-			virgDpsDec = virgDps;
+		setBoolVirgulaAndOpe(virgAntes, virgDps, digOpe);
 	}
 
 	/**
-	 * seta os str de acordo com o KeyCode
+	 * seta os str que são entrada de dados para as operações de acordo com o
+	 * KeyCode
 	 * 
 	 * @param code codigo do evento key
 	 */
-	private void setStrNumOpeResOfBtNums(KeyCode code) {
+	private void setEntradaDados(KeyCode code) {
 		String digito = getNameKeyCodeCalc(code);
 
 		if (digito != null) {
 			if (digito.equals(",")) {
-				if (checkSetVirgula()) {
-					setStrCalc(digito, isOpe(digito));
+				if (checkVirgula()) {
+					setStrCalc(digito);
+					setBoolVirgulaAndOpe(false, true, true);
 				}
 			} else if (isOpe(digito)) {
-				setStrCalc(digito, isOpe(digito));
-				chekEventTeclVirg(digito, false, true);
+				if (checkOperadores()) {
+					setStrCalc(digito);
+					setBoolVirgulaAndOpe(false, true, false);
+				}
 			} else {
-				setStrCalc(digito, isOpe(digito));
-				chekEventTeclVirg(digito, true, null);
+				setStrCalc(digito);
+				setBoolVirgulaAndOpe(true, null, true);
 			}
 
 		}
@@ -298,18 +329,23 @@ public class CalculadoraViewController implements Initializable {
 	 * @param str
 	 * @param isOpe
 	 */
-	private void setStrCalc(String str, Boolean isOpe) {
-		if (!isOpe) {
+	private void setStrCalc(String str) {
+		if (!isOpe(str)) {
 			strNum += str;
 			strLblRes += str;
 		} else {
-			checkVirInStrNumInOpe();
+			checkLastCharInStrNum();
 		}
 		strLblOpe += str;
 
 	}
 
-	private Boolean checkSetVirgula() {
+	/**
+	 * Checa se a virgula pode ser setada
+	 * 
+	 * @return
+	 */
+	private Boolean checkVirgula() {
 
 		if (virgNumAntes != null && virgDpsDec != null) {
 			if (virgNumAntes && virgDpsDec) {
@@ -324,9 +360,9 @@ public class CalculadoraViewController implements Initializable {
 
 	/**
 	 * Checa se o char no ultimo indice de strNum é uma virgula, caso for adiciona
-	 * um 0 função deve ser chamada apenas quando for um operador aritimetico
+	 * um 0, função deve ser chamada apenas quando for um operador aritimetico
 	 */
-	private void checkVirInStrNumInOpe() {
+	private void checkLastCharInStrNum() {
 		if (strNum != null && !strNum.equals("") && strNum.length() > 0) {
 			if (strNum.charAt(strNum.length() - 1) == ',') {
 				strNum += "0";
@@ -342,7 +378,7 @@ public class CalculadoraViewController implements Initializable {
 	public void setEventHandler() {
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
-				setStrNumOpeResOfBtNums(event.getCode());
+				setEntradaDados(event.getCode());
 				setLblResAndOpe();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -413,32 +449,22 @@ public class CalculadoraViewController implements Initializable {
 	}
 
 	/**
-	 * define os boolean da virgula de acordo com o codigo do teclado
+	 * define os boolean's que controlam a virgula
 	 * 
 	 * @param code
 	 * @param virgAntes
 	 * @param virgDps
 	 */
-	private void chekEventTeclVirg(String code, Boolean virgAntes, Boolean virgDps) {
+	private void setBoolVirgulaAndOpe(Boolean virgAntes, Boolean virgDps, Boolean digOpe) {
 
-		if (code != null) {
-			for (int i = 0; i < arrayDigOpe.length - 1; i++) {
-				if (code == getDigOpe(i)) {
-					if (virgAntes != null)
-						virgNumAntes = virgAntes;
+		if (virgAntes != null)
+			virgNumAntes = virgAntes;
 
-					if (virgDps != null)
-						virgDpsDec = virgDps;
-					return;
-				}
-			}
+		if (virgDps != null)
+			virgDpsDec = virgDps;
 
-			if (virgAntes != null)
-				virgNumAntes = virgAntes;
-
-			if (virgDps != null)
-				virgDpsDec = virgDps;
-		}
+		if (digOpe != null)
+			digOperador = digOpe;
 	}
 
 	/**
@@ -450,9 +476,18 @@ public class CalculadoraViewController implements Initializable {
 		return arrayDigOpe[index];
 	}
 
-	public void setLblResAndOpe() {
+	private void setLblResAndOpe() {
 		lblOpe.setText(strLblOpe);
 		lblRes.setText(strLblRes);
+	}
+
+	private Boolean checkOperadores() {
+
+		if (digOperador) {
+			digOperador = false;
+			return true;
+		}
+		return false;
 	}
 
 	public UsuarioService getUsuarioService() {
@@ -487,9 +522,17 @@ public class CalculadoraViewController implements Initializable {
 		this.historico = historico;
 	}
 
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		hiddenLogo();
+		iniciarAtributosaCalc();
 	}
 
+	private void hiddenLogo() {
+		lblStyleMais.setVisible(false);
+		lblStyleMenos.setVisible(false);
+		lblStyleIgual.setVisible(false);
+		lblStyleProg.setVisible(false);
+	}
 }

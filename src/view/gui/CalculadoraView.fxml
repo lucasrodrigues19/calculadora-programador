@@ -60,7 +60,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btApagarTudo" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtApagarTudoAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="C" textFill="PERU">
+                        <Button fx:id="btApagarTudo" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtApagarTudoAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="C" textFill="PERU">
                            <font>
                               <Font name="DejaVu Sans Bold" size="15.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btApagarLetra" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtApagarLetraAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="X" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1">
+                        <Button fx:id="btApagarLetra" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtApagarLetraAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="X" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -76,7 +76,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btOpePor" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpePorAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="\%" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2">
+                        <Button fx:id="btOpePor" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpePorAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="\%" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -84,7 +84,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btOpeDiv" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeDivAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="/" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3">
+                        <Button fx:id="btOpeDiv" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeDivAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="/" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -92,7 +92,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum7" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum7Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="7" textFill="PERU" GridPane.rowIndex="1">
+                        <Button fx:id="btNum7" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum7Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="7" textFill="PERU" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="15.0" />
                            </font>
@@ -100,7 +100,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btOpeMult" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeMultAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="*" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Button fx:id="btOpeMult" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeMultAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="*" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -108,7 +108,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum9" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum9Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="9" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="btNum9" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum9Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="9" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -116,7 +116,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum8" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum8Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="8" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="btNum8" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum8Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="8" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -124,7 +124,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btOpeSub" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeSubAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="-" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Button fx:id="btOpeSub" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeSubAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="-" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -132,7 +132,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum6" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum6Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="6" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="btNum6" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum6Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="6" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -140,7 +140,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum5" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum5Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="5" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="btNum5" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum5Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="5" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -148,7 +148,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum4" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum4Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="4" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="2">
+                        <Button fx:id="btNum4" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum4Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="4" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -156,7 +156,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum1" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum1Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="1" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="3">
+                        <Button fx:id="btNum1" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum1Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="1" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -164,7 +164,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum2" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum2Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="2" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button fx:id="btNum2" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum2Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="2" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -172,7 +172,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum3" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum3Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="3" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Button fx:id="btNum3" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum3Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="3" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -180,7 +180,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btOpeAdc" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeAdcAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="+" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <Button fx:id="btOpeAdc" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtOpeAdcAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: #FFDEAD; -fx-background-radius: 15; -fx-border-radius: 15;" text="+" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -188,7 +188,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btIgual" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtIgualAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: PERU; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="=" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Button fx:id="btIgual" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtIgualAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: PERU; -fx-background-radius: 15; -fx-border-radius: 15;" text="=" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -196,7 +196,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btVirgula" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtVirgulaAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="," textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btVirgula" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtVirgulaAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" text="," textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -204,7 +204,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum0" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: ,;" text="0" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Button fx:id="btNum0" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtNum0Action" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" text="0" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -218,22 +218,22 @@
             </Pane>
             <Label layoutX="289.0" layoutY="433.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
             <Label layoutX="369.0" layoutY="455.0" text="2020" textFill="BURLYWOOD" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="111.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
+            <Label fx:id="lblStyleMenos" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="111.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="152.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
+            <Label fx:id="lblStyleMais" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="152.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="208.0" layoutY="111.0" prefHeight="84.0" prefWidth="47.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
+            <Label fx:id="lblStyleIgual" alignment="CENTER" contentDisplay="BOTTOM" layoutX="208.0" layoutY="111.0" prefHeight="84.0" prefWidth="47.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="508.0" layoutY="121.0" prefHeight="82.0" prefWidth="215.0" style="-fx-background-radius: 7px;" text="* Programador" textFill="BURLYWOOD">
+            <Label fx:id="lblStyleProg" layoutX="508.0" layoutY="121.0" prefHeight="82.0" prefWidth="215.0" style="-fx-background-radius: 7px;" text="* Programador" textFill="BURLYWOOD">
                <font>
                   <Font name="DejaVu Sans Bold" size="25.0" />
                </font>
