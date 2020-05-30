@@ -1,4 +1,4 @@
-package modelo.services;
+package calculadora_aritimetica.service;
 
 public class CalculadoraAritimeticaService {
 

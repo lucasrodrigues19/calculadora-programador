@@ -132,8 +132,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 	}
 
 	/**
-	 * checa se pode setar o digito referente ao operador obj objeto de onde é
-	 * verificado os controladores do digito de operações
+	 * checa se pode setar o digito referente ao operador
+	 * 
+	 * @param obj objeto de onde é verificado os controladores do digito de
+	 *            operações
 	 * 
 	 * @return
 	 */
