@@ -10,4 +10,12 @@ public class ViewUtils {
 			return null;
 		}
 	}
+
+	public static Double tryParseDouble(String num) {
+		try {
+			return Double.parseDouble(num);
+		}catch(Exception e) {
+			return null;
+		}
+	}
 }

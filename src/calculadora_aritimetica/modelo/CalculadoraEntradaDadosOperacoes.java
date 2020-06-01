@@ -31,16 +31,16 @@ public interface CalculadoraEntradaDadosOperacoes {
 		if (digito != null) {
 			if (digito.equals(",")) {
 				if (checkVirgula(obj)) {
-					setStrCalc(obj, digito);
+					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj)) {
-					setStrCalc(obj, digito);
+					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, false, true, false);
 				}
 			} else {
-				setStrCalc(obj, digito);
+				setStrCalcAntes(obj, digito);
 				setBoolVirgulaAndOpe(obj, true, null, true);
 			}
 
@@ -62,16 +62,16 @@ public interface CalculadoraEntradaDadosOperacoes {
 		if (digito != null) {
 			if (digito.equals(",")) {
 				if (checkVirgula(obj)) {
-					setStrCalc(obj, digito);
+					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj)) {
-					setStrCalc(obj, digito);
+					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, false, true, false);
 				}
 			} else {
-				setStrCalc(obj, digito);
+				setStrCalcAntes(obj, digito);
 				setBoolVirgulaAndOpe(obj, true, null, true);
 			}
 
@@ -101,7 +101,8 @@ public interface CalculadoraEntradaDadosOperacoes {
 	 * @param isOpe
 	 * @param obj
 	 */
-	default void setStrCalc(CalculadoraEntradaDadosAtributos obj, String content) {
+	default void setStrCalcAntes(CalculadoraEntradaDadosAtributos obj, String content) {
+		if(obj != null && content!= null) {
 		if (!isOpe(obj, content)) {
 			obj.setStrNum(obj.getStrNum() + content);
 			obj.setStrLblRes(obj.getStrLblRes() + content);
@@ -109,7 +110,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 			checkLastCharInStrNum(obj);
 		}
 		obj.setStrLblOpe(obj.getStrLblOpe() + content);
-
+		}
 	}
 
 	/**
@@ -267,6 +268,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 		obj.setVirgNumAntes(false);
 		obj.setVirgDpsDec(true);
 		obj.setDigOperador(false);
+		obj.setRes(0d);
 	}
 
 }

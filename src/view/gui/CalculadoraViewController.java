@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
+import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +22,8 @@ import view.gui.helper.ViewHelper;
 public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos implements Initializable {
 
 	private ViewHelper helper = new ViewHelper();
+	
+	private CalculadoraAritimeticaService calcService = new CalculadoraAritimeticaService(this);
 
 	private UsuarioService usuarioService;
 

@@ -30,6 +30,21 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 
 	private Boolean digOperador;
 
+	private Double res;
+
+	private Boolean conContinue; 
+
+	private Boolean isPrimeiraOpe; 
+
+	private String ultimaOperacao;
+
+	private String opeVez;
+
+	private Boolean firstDivisao;
+	
+	private Boolean firstMult;
+	
+	private Boolean firstSub;
 	/**
 	 * @return retorna a string para setar em algum controle na view, referente ao
 	 *         resultado da operação
@@ -131,6 +146,137 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 	 */
 	public String[] getArrayDigOpe() {
 		return arrayDigOpe;
+	}
+
+	/**
+	 * retorna o resultado da operação
+	 * 
+	 * @return
+	 */
+	public Double getRes() {
+		return res;
+	}
+
+	/**
+	 * seta o resultado da operação
+	 * 
+	 * @param res
+	 */
+	public void setRes(Double res) {
+
+		this.res = res;
+	}
+
+	/**
+	 * retorna se pode continuar a operação, mesmo se strNum == ""
+	 * @return
+	 */
+	public Boolean getConContinue() {
+		return conContinue;
+	}
+
+	/**
+	 * seta se pode continuar a operação, mesmo se strNum == ""
+	 * deve ser true quando clicado no botão igual, dever ser iniciado como false
+	 * @param conContinue
+	 */
+	public void setConContinue(Boolean conContinue) {
+		this.conContinue = conContinue;
+	}
+
+	/**
+	 * retorna se é a primeira operação feita
+	 * @return
+	 */
+	public Boolean getIsPrimeiraOpe() {
+		return isPrimeiraOpe;
+	}
+
+	/**
+	 *  define se é a primeira operação feita, deve iniciar como true
+	 * @param isPrimeiraOpe
+	 */
+	public void setIsPrimeiraOpe(Boolean isPrimeiraOpe) {
+		this.isPrimeiraOpe = isPrimeiraOpe;
+	}
+
+	/**
+	 *  retorna a ultima operação operação feita
+	 * @return
+	 */
+	public String getUltimaOperacao() {
+		return ultimaOperacao;
+	}
+
+	/**
+	 * seta a ultima operação operação feita, deve ser setado ao final de cada operação
+	 * @param ultimaOperacao
+	 */
+	public void setUltimaOperacao(String ultimaOperacao) {
+		this.ultimaOperacao = ultimaOperacao;
+	}
+
+	/**
+	 * retorna a operação da vez
+	 * @return
+	 */
+	public String getOpeVez() {
+		return opeVez;
+	}
+
+	/**
+	 * seta a operação da vez, deve ser setado assim que clicar no botao de operação
+	 * @param opeVez
+	 */
+	public void setOpeVez(String opeVez) {
+		this.opeVez = opeVez;
+	}
+
+	/**
+	 * retorna se é a primeira divisao
+	 * @return
+	 */
+	public Boolean getFirstDivisao() {
+		return firstDivisao;
+	}
+
+	/**
+	 * seta se é a primeira divisao, deve iniciar como true
+	 * @param firstDivisao
+	 */
+	public void setFirstDivisao(Boolean firstDivisao) {
+		this.firstDivisao = firstDivisao;
+	}
+
+	/**
+	 * retorna se é a primeira multiplicação
+	 * @return
+	 */
+	public Boolean getFirstMult() {
+		return firstMult;
+	}
+
+	/**
+	 * seta se é a primeira multiplicação, deve iniciar como true
+	 * @param firstMult
+	 */
+	public void setFirstMult(Boolean firstMult) {
+		this.firstMult = firstMult;
+	}
+
+	/**
+	 * retorna se é a primeira subtração
+	 * @return
+	 */
+	public Boolean getFirstSub() {
+		return firstSub;
+	}
+	/**
+	 * seta se é a primeira subtração, deve iniciar como true
+	 * @param firstSub
+	 */
+	public void setFirstSub(Boolean firstSub) {
+		this.firstSub = firstSub;
 	}
 
 }
