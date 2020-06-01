@@ -269,6 +269,9 @@ public interface CalculadoraEntradaDadosOperacoes {
 		obj.setVirgDpsDec(true);
 		obj.setDigOperador(false);
 		obj.setRes(0d);
+		obj.setFirstDivisao(true);
+		obj.setFirstMult(true);
+		obj.setFirstSub(true);
 	}
 
 }
