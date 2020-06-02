@@ -1,5 +1,7 @@
 package calculadora_aritimetica.modelo;
 
+import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
+
 /**
  * Quaquer sub-classe alem de herdar os atributos necessarios para definir a
  * entrada de dados em uma operação aritimetica de uma calculadora, podera
@@ -45,6 +47,9 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 	private Boolean firstMult;
 	
 	private Boolean firstSub;
+	
+	private CalculadoraAritimeticaService service;
+	
 	/**
 	 * @return retorna a string para setar em algum controle na view, referente ao
 	 *         resultado da operação
@@ -137,6 +142,14 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 	 */
 	public void setDigOperador(Boolean digOperador) {
 		this.digOperador = digOperador;
+	}
+
+	public CalculadoraAritimeticaService getService() {
+		return service;
+	}
+
+	public void setService(CalculadoraAritimeticaService service) {
+		this.service = service;
 	}
 
 	/**

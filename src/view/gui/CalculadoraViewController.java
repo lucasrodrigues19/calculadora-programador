@@ -22,8 +22,6 @@ import view.gui.helper.ViewHelper;
 public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos implements Initializable {
 
 	private ViewHelper helper = new ViewHelper();
-	
-	private CalculadoraAritimeticaService calcService = new CalculadoraAritimeticaService(this);
 
 	private UsuarioService usuarioService;
 
@@ -288,7 +286,6 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		hiddenLogo();
-		iniciarAtributosaCalc(this);
 	}
 
 	private void hiddenLogo() {

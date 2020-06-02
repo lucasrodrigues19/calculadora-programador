@@ -1,5 +1,8 @@
 package calculadora_aritimetica.modelo;
 
+import java.util.Locale;
+
+import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 
@@ -13,7 +16,8 @@ import javafx.scene.input.KeyCode;
  *
  */
 public interface CalculadoraEntradaDadosOperacoes {
-
+	
+	
 	/**
 	 * Define e controla os dados que serao setados nas strings e controles do obj,
 	 * esse dados são entrada de dados para as operações. Checa se a virgula pode
@@ -35,13 +39,16 @@ public interface CalculadoraEntradaDadosOperacoes {
 					setBoolVirgulaAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
-				if (checkOperadores(obj)) {
+				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, false, true, false);
+					obj.setOpeVez(digito);
+					obj.getService().fazerOperacoesDigOpe();
 				}
 			} else {
 				setStrCalcAntes(obj, digito);
 				setBoolVirgulaAndOpe(obj, true, null, true);
+				obj.getService().fazerOperacoesNum();
 			}
 
 		}
@@ -66,13 +73,16 @@ public interface CalculadoraEntradaDadosOperacoes {
 					setBoolVirgulaAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
-				if (checkOperadores(obj)) {
+				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
 					setBoolVirgulaAndOpe(obj, false, true, false);
+					obj.setOpeVez(digito);
+					obj.getService().fazerOperacoesDigOpe();
 				}
 			} else {
 				setStrCalcAntes(obj, digito);
 				setBoolVirgulaAndOpe(obj, true, null, true);
+				obj.getService().fazerOperacoesNum();
 			}
 
 		}
@@ -272,6 +282,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 		obj.setFirstDivisao(true);
 		obj.setFirstMult(true);
 		obj.setFirstSub(true);
+		obj.setConContinue(false);
+		obj.setIsPrimeiraOpe(true);
+		obj.setService(new CalculadoraAritimeticaService(obj));
+		Locale.setDefault(Locale.US);
 	}
 
 }

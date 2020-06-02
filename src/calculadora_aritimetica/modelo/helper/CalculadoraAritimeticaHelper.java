@@ -1,6 +1,7 @@
 package calculadora_aritimetica.modelo.helper;
 
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
+import view.gui.utils.Alerts;
 import view.gui.utils.ViewUtils;
 
 public class CalculadoraAritimeticaHelper {
@@ -15,7 +16,7 @@ public class CalculadoraAritimeticaHelper {
 		if (dadosEntrada.getStrNum() != null) {
 			double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
 			double tmpRes = dadosEntrada.getRes() + tmpNum;
-			setDadosAfterOperacao(String.format("%.2f", tmpRes));
+			setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 		}
 	}
 
@@ -23,29 +24,23 @@ public class CalculadoraAritimeticaHelper {
 		if (dadosEntrada.getStrNum() != null) {
 			double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
 			double tmpRes;
-			if (dadosEntrada.getFirstDivisao()) {
-				if(tmpNum == 0) {
-					dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
-					dadosEntrada.setStrLblRes("Não é possivel dividir por 0");
-				}
-				tmpRes = tmpNum / dadosEntrada.getRes();
-			} else {
-				tmpRes = dadosEntrada.getRes() / tmpNum;
+			if (tmpNum == 0) {
+				dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
+				Alerts.showAlertError("Não é possivel dividir por 0");
+				return;
 			}
-			setDadosAfterOperacao(String.format("%.2f", tmpRes));
+			tmpRes = dadosEntrada.getRes() / tmpNum;
+			setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 		}
+
 	}
 
 	public void multilplicacao() {
 		if (dadosEntrada.getStrNum() != null) {
 			double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
 			double tmpRes;
-			if (dadosEntrada.getFirstMult()) {
-				tmpRes = tmpNum * 1;
-			} else {
-				tmpRes = dadosEntrada.getRes() * tmpNum;
-			}
-			setDadosAfterOperacao(String.format("%.2f", tmpRes));
+			tmpRes = dadosEntrada.getRes() * tmpNum;
+			setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 		}
 	}
 
@@ -53,20 +48,27 @@ public class CalculadoraAritimeticaHelper {
 		if (dadosEntrada.getStrNum() != null) {
 			double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
 			double tmpRes;
-			if (dadosEntrada.getFirstSub()) {
-				tmpRes = tmpNum - 0;
-			} else {
-				tmpRes = dadosEntrada.getRes() - tmpNum;
-			}
-			setDadosAfterOperacao(String.format("%.2f", tmpRes));
+			tmpRes = dadosEntrada.getRes() - tmpNum;
+			setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 		}
 	}
 
-	public void setDadosAfterOperacao(String tmpRes) {
+	public void setDadosAfterOperacaoNum(String tmpRes) {
 		dadosEntrada.setFirstDivisao(false);
 		dadosEntrada.setFirstMult(false);
 		dadosEntrada.setFirstSub(false);
+		if (tmpRes != null)
+			dadosEntrada.setStrLblRes("=" + tmpRes);
+	}
+
+	public void setDadosAfterOperacoesDigOpe() {
+		setDadosAfterOperacaoNum(null);
+		dadosEntrada.setUltimaOperacao(dadosEntrada.getOpeVez());
 		dadosEntrada.setStrNum("");
-		dadosEntrada.setStrLblRes(tmpRes);
+		dadosEntrada.setIsPrimeiraOpe(false);
+		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
+		if (!strResTmp.equals("")) { // caso for continuar a operacao
+			dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
+		}
 	}
 }
