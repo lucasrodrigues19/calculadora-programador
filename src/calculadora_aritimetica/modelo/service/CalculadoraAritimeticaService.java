@@ -16,9 +16,16 @@ public class CalculadoraAritimeticaService {
 	}
 
 	public void fazerOperacoesNum() {
-		// se for a primeira operação ou se o usuario clicar no igual
+		if(dadosEntrada.getConContinue()) {
+			String strNumTmp = dadosEntrada.getStrNum();
+			dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
+			dadosEntrada.setStrNum(strNumTmp);
+			dadosEntrada.setStrLblOpe(strNumTmp);
+			dadosEntrada.setStrLblRes("="+strNumTmp);
+			dadosEntrada.setDigOperador(true);
+			return;
+		}
 		if (!dadosEntrada.getIsPrimeiraOpe()) {
-			dadosEntrada.setUltimaOperacao(dadosEntrada.getOpeVez()); // pega a operaçao da vez
 			switch (dadosEntrada.getUltimaOperacao()) {
 			case "+":
 				helper.adicao();
@@ -37,13 +44,9 @@ public class CalculadoraAritimeticaService {
 	}
 
 	public void fazerOperacoesDigOpe() {
-		if (dadosEntrada.getConContinue()) {
-			String strResTmp = dadosEntrada.getStrLblRes().substring(1);
-			if (!strResTmp.equals("")) { // caso for continuar a operacao
-				dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
-			}
-			helper.setDadosAfterOperacoesDigOpe();
-		}
-
+		helper.setDadosAfterOperacoesDigOpe();
+	}
+	public void fazerOperacoesIgual() {
+		helper.igual();
 	}
 }

@@ -52,7 +52,10 @@ public class CalculadoraAritimeticaHelper {
 			setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 		}
 	}
-
+	public void igual() {
+		dadosEntrada.setConContinue(true);
+		
+	}
 	public void setDadosAfterOperacaoNum(String tmpRes) {
 		dadosEntrada.setFirstDivisao(false);
 		dadosEntrada.setFirstMult(false);
@@ -67,8 +70,18 @@ public class CalculadoraAritimeticaHelper {
 		dadosEntrada.setStrNum("");
 		dadosEntrada.setIsPrimeiraOpe(false);
 		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
-		if (!strResTmp.equals("")) { // caso for continuar a operacao
+		if (!strResTmp.equals("")) {
 			dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
 		}
+		if(dadosEntrada.getConContinue()) {//caso continue a operação
+			dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
+			dadosEntrada.setStrLblOpe(strResTmp+dadosEntrada.getOpeVez());
+			dadosEntrada.setStrLblRes("="+strResTmp);
+			dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
+			dadosEntrada.setIsPrimeiraOpe(false);
+		}
+		dadosEntrada.setConContinue(false);
 	}
+
+	
 }

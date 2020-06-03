@@ -16,8 +16,7 @@ import javafx.scene.input.KeyCode;
  *
  */
 public interface CalculadoraEntradaDadosOperacoes {
-	
-	
+
 	/**
 	 * Define e controla os dados que serao setados nas strings e controles do obj,
 	 * esse dados são entrada de dados para as operações. Checa se a virgula pode
@@ -41,6 +40,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
+					if (digito.equals("=")) {
+						obj.getService().fazerOperacoesIgual();
+						return;
+					}
 					setBoolVirgulaAndOpe(obj, false, true, false);
 					obj.setOpeVez(digito);
 					obj.getService().fazerOperacoesDigOpe();
@@ -50,7 +53,6 @@ public interface CalculadoraEntradaDadosOperacoes {
 				setBoolVirgulaAndOpe(obj, true, null, true);
 				obj.getService().fazerOperacoesNum();
 			}
-
 		}
 	}
 
@@ -75,6 +77,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
+					if (digito.equals("=")) {
+						obj.getService().fazerOperacoesIgual();
+						return;
+					}
 					setBoolVirgulaAndOpe(obj, false, true, false);
 					obj.setOpeVez(digito);
 					obj.getService().fazerOperacoesDigOpe();
@@ -84,7 +90,6 @@ public interface CalculadoraEntradaDadosOperacoes {
 				setBoolVirgulaAndOpe(obj, true, null, true);
 				obj.getService().fazerOperacoesNum();
 			}
-
 		}
 	}
 
@@ -112,14 +117,19 @@ public interface CalculadoraEntradaDadosOperacoes {
 	 * @param obj
 	 */
 	default void setStrCalcAntes(CalculadoraEntradaDadosAtributos obj, String content) {
-		if(obj != null && content!= null) {
-		if (!isOpe(obj, content)) {
-			obj.setStrNum(obj.getStrNum() + content);
-			obj.setStrLblRes(obj.getStrLblRes() + content);
-		} else {
-			checkLastCharInStrNum(obj);
-		}
-		obj.setStrLblOpe(obj.getStrLblOpe() + content);
+		if (obj != null && content != null) {
+			if (!isOpe(obj, content)) {
+				if (obj.getConContinue()) {
+					obj.setStrNum(content);
+				} else {
+					obj.setStrNum(obj.getStrNum() + content);
+				}
+				obj.setStrLblRes(obj.getStrLblRes() + content);
+			} else {
+				checkLastCharInStrNum(obj);
+			}
+			if (!content.equals("="))
+				obj.setStrLblOpe(obj.getStrLblOpe() + content);
 		}
 	}
 

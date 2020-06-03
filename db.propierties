@@ -1,4 +1,4 @@
 user=seuuser
 password=suasenha
-dburl=jdbc:mysql://localhost:3306/seubancoo?allowPublicKeyRetrieval=true
+dburl=jdbc:mysql://localhost:3306/seubanco?allowPublicKeyRetrieval=true
 useSSL=false

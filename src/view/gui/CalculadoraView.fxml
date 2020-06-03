@@ -34,7 +34,7 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </Label>
-                        <Label fx:id="lblRes" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="203.0" text="0" textFill="PERU">
+                        <Label fx:id="lblRes" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="203.0" text="0" textFill="RED">
                            <font>
                               <Font name="DejaVu Sans Bold" size="13.0" />
                            </font>
