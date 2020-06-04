@@ -17,56 +17,17 @@ import javafx.scene.input.KeyCode;
  */
 public interface CalculadoraEntradaDadosOperacoes {
 
+	
 	/**
 	 * Define e controla os dados que serao setados nas strings e controles do obj,
 	 * esse dados são entrada de dados para as operações. Checa se a virgula pode
 	 * ser setada. Checa se pode setar um sinal de operação. Tudo de acordo com o
-	 * digito do botao(seu getText())
-	 * 
-	 * @param button
-	 * @param obj    objeto em que os dados serao setados
-	 * @param digOpe seta o boolean controlador dos dig de operação:
-	 * 
-	 */
-	default void setEntradaDados(CalculadoraEntradaDadosAtributos obj, Button button) {
-
-		String digito = button.getText();
-		if (digito != null) {
-			if (digito.equals(".")) {
-				if (checkPonto(obj)) {
-					setStrCalcAntes(obj, digito);
-					setBoolPontoAndOpe(obj, null, null, true);
-				}
-			} else if (isOpe(obj, digito)) {
-				if (checkOperadores(obj) || obj.getConContinue()) {
-					setStrCalcAntes(obj, digito);
-					if (digito.equals("=") && !obj.getStrNum().equals("")) {
-						obj.getService().fazerOperacoesIgual();
-						return;
-					}
-					setBoolPontoAndOpe(obj, false, true, false);
-					obj.setOpeVez(digito);
-					obj.getService().fazerOperacoesDigOpe();
-				}
-			} else {
-				setStrCalcAntes(obj, digito);
-				setBoolPontoAndOpe(obj, true, null, true);
-				obj.getService().fazerOperacoesNum();
-			}
-		}
-	}
-
-	/**
-	 * Define e controla os dados que serao setados nas strings e controles do obj,
-	 * esse dados são entrada de dados para as operações. Checa se a virgula pode
-	 * ser setada. Checa se pode setar um sinal de operação. Tudo de acordo com o
-	 * digito do KeyCode
+	 * digito
 	 * 
 	 * @param obj  objeto em que os dados serao setados
-	 * @param code codigo do evento key
+	 * @param digito
 	 */
-	default void setEntradaDados(CalculadoraEntradaDadosAtributos obj, KeyCode code) {
-		String digito = getNameKeyCodeCalc(obj, code);
+	default void setEntradaDados(CalculadoraEntradaDadosAtributos obj, String digito) {
 
 		if (digito != null) {
 			if (digito.equals(".")) {
