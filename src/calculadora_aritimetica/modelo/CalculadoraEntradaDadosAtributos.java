@@ -24,11 +24,11 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 
 	private String strNum;
 
-	private String arrayDigOpe[] = { "%", "/", "*", "-", "+", "=", "," };
+	private String arrayDigOpe[] = { "%", "/", "*", "-", "+", "=", "." };
 
-	private Boolean virgNumAntes;
+	private Boolean pontoNumAntes;
 
-	private Boolean virgDpsDec;
+	private Boolean pontoDpsDec;
 
 	private Boolean digOperador;
 
@@ -95,35 +95,35 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 	}
 
 	/**
-	 * @return retorna o controlador da virgula, para que a mesma não seja digitada
+	 * @return retorna o controlador do ponto, para que o mesmo não seja digitado
 	 *         antes de um numero
 	 */
-	public Boolean getVirgNumAntes() {
-		return virgNumAntes;
+	public Boolean getPontoNumAntes() {
+		return pontoNumAntes;
 	}
 
 	/**
-	 * seta o controlador da virgula, para que a mesma não seja digitada antes de um
+	 * seta o controlador do ponto, para que o mesmo não seja digitado antes de um
 	 * numero
 	 */
-	public void setVirgNumAntes(Boolean virgNumAntes) {
-		this.virgNumAntes = virgNumAntes;
+	public void setPontoNumAntes(Boolean pontoNumAntes) {
+		this.pontoNumAntes = pontoNumAntes;
 	}
 
 	/**
-	 * @return seta o controlador da virgula, para que a mesma não seja digitada 2X
+	 * @return seta o controlador do ponto, para que a mesmo não seja digitado 2X
 	 *         em um mesmo numero
 	 */
-	public Boolean getVirgDpsDec() {
-		return virgDpsDec;
+	public Boolean getPontoDpsDec() {
+		return pontoDpsDec;
 	}
 
 	/**
-	 * seta o controlador da virgula, para que a mesma não seja digitada 2X em um
+	 * seta o controlador do ponto para que a mesmo não seja digitado 2X em um
 	 * mesmo numero
 	 */
-	public void setVirgDpsDec(Boolean virgDpsDec) {
-		this.virgDpsDec = virgDpsDec;
+	public void setPontoDpsDec(Boolean pontoDpsDec) {
+		this.pontoDpsDec = pontoDpsDec;
 	}
 
 	/**

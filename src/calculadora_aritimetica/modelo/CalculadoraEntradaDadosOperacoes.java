@@ -32,10 +32,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 
 		String digito = button.getText();
 		if (digito != null) {
-			if (digito.equals(",")) {
-				if (checkVirgula(obj)) {
+			if (digito.equals(".")) {
+				if (checkPonto(obj)) {
 					setStrCalcAntes(obj, digito);
-					setBoolVirgulaAndOpe(obj, null, null, true);
+					setBoolPontoAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj) || obj.getConContinue()) {
@@ -44,13 +44,13 @@ public interface CalculadoraEntradaDadosOperacoes {
 						obj.getService().fazerOperacoesIgual();
 						return;
 					}
-					setBoolVirgulaAndOpe(obj, false, true, false);
+					setBoolPontoAndOpe(obj, false, true, false);
 					obj.setOpeVez(digito);
 					obj.getService().fazerOperacoesDigOpe();
 				}
 			} else {
 				setStrCalcAntes(obj, digito);
-				setBoolVirgulaAndOpe(obj, true, null, true);
+				setBoolPontoAndOpe(obj, true, null, true);
 				obj.getService().fazerOperacoesNum();
 			}
 		}
@@ -69,25 +69,25 @@ public interface CalculadoraEntradaDadosOperacoes {
 		String digito = getNameKeyCodeCalc(obj, code);
 
 		if (digito != null) {
-			if (digito.equals(",")) {
-				if (checkVirgula(obj)) {
+			if (digito.equals(".")) {
+				if (checkPonto(obj)) {
 					setStrCalcAntes(obj, digito);
-					setBoolVirgulaAndOpe(obj, null, null, true);
+					setBoolPontoAndOpe(obj, null, null, true);
 				}
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
-					if (digito.equals("=")) {
+					if (digito.equals("=") && !obj.getStrNum().equals("")) {
 						obj.getService().fazerOperacoesIgual();
 						return;
 					}
-					setBoolVirgulaAndOpe(obj, false, true, false);
+					setBoolPontoAndOpe(obj, false, true, false);
 					obj.setOpeVez(digito);
 					obj.getService().fazerOperacoesDigOpe();
 				}
 			} else {
 				setStrCalcAntes(obj, digito);
-				setBoolVirgulaAndOpe(obj, true, null, true);
+				setBoolPontoAndOpe(obj, true, null, true);
 				obj.getService().fazerOperacoesNum();
 			}
 		}
@@ -139,12 +139,12 @@ public interface CalculadoraEntradaDadosOperacoes {
 	 * @param obj objeto de onde é verificado os controladores da virgula
 	 * @return
 	 */
-	default Boolean checkVirgula(CalculadoraEntradaDadosAtributos obj) {
+	default Boolean checkPonto(CalculadoraEntradaDadosAtributos obj) {
 
-		if (obj.getVirgNumAntes() != null && obj.getVirgDpsDec() != null) {
-			if (obj.getVirgNumAntes() && obj.getVirgDpsDec()) {
+		if (obj.getPontoNumAntes() != null && obj.getPontoDpsDec() != null) {
+			if (obj.getPontoNumAntes() && obj.getPontoDpsDec()) {
 
-				obj.setVirgDpsDec(false);
+				obj.setPontoDpsDec(false);
 				return true;
 			}
 		}
@@ -254,21 +254,21 @@ public interface CalculadoraEntradaDadosOperacoes {
 	 * @param virgDps
 	 * @param obj
 	 */
-	default void setBoolVirgulaAndOpe(CalculadoraEntradaDadosAtributos obj, Boolean virgAntes, Boolean virgDps,
+	default void setBoolPontoAndOpe(CalculadoraEntradaDadosAtributos obj, Boolean pontoAntes, Boolean pontoDps,
 			Boolean digOpe) {
 
-		if (virgAntes != null)
-			obj.setVirgNumAntes(virgAntes);
+		if (pontoAntes != null)
+			obj.setPontoNumAntes(pontoAntes);
 
-		if (virgDps != null)
-			obj.setVirgDpsDec(virgDps);
+		if (pontoDps != null)
+			obj.setPontoDpsDec(pontoDps);
 
 		if (digOpe != null)
 			obj.setDigOperador(digOpe);
 	}
 
 	/**
-	 * @return 0 =[%], 1 =[/], 2 =[*], 3 =[-], 4 =[+], 5 [=], 6 =[,]
+	 * @return 0 =[%], 1 =[/], 2 =[*], 3 =[-], 4 =[+], 5 [=], 6 =[.]
 	 * 
 	 */
 	default String getDigOpe(CalculadoraEntradaDadosAtributos obj, int index) {
@@ -285,8 +285,8 @@ public interface CalculadoraEntradaDadosOperacoes {
 		obj.setStrLblRes("=");
 		obj.setStrLblOpe("");
 		obj.setStrNum("");
-		obj.setVirgNumAntes(false);
-		obj.setVirgDpsDec(true);
+		obj.setPontoNumAntes(false);
+		obj.setPontoDpsDec(true);
 		obj.setDigOperador(false);
 		obj.setRes(0d);
 		obj.setFirstDivisao(true);
