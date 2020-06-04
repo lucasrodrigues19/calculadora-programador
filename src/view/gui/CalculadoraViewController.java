@@ -261,7 +261,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	private void setLblResAndOpe(String code) {
 		lblOpe.setText(getStrLblOpe());
 		lblRes.setText(getStrLblRes());
-		if(code.equals("="))
+		if(code.equals("=") && !getStrNum().equals(""))
 			destacarIgual();
 		else 
 			reniciarIgual();

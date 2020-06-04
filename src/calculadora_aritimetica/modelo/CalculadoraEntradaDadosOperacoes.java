@@ -40,7 +40,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 			} else if (isOpe(obj, digito)) {
 				if (checkOperadores(obj) || obj.getConContinue()) {
 					setStrCalcAntes(obj, digito);
-					if (digito.equals("=")) {
+					if (digito.equals("=") && !obj.getStrNum().equals("")) {
 						obj.getService().fazerOperacoesIgual();
 						return;
 					}
