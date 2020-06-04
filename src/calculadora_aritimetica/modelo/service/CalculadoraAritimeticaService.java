@@ -16,28 +16,30 @@ public class CalculadoraAritimeticaService {
 	}
 
 	public void fazerOperacoesNum() {
-		if(dadosEntrada.getConContinue()) {
-			String strNumTmp = dadosEntrada.getStrNum();
-			dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
-			dadosEntrada.setStrNum(strNumTmp);
-			dadosEntrada.setStrLblOpe(strNumTmp);
-			dadosEntrada.setStrLblRes("="+strNumTmp);
-			dadosEntrada.setDigOperador(true);
+		if (dadosEntrada.getConContinue()) {
+			helper.setDadosAfterOperacaoNum(null);
 			return;
 		}
 		if (!dadosEntrada.getIsPrimeiraOpe()) {
+			Double tmpRes = null;
 			switch (dadosEntrada.getUltimaOperacao()) {
 			case "+":
-				helper.adicao();
+				tmpRes = helper.adicao();
+				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 				break;
 			case "-":
-				helper.subtracao();
+				tmpRes = helper.subtracao();
+				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 				break;
 			case "*":
-				helper.multilplicacao();
+				tmpRes = helper.multilplicacao();
+				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
+				
 				break;
 			case "/":
-				helper.divisao();
+				tmpRes = helper.divisao();
+				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
+				
 				break;
 			}
 		}
@@ -46,6 +48,7 @@ public class CalculadoraAritimeticaService {
 	public void fazerOperacoesDigOpe() {
 		helper.setDadosAfterOperacoesDigOpe();
 	}
+
 	public void fazerOperacoesIgual() {
 		helper.igual();
 	}
