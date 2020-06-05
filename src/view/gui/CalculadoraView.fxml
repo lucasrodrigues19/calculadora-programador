@@ -19,9 +19,12 @@
          <children>
             <Pane layoutX="240.0" layoutY="27.0" prefHeight="393.0" prefWidth="293.0" style="-fx-border-color: white; -fx-border-radius: 20;">
                <children>
-                  <ScrollPane layoutX="80.0" layoutY="2.0" prefHeight="132.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
+                  <ScrollPane layoutX="55.0" layoutY="3.0" prefHeight="132.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
                      <content>
-                        <ListView fx:id="listHistorico" prefHeight="130.0" prefWidth="202.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 20;" />
+                        <ListView fx:id="listHistorico" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="202.0" style="-fx-border-radius: 20;" styleClass="list-cell" stylesheets="@CalculadoraView.css">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ListView>
                      </content>
                   </ScrollPane>
                   <VBox layoutX="50.0" layoutY="135.0" prefHeight="41.0" prefWidth="204.0">

@@ -10,8 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
@@ -53,10 +51,11 @@ public class OperacoesViewController implements Initializable {
 			helper.loadView("/view/gui/CalculadoraView.fxml", helper.getSceneAtual(event),2, (CalculadoraViewController controller)->{
 				controller.setUsuario(getUsuario());
 				controller.setUsuarioService(getUsuarioService());
-				//controller.setHistorico(new Historico());
+				controller.setHistorico(new Historico());
 				controller.setScenePai(helper.getSceneAtual(event));
 				controller.setEventHandler();
 				controller.iniciarAtributosaCalc(controller);
+				controller.iniciarLabels();
 			});
 		} catch (MyException e) {
 			e.printStackTrace();

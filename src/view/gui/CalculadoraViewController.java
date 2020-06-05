@@ -3,10 +3,11 @@ package view.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.prism.paint.Color;
-
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
-import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -34,19 +36,21 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 
 	// private HistoricoService historicoService;
 
+	private Historico historico;
+
 	private String lblOpeFontName;
-	
+
 	private Double lblOpeFontSize;
-	
+
 	private String lblResFontName;
-	
+
 	private Double lblResFontSize;
-	@FXML
-	private Pane calculadoraPane;
 
 	private Scene scenePai;
 
-	private Historico historico;
+	private Boolean jaSalvou;
+	@FXML
+	private Pane calculadoraPane;
 
 	@FXML
 	private Label lblStyleMais;
@@ -126,8 +130,11 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	@FXML
 	private ListView<String> listHistorico;
 
-	public CalculadoraViewController() {
+	@FXML
+	ObservableList<String> obsHistorico;
 
+	public CalculadoraViewController() {
+		jaSalvou = false;
 	}
 
 	@FXML
@@ -135,6 +142,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 0
 
 	@FXML
@@ -142,6 +150,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 1
 
 	@FXML
@@ -149,6 +158,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 2
 
 	@FXML
@@ -156,6 +166,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 3
 
 	@FXML
@@ -163,6 +174,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 4
 
 	@FXML
@@ -177,6 +189,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 6
 
 	@FXML
@@ -184,6 +197,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 7
 
 	@FXML
@@ -198,12 +212,13 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end num 9
 
 	@FXML
 	private void onBtVirgulaAction(ActionEvent event) {
 		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
+		setEntradaDados(this, ".");
 		setLblResAndOpe(digito);
 	}// end virgula
 
@@ -212,6 +227,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}/// end div
 
 	@FXML
@@ -219,6 +235,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end mult
 
 	@FXML
@@ -226,6 +243,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end sub
 
 	@FXML
@@ -233,6 +251,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end adc
 
 	@FXML
@@ -240,6 +259,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end por
 
 	@FXML
@@ -247,6 +267,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}/// end igual
 
 	@FXML
@@ -254,6 +275,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end apagar letra
 
 	@FXML
@@ -261,6 +283,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		setEntradaDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end apagar tudo
 
 	/**
@@ -269,8 +292,10 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	public void setEventHandler() {
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
-				setEntradaDados(this, getNameKeyCodeCalc(this,event.getCode()));
-				setLblResAndOpe(event.getCode().getName());
+				String digito = getNameKeyCodeCalc(this, event.getCode());
+				setEntradaDados(this, digito);
+				setLblResAndOpe(digito);
+				setSaveHistorico(digito);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -278,24 +303,80 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	}
 
 	private void setLblResAndOpe(String code) {
-		lblOpe.setText(getStrLblOpe());
-		lblRes.setText(getStrLblRes());
-		if(code.equals("=") && !getStrNum().equals(""))
-			destacarIgual();
-		else 
-			reniciarIgual();
-		
+		if (!getConContinue()) {
+			lblOpe.setText(getStrLblOpe());
+			lblRes.setText(getStrLblRes());
+		}
 	}
+
 	private void destacarIgual() {
-		lblRes.setFont(Font.font(lblRes.getFont().getName(),FontWeight.BOLD,lblRes.getFont().getSize()+3));
-		lblOpe.setFont(Font.font(lblOpe.getFont().getName(),FontWeight.BOLD,lblRes.getFont().getSize()-3));
+		lblRes.setFont(Font.font(lblRes.getFont().getName(), FontWeight.BOLD, lblRes.getFont().getSize() + 3));
+		lblOpe.setFont(Font.font(lblOpe.getFont().getName(), FontWeight.BOLD, lblRes.getFont().getSize() - 3));
 		lblRes.setTextFill(Paint.valueOf("PERU"));
 	}
+
 	private void reniciarIgual() {
 		lblOpe.setFont(Font.font(lblOpeFontName, FontWeight.BOLD, lblOpeFontSize));
 		lblRes.setFont(Font.font(lblResFontName, FontWeight.BOLD, lblResFontSize));
 		lblRes.setTextFill(Paint.valueOf("RED"));
 	}
+
+	private void hiddenLogo() {
+		lblStyleMais.setVisible(false);
+		lblStyleMenos.setVisible(false);
+		lblStyleIgual.setVisible(false);
+		lblStyleProg.setVisible(false);
+	}
+
+	private void getStyleFontLbls() {
+		lblOpeFontName = lblOpe.getFont().getName();
+		lblResFontName = lblRes.getFont().getName();
+		lblOpeFontSize = lblOpe.getFont().getSize();
+		lblResFontSize = lblOpe.getFont().getSize();
+	}
+
+	private void inicializarObservableHistorico() {
+		obsHistorico = FXCollections.observableArrayList();
+		obsHistorico.addListener((ListChangeListener<String>) listener -> {
+			salvarHistorico();
+		});
+	}
+
+	private void salvarHistorico() {
+		if (obsHistorico != null)
+			listHistorico.setItems(obsHistorico);
+
+	}
+
+	private void setObsHistorico() {
+		if (historico != null)
+			obsHistorico.add(historico.getHisdado());
+
+	}
+
+	private void getDadosHistorico() {
+		if (historico != null) {
+			historico.setHisdado(lblOpe.getText() + "\n" + lblRes.getText());
+			historico.setHisusuario(getUsuario());
+		}
+	}
+
+	private void setSaveHistorico(String code) {
+		if (code != null) {
+			if (code.equals("=") && !getStrNum().equals("")) {
+				if (!jaSalvou) {
+					destacarIgual();
+					getDadosHistorico();
+					setObsHistorico();
+					jaSalvou = true;
+				}
+			} else {
+				reniciarIgual();
+				jaSalvou = false;
+			}
+		}
+	}
+
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
@@ -332,18 +413,12 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		hiddenLogo();
 		getStyleFontLbls();
+		inicializarObservableHistorico();
 	}
 
-	private void hiddenLogo() {
-		lblStyleMais.setVisible(false);
-		lblStyleMenos.setVisible(false);
-		lblStyleIgual.setVisible(false);
-		lblStyleProg.setVisible(false);
+	public void iniciarLabels() {
+		lblOpe.setText(getStrLblOpe());
+		lblRes.setText(getStrLblRes());
 	}
-	private void getStyleFontLbls() {
-		lblOpeFontName = lblOpe.getFont().getName();
-		lblResFontName = lblRes.getFont().getName();
-		lblOpeFontSize = lblOpe.getFont().getSize();
-		lblResFontSize = lblOpe.getFont().getSize();
-	}
+
 }

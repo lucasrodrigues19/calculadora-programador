@@ -3,7 +3,6 @@ package calculadora_aritimetica.modelo;
 import java.util.Locale;
 
 import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -40,6 +39,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 					setStrCalcAntes(obj, digito);
 					if (digito.equals("=") && !obj.getStrNum().equals("")) {
 						obj.getService().fazerOperacoesIgual();
+						setBoolPontoAndOpe(obj, false, true, false);
 						return;
 					}
 					setBoolPontoAndOpe(obj, false, true, false);
@@ -80,16 +80,16 @@ public interface CalculadoraEntradaDadosOperacoes {
 	default void setStrCalcAntes(CalculadoraEntradaDadosAtributos obj, String content) {
 		if (obj != null && content != null) {
 			if (!isOpe(obj, content)) {
-				if (obj.getConContinue()) {
+				if (obj.getConContinue()) {//caso seja depois de clicar no igual
 					obj.setStrNum(content);
 				} else {
 					obj.setStrNum(obj.getStrNum() + content);
 				}
-				obj.setStrLblRes(obj.getStrLblRes() + content);
+				obj.setStrLblRes(obj.getStrLblRes() + content); //res vai pegar essa string caso for a primeira operacao
 			} else {
 				checkLastCharInStrNum(obj);
 			}
-			if (!content.equals("="))
+			if (!content.equals("=")) //a stirng de operação so seta se nao for igual
 				obj.setStrLblOpe(obj.getStrLblOpe() + content);
 		}
 	}

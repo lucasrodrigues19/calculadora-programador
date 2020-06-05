@@ -2,7 +2,6 @@ package calculadora_aritimetica.modelo.service;
 
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
 import calculadora_aritimetica.modelo.helper.CalculadoraAritimeticaHelper;
-import view.gui.utils.ViewUtils;
 
 public class CalculadoraAritimeticaService {
 
@@ -34,12 +33,12 @@ public class CalculadoraAritimeticaService {
 			case "*":
 				tmpRes = helper.multilplicacao();
 				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
-				
+
 				break;
 			case "/":
 				tmpRes = helper.divisao();
 				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
-				
+
 				break;
 			}
 		}

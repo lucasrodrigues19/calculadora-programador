@@ -1,0 +1,13 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.list-cell { 
+   -fx-padding: 3 3 3 3; 
+   -fx-background-color:#FFDEAD; 
+   -fx-text-fill: #fff; 
+   -fx-font: DejaVu Sans Bold;
+ }
+ .list-cell: selected { 
+   -fx-background-color: #fff; 
+   -fx-text-fill: #000;
+  
+ }

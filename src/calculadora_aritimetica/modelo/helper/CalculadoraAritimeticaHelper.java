@@ -51,28 +51,31 @@ public class CalculadoraAritimeticaHelper {
 		}
 		return tmpRes;
 	}
+
 	public void igual() {
 		dadosEntrada.setConContinue(true);
-		
+
 	}
+
 	public void setDadosAfterOperacaoNum(String tmpRes) {
 		if (tmpRes != null)
 			dadosEntrada.setStrLblRes("=" + tmpRes);
-		
+
 		setDadosContinueOperacaoNum();
-		
+
 	}
+
 	private void setDadosContinueOperacaoNum() {
-		if(dadosEntrada.getConContinue()) {
+		if (dadosEntrada.getConContinue()) {
 			String strNumTmp = dadosEntrada.getStrNum();
 			dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
 			dadosEntrada.setStrNum(strNumTmp);
 			dadosEntrada.setStrLblOpe(strNumTmp);
-			dadosEntrada.setStrLblRes("="+strNumTmp);
+			dadosEntrada.setStrLblRes("=" + strNumTmp);
 			dadosEntrada.setDigOperador(true);
 		}
 	}
-	
+
 	public void setDadosAfterOperacoesDigOpe() {
 		dadosEntrada.setUltimaOperacao(dadosEntrada.getOpeVez());
 		dadosEntrada.setStrNum("");
@@ -80,18 +83,18 @@ public class CalculadoraAritimeticaHelper {
 		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
 		setDadosContinueDigOpe(strResTmp);
 		dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
-		
+
 	}
+
 	private void setDadosContinueDigOpe(String strResTmp) {
-		if(dadosEntrada.getConContinue() && strResTmp != null) {//caso continue a operação
+		if (dadosEntrada.getConContinue() && strResTmp != null) {// caso continue a operação
 			dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
-			dadosEntrada.setStrLblOpe(strResTmp+dadosEntrada.getOpeVez());
-			dadosEntrada.setStrLblRes("="+strResTmp);
+			dadosEntrada.setStrLblOpe(strResTmp + dadosEntrada.getOpeVez());
+			dadosEntrada.setStrLblRes("=" + strResTmp);
 			dadosEntrada.setIsPrimeiraOpe(false);
 			dadosEntrada.setConContinue(false);
 		}
-		
+
 	}
 
-	
 }
