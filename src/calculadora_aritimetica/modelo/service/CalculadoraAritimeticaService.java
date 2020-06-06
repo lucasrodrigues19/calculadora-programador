@@ -51,4 +51,7 @@ public class CalculadoraAritimeticaService {
 	public void fazerOperacoesIgual() {
 		helper.igual();
 	}
+	public String limparDigito() {
+		return helper.apagarDigito();
+	}
 }

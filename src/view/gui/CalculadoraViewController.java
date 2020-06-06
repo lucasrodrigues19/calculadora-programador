@@ -273,17 +273,15 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	@FXML
 	private void onBtApagarLetraAction(ActionEvent event) {
 		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
+		limparDados(this, digito);
 		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
 	}// end apagar letra
 
 	@FXML
 	private void onBtApagarTudoAction(ActionEvent event) {
 		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
+		limparDados(this, digito);
 		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
 	}// end apagar tudo
 
 	/**

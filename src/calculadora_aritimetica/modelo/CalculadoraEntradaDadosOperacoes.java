@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
 import javafx.scene.input.KeyCode;
+import view.gui.utils.ViewUtils;
 
 /**
  * Essa interface foi criada para ser implementada especialmente na classe
@@ -16,14 +17,13 @@ import javafx.scene.input.KeyCode;
  */
 public interface CalculadoraEntradaDadosOperacoes {
 
-	
 	/**
 	 * Define e controla os dados que serao setados nas strings e controles do obj,
 	 * esse dados são entrada de dados para as operações. Checa se a virgula pode
 	 * ser setada. Checa se pode setar um sinal de operação. Tudo de acordo com o
 	 * digito
 	 * 
-	 * @param obj  objeto em que os dados serao setados
+	 * @param obj    objeto em que os dados serao setados
 	 * @param digito
 	 */
 	default void setEntradaDados(CalculadoraEntradaDadosAtributos obj, String digito) {
@@ -55,6 +55,81 @@ public interface CalculadoraEntradaDadosOperacoes {
 	}
 
 	/**
+	 * quando limpa um caracter, renicia os atributos, e refaz toda a operacao
+	 * @param obj
+	 * @param digito
+	 */
+	default void limparDados(CalculadoraEntradaDadosAtributos obj, String digito) {
+		if (digito != null) {
+			if (digito.equals("X")) {
+				if (!obj.getStrLblOpe().equals("")) {
+					String digitoRetirado = obj.getService().limparDigito();
+					if (digitoRetirado != null) {
+						String strLblOpe = obj.getStrLblOpe();
+						iniciarAtributosaCalc(obj);
+						int leng = strLblOpe.length();
+						for (int i = 0; i < leng; i++) {
+							Character charOp = strLblOpe.charAt(i);
+							String strDig = Character.toString(charOp);
+							setEntradaDados(obj, strDig);
+						}
+					}
+				}
+			}else if (digito.equals("C")) {
+				if (!obj.getStrLblOpe().equals("")) {
+					iniciarAtributosaCalc(obj);
+				}
+			}
+
+		}
+	}
+
+
+	/**
+	 * Retorna o ultimo digito de operador de uma string 
+	 *  EX: 70*10+100
+	 *  	return +
+	 * @param obj
+	 * @param strLblOpe
+	 * @return
+	 */
+	default String digOpeInStr(CalculadoraEntradaDadosAtributos obj, String strLblOpe) {
+		int leng = strLblOpe.length();
+		for (int i = 1; i <= leng; i++) {
+			Character charOp = strLblOpe.charAt(leng - i);
+			String digito = Character.toString(charOp);
+			if (isOpe(obj, digito)) {
+				return digito;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Pega o ultimo numero da operacao 
+	 * 	EX: 
+	 *  70*80*90 return 90
+	 * @param obj
+	 * @param strLblOpe
+	 * @return
+	 */
+	default String getStrNumInOpe(CalculadoraEntradaDadosAtributos obj, String strLblOpe) {
+		int leng = strLblOpe.length();
+		String result = "";
+		for (int i = 1; i <= leng; i++) {
+			Character charOp = strLblOpe.charAt(leng - i);
+			String digito = Character.toString(charOp);
+			if (isOpe(obj, digito)) {
+				break;
+			} else {
+				result = digito + result;
+			}
+		}
+
+		return result;
+	}
+
+	/**
 	 * verifica se o digito é um operador aritimetico.
 	 * 
 	 * @param digito
@@ -80,16 +155,17 @@ public interface CalculadoraEntradaDadosOperacoes {
 	default void setStrCalcAntes(CalculadoraEntradaDadosAtributos obj, String content) {
 		if (obj != null && content != null) {
 			if (!isOpe(obj, content)) {
-				if (obj.getConContinue()) {//caso seja depois de clicar no igual
+				if (obj.getConContinue()) {// caso seja depois de clicar no igual
 					obj.setStrNum(content);
 				} else {
 					obj.setStrNum(obj.getStrNum() + content);
 				}
-				obj.setStrLblRes(obj.getStrLblRes() + content); //res vai pegar essa string caso for a primeira operacao
+				obj.setStrLblRes(obj.getStrLblRes() + content); // res vai pegar essa string caso for a primeira
+																// operacao
 			} else {
 				checkLastCharInStrNum(obj);
 			}
-			if (!content.equals("=")) //a stirng de operação so seta se nao for igual
+			if (!content.equals("=")) // a stirng de operação so seta se nao for igual
 				obj.setStrLblOpe(obj.getStrLblOpe() + content);
 		}
 	}

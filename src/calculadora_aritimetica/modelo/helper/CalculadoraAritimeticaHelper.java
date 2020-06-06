@@ -83,7 +83,7 @@ public class CalculadoraAritimeticaHelper {
 		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
 		setDadosContinueDigOpe(strResTmp);
 		dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
-
+		
 	}
 
 	private void setDadosContinueDigOpe(String strResTmp) {
@@ -95,6 +95,22 @@ public class CalculadoraAritimeticaHelper {
 			dadosEntrada.setConContinue(false);
 		}
 
+	}
+	public String apagarDigito() {
+		String digitoRetirado = null;
+		if(!dadosEntrada.getStrNum().equals("") && dadosEntrada.getStrNum().length() > 0) {
+			String strNumTemp = dadosEntrada.getStrNum();
+			digitoRetirado = strNumTemp.substring(strNumTemp.length() -1);
+			String novaStr = strNumTemp.substring(0,strNumTemp.length() -1);
+			dadosEntrada.setStrNum(novaStr);
+		}
+		if(!dadosEntrada.getStrLblOpe().equals("") && dadosEntrada.getStrLblOpe().length() > 0) {
+			String strOpeTemp = dadosEntrada.getStrLblOpe();
+			digitoRetirado = strOpeTemp.substring(strOpeTemp.length() -1);
+			String novaStr = strOpeTemp.substring(0,strOpeTemp.length() -1);
+			dadosEntrada.setStrLblOpe(novaStr);
+		}
+		return digitoRetirado;
 	}
 
 }
