@@ -275,6 +275,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		String digito = ((Button) event.getSource()).getText();
 		limparDados(this, digito);
 		setLblResAndOpe(digito);
+		setSaveHistorico(digito);
 	}// end apagar letra
 
 	@FXML
@@ -291,9 +292,14 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
 				String digito = getNameKeyCodeCalc(this, event.getCode());
+				if(digito.equals("X")) {
+				limparDados(this, digito);
+				}else {
 				setEntradaDados(this, digito);
-				setLblResAndOpe(digito);
+				}
 				setSaveHistorico(digito);
+				setLblResAndOpe(digito);
+				// showKeyCode(event.getCode().getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -418,5 +424,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		lblOpe.setText(getStrLblOpe());
 		lblRes.setText(getStrLblRes());
 	}
-
+	private void showKeyCode(String code) {
+		lblOpe.setText(code);
+	}
 }

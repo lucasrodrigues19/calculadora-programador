@@ -272,12 +272,30 @@ public interface CalculadoraEntradaDadosOperacoes {
 
 		else if (code == KeyCode.EQUALS)
 			return getDigOpe(obj, 5);
-
+		
+		else if (code == KeyCode.ENTER)
+			return getDigOpe(obj, 5);
+		
 		else if (code == KeyCode.PROPS)
 			return getDigOpe(obj, 0);
 
 		else if (code == KeyCode.COMMA)
 			return getDigOpe(obj, 6);
+
+		else if (code == KeyCode.SEPARATOR)
+			return getDigOpe(obj, 6);
+
+		else if (code == KeyCode.PERIOD)
+			return getDigOpe(obj, 6);
+
+		else if (code == KeyCode.MINUS)
+			return getDigOpe(obj, 3);
+		
+		else if (code == KeyCode.SLASH)
+			return getDigOpe(obj, 1);
+		
+		else if (code == KeyCode.BACK_SPACE)
+			return "X";
 
 		return null;
 
@@ -326,9 +344,6 @@ public interface CalculadoraEntradaDadosOperacoes {
 		obj.setPontoDpsDec(true);
 		obj.setDigOperador(false);
 		obj.setRes(0d);
-		obj.setFirstDivisao(true);
-		obj.setFirstMult(true);
-		obj.setFirstSub(true);
 		obj.setConContinue(false);
 		obj.setIsPrimeiraOpe(true);
 		obj.setService(new CalculadoraAritimeticaService(obj));
