@@ -42,11 +42,6 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 
 	private String opeVez;
 
-	private Boolean firstDivisao;
-	
-	private Boolean firstMult;
-	
-	private Boolean firstSub;
 	
 	private CalculadoraAritimeticaService service;
 	
@@ -245,51 +240,5 @@ public abstract class CalculadoraEntradaDadosAtributos implements CalculadoraEnt
 		this.opeVez = opeVez;
 	}
 
-	/**
-	 * retorna se é a primeira divisao
-	 * @return
-	 */
-	public Boolean getFirstDivisao() {
-		return firstDivisao;
-	}
-
-	/**
-	 * seta se é a primeira divisao, deve iniciar como true
-	 * @param firstDivisao
-	 */
-	public void setFirstDivisao(Boolean firstDivisao) {
-		this.firstDivisao = firstDivisao;
-	}
-
-	/**
-	 * retorna se é a primeira multiplicação
-	 * @return
-	 */
-	public Boolean getFirstMult() {
-		return firstMult;
-	}
-
-	/**
-	 * seta se é a primeira multiplicação, deve iniciar como true
-	 * @param firstMult
-	 */
-	public void setFirstMult(Boolean firstMult) {
-		this.firstMult = firstMult;
-	}
-
-	/**
-	 * retorna se é a primeira subtração
-	 * @return
-	 */
-	public Boolean getFirstSub() {
-		return firstSub;
-	}
-	/**
-	 * seta se é a primeira subtração, deve iniciar como true
-	 * @param firstSub
-	 */
-	public void setFirstSub(Boolean firstSub) {
-		this.firstSub = firstSub;
-	}
-
+	
 }
