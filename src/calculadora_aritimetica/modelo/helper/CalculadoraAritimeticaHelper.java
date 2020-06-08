@@ -28,8 +28,8 @@ public class CalculadoraAritimeticaHelper {
 			if (tmpNum == 0) {
 				dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
 				Alerts.showAlertError("Não é possivel dividir por 0");
-			}
-			tmpRes = dadosEntrada.getRes() / tmpNum;
+			} else
+				tmpRes = dadosEntrada.getRes() / tmpNum;
 		}
 		return tmpRes;
 	}
@@ -83,7 +83,7 @@ public class CalculadoraAritimeticaHelper {
 		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
 		setDadosContinueDigOpe(strResTmp);
 		dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
-		
+
 	}
 
 	private void setDadosContinueDigOpe(String strResTmp) {
@@ -96,18 +96,19 @@ public class CalculadoraAritimeticaHelper {
 		}
 
 	}
+
 	public String apagarDigito() {
 		String digitoRetirado = null;
-		if(!dadosEntrada.getStrNum().equals("") && dadosEntrada.getStrNum().length() > 0) {
+		if (!dadosEntrada.getStrNum().equals("") && dadosEntrada.getStrNum().length() > 0) {
 			String strNumTemp = dadosEntrada.getStrNum();
-			digitoRetirado = strNumTemp.substring(strNumTemp.length() -1);
-			String novaStr = strNumTemp.substring(0,strNumTemp.length() -1);
+			digitoRetirado = strNumTemp.substring(strNumTemp.length() - 1);
+			String novaStr = strNumTemp.substring(0, strNumTemp.length() - 1);
 			dadosEntrada.setStrNum(novaStr);
 		}
-		if(!dadosEntrada.getStrLblOpe().equals("") && dadosEntrada.getStrLblOpe().length() > 0) {
+		if (!dadosEntrada.getStrLblOpe().equals("") && dadosEntrada.getStrLblOpe().length() > 0) {
 			String strOpeTemp = dadosEntrada.getStrLblOpe();
-			digitoRetirado = strOpeTemp.substring(strOpeTemp.length() -1);
-			String novaStr = strOpeTemp.substring(0,strOpeTemp.length() -1);
+			digitoRetirado = strOpeTemp.substring(strOpeTemp.length() - 1);
+			String novaStr = strOpeTemp.substring(0, strOpeTemp.length() - 1);
 			dadosEntrada.setStrLblOpe(novaStr);
 		}
 		return digitoRetirado;

@@ -37,6 +37,7 @@ public class CalculadoraAritimeticaService {
 				break;
 			case "/":
 				tmpRes = helper.divisao();
+				if (tmpRes != null)
 				helper.setDadosAfterOperacaoNum(String.format("%.2f", tmpRes));
 
 				break;

@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -138,152 +136,10 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	}
 
 	@FXML
-	private void onBtNum0Action(ActionEvent event) {
+	private void onBtAllAction(ActionEvent event) {
 		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 0
-
-	@FXML
-	private void onBtNum1Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 1
-
-	@FXML
-	private void onBtNum2Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 2
-
-	@FXML
-	private void onBtNum3Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 3
-
-	@FXML
-	private void onBtNum4Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 4
-
-	@FXML
-	private void onBtNum5Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-	}// end num 5
-
-	@FXML
-	private void onBtNum6Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 6
-
-	@FXML
-	private void onBtNum7Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 7
-
-	@FXML
-	private void onBtNum8Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-	}// end num 8
-
-	@FXML
-	private void onBtNum9Action(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end num 9
-
-	@FXML
-	private void onBtVirgulaAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, ".");
-		setLblResAndOpe(digito);
-	}// end virgula
-
-	@FXML
-	private void onBtOpeDivAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}/// end div
-
-	@FXML
-	private void onBtOpeMultAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end mult
-
-	@FXML
-	private void onBtOpeSubAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end sub
-
-	@FXML
-	private void onBtOpeAdcAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end adc
-
-	@FXML
-	private void onBtOpePorAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end por
-
-	@FXML
-	private void onBtIgualAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		setEntradaDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}/// end igual
-
-	@FXML
-	private void onBtApagarLetraAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		limparDados(this, digito);
-		setLblResAndOpe(digito);
-		setSaveHistorico(digito);
-	}// end apagar letra
-
-	@FXML
-	private void onBtApagarTudoAction(ActionEvent event) {
-		String digito = ((Button) event.getSource()).getText();
-		limparDados(this, digito);
-		setLblResAndOpe(digito);
-	}// end apagar tudo
+		escolherFuncao(digito);
+	}
 
 	/**
 	 * adiciona um EventHandler na scene
@@ -292,18 +148,29 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
 				String digito = getNameKeyCodeCalc(this, event.getCode());
-				if(digito.equals("X")) {
-				limparDados(this, digito);
-				}else {
-				setEntradaDados(this, digito);
-				}
-				setSaveHistorico(digito);
-				setLblResAndOpe(digito);
+				escolherFuncao(digito);
 				// showKeyCode(event.getCode().getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
+	}
+
+	private void escolherFuncao(String digito) {
+		if (digito != null) {
+			if (digito.equals(","))
+				digito = ".";
+
+			if (digito.equals("X") || digito.equals("C")) {
+				limparDados(this, digito);
+			} else {
+				setEntradaDados(this, digito);
+			}
+			if (!digito.equals("."))
+				setSaveHistorico(digito);
+
+			setLblResAndOpe(digito);
+		}
 	}
 
 	private void setLblResAndOpe(String code) {
@@ -424,6 +291,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		lblOpe.setText(getStrLblOpe());
 		lblRes.setText(getStrLblRes());
 	}
+
 	private void showKeyCode(String code) {
 		lblOpe.setText(code);
 	}
