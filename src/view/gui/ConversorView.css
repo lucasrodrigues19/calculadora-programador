@@ -23,8 +23,7 @@
  	-fx-border-radius:15;
  	-fx-text-fill:#cd853f;
  }
- #mb_conversores{
+ #cmb_conversores{
  	-fx-background-color:#fff; 
  	-fx-text-fill:#cd853f; 
- 	-fx-font: DejaVu Sans Bold;
  }

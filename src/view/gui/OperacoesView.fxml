@@ -17,11 +17,17 @@
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="btConversor" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Conversor" textFill="BURLYWOOD">
+            <Button fx:id="btConversor" mnemonicParsing="false" onAction="#onBtConversorAction" onMouseEntered="#onMouseBtConversorHouver" onMouseExited="#onMouseBtConversorOut" style="-fx-background-color: #fff;" text="Conversor" textFill="BURLYWOOD">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btHistorico" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Historico" textFill="BURLYWOOD">
                <font>

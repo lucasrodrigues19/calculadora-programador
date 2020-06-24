@@ -63,6 +63,21 @@ public class OperacoesViewController implements Initializable {
 		}
 	}
 	@FXML
+	private void onBtConversorAction(ActionEvent event) {
+		try {
+			helper.loadView("/view/gui/ConversorView.fxml", helper.getSceneAtual(event),2, (ConversorViewController controller)->{
+				controller.setUsuario(getUsuario());
+				controller.setUsuarioService(getUsuarioService());
+				controller.setHistorico(new Historico());
+				controller.setScenePai(helper.getSceneAtual(event));
+				controller.setEventHandler();
+			});
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	}
+	@FXML
 	private void onMouseBtCalculadoraHouver(MouseEvent event) {
 		try {
 			btStyle = btCalculadora.getStyle();
@@ -77,6 +92,28 @@ public class OperacoesViewController implements Initializable {
 	private void onMouseBtCalculadoraOut(MouseEvent event) {
 		try {
 			btCalculadora.setStyle(btStyle);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	
+	}
+	@FXML
+	private void onMouseBtConversorHouver(MouseEvent event) {
+		try {
+			btStyle = btConversor.getStyle();
+			btConversor.setStyle(btConversor.getStyle()+"-fx-background-color: gray");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	}
+	@FXML
+	private void onMouseBtConversorOut(MouseEvent event) {
+		try {
+			btConversor.setStyle(btStyle);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

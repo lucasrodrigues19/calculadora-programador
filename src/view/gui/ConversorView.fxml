@@ -2,10 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,25 +14,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@ConversorView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.CalculadoraViewController">
+<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@ConversorView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.ConversorViewController">
    <children>
-      <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0">
+      <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0" stylesheets="@ConversorView.css">
          <children>
-            <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;">
+            <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;" stylesheets="@ConversorView.css">
                <children>
-                  <MenuButton id="mb_conversores" layoutX="2.0" layoutY="36.0" mnemonicParsing="false" text="Converter para:" textFill="PERU">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Decimal" />
-                      <MenuItem mnemonicParsing="false" text="Binario" />
-                        <MenuItem mnemonicParsing="false" text="Hexa-Decimal" />
-                    </items>
+                  <Label layoutX="5.0" layoutY="27.0" prefHeight="16.0" prefWidth="143.0" text="Converter Para:" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
-                  </MenuButton>
+                  </Label>
+                  <ComboBox id="cmb_conversores" fx:id="cmbConversores" layoutX="3.0" layoutY="43.0" onAction="#cmbConversoresOnAction" prefWidth="150.0" stylesheets="@ConversorView.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
                   <ScrollPane layoutX="160.0" layoutY="3.0" prefHeight="132.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
                      <content>
-                        <ListView fx:id="listHistorico" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="202.0" style="-fx-border-radius: 20;" styleClass="list-cell" stylesheets="@CalculadoraView.css">
+                        <ListView fx:id="listHistorico" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="202.0" style="-fx-border-radius: 20;" styleClass="list-cell" stylesheets="@ConversorView.css">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></ListView>
@@ -49,7 +47,7 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </Label>
-                        <Label fx:id="lblRes" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="203.0" text="0" textFill="RED">
+                        <Label fx:id="lblRes" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="203.0" textFill="RED">
                            <font>
                               <Font name="DejaVu Sans Bold" size="13.0" />
                            </font>
@@ -60,7 +58,7 @@
                      </children>
                   </VBox>
                   <Separator layoutX="160.0" layoutY="183.0" prefHeight="0.0" prefWidth="195.0" />
-                  <GridPane layoutX="160.0" layoutY="189.0" prefHeight="197.0" prefWidth="236.0">
+                  <GridPane layoutX="160.0" layoutY="189.0" prefHeight="197.0" prefWidth="236.0" stylesheets="@ConversorView.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -75,7 +73,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btNum7" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="7" textFill="PERU">
+                        <Button fx:id="btNum7" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="7" textFill="PERU">
                            <font>
                               <Font name="DejaVu Sans Bold" size="15.0" />
                            </font>
@@ -83,7 +81,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum9" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="9" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2">
+                        <Button fx:id="btNum9" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="9" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -91,7 +89,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum8" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="8" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1">
+                        <Button fx:id="btNum8" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="8" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -99,7 +97,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum6" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="6" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="btNum6" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="6" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -107,7 +105,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum5" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="5" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="btNum5" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="5" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -115,7 +113,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum4" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="4" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="1">
+                        <Button fx:id="btNum4" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="4" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -123,7 +121,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum1" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="1" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="2">
+                        <Button fx:id="btNum1" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="1" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -131,7 +129,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum2" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="2" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="btNum2" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="2" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -139,7 +137,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum3" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="3" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="btNum3" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="3" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -147,7 +145,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btApagarLetra" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" text="&lt;x" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button fx:id="btApagarLetra" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" stylesheets="@ConversorView.css" text="&lt;x" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -155,7 +153,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum31" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" text="A" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Button fx:id="btLetra_A" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" stylesheets="@ConversorView.css" text="A" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -163,7 +161,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum32" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="bt_letras" text="B" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <Button fx:id="btLetra_B" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="bt_letras" stylesheets="@ConversorView.css" text="B" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -171,7 +169,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum33" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" text="C" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Button fx:id="btLetra_C" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" stylesheets="@ConversorView.css" text="C" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -179,7 +177,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum34" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" text="D" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Button fx:id="btLetra_D" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" stylesheets="@ConversorView.css" text="D" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -187,7 +185,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum35" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" text="E" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3">
+                        <Button fx:id="btLetra_E" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" stylesheets="@ConversorView.css" text="E" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -195,7 +193,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum36" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" text="F" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4">
+                        <Button fx:id="btLetra_F" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" styleClass="bt_letras" stylesheets="@ConversorView.css" text="F" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -203,7 +201,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btNum0" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" text="0" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="3">
+                        <Button fx:id="btNum0" maxHeight="34.0" maxWidth="37.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: WHITE; -fx-background-radius: 15; -fx-border-radius: 15;" stylesheets="@ConversorView.css" text="0" textAlignment="CENTER" textFill="PERU" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -211,7 +209,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btApagarTudo" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" text="CL" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Button fx:id="btApagarTudo" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" stylesheets="@ConversorView.css" text="CL" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
@@ -219,7 +217,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btIgual" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" text="=" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                        <Button fx:id="btIgual" maxHeight="34.0" maxWidth="43.0" minHeight="34.0" minWidth="37.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="34.0" prefWidth="43.0" styleClass="bt_operadores" stylesheets="@ConversorView.css" text="=" textAlignment="CENTER" textFill="PERU" GridPane.columnIndex="4" GridPane.rowIndex="3">
                            <font>
                               <Font name="DejaVu Sans Bold" size="14.0" />
                            </font>
