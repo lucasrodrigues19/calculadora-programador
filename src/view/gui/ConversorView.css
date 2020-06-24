@@ -1,0 +1,30 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.list-cell { 
+   -fx-padding: 3 3 3 3; 
+   -fx-background-color:#FFDEAD; 
+   -fx-text-fill: #fff; 
+   -fx-font: DejaVu Sans Bold;
+ }
+ .list-cell: selected { 
+   -fx-background-color: #fff; 
+   -fx-text-fill: #000;
+  
+ }
+ .bt_letras{
+ 	-fx-background-color:#cd853f; 
+ 	-fx-background-radius: 15;
+ 	-fx-border-radius:15;
+ 	-fx-text-fill:#fff;
+ }
+ .bt_operadores{
+ 	-fx-background-color:#FFDEAD; 
+ 	-fx-background-radius: 15;
+ 	-fx-border-radius:15;
+ 	-fx-text-fill:#cd853f;
+ }
+ #mb_conversores{
+ 	-fx-background-color:#fff; 
+ 	-fx-text-fill:#cd853f; 
+ 	-fx-font: DejaVu Sans Bold;
+ }
