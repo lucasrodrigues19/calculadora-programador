@@ -23,16 +23,16 @@ public class ViewUtils {
 		}
 	}
 
-	public static void setColorItemsComboBox(ComboBox<String> cmb) {
+	public static void setColorItemsComboBox(ComboBox<String> cmb, String background_color, String text_fill_color) {
 		Callback<ListView<String>, ListCell<String>> factory = lv -> new ListCell<String>() {
 			@Override
 			protected void updateItem(String item, boolean empty) {
 				
 				super.updateItem(item, empty);
 				if(empty || item == null)
-					setStyle("-fx-text-fill: #cd853f; -fx-background-color: #FFDEAD");
+					setStyle("-fx-text-fill:"+text_fill_color+"; -fx-background-color:"+background_color);
 				else {
-					setStyle("-fx-text-fill: #cd853f; -fx-background-color: #FFDEAD");
+					setStyle("-fx-text-fill:"+text_fill_color+"; -fx-background-color:"+background_color);
 					setText(item.toString());
 				}
 			}

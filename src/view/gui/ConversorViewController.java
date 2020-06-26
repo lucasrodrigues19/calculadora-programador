@@ -23,11 +23,12 @@ import javafx.scene.text.FontWeight;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
+import view.gui.utils.Costraints;
 import view.gui.utils.ViewUtils;
 
 public class ConversorViewController implements Initializable {
 
-	//private ViewHelper helper = new ViewHelper();
+	// private ViewHelper helper = new ViewHelper();
 
 	private UsuarioService usuarioService;
 
@@ -64,8 +65,11 @@ public class ConversorViewController implements Initializable {
 	private Label lblStyleProg;
 
 	@FXML
-	private ComboBox<String> cmbConversores;
-	
+	private ComboBox<String> cmbConverEntrada;
+
+	@FXML
+	private ComboBox<String> cmbConverSaida;
+
 	@FXML
 	ObservableList<String> obsConversores;
 
@@ -144,7 +148,8 @@ public class ConversorViewController implements Initializable {
 
 	@FXML
 	private void onBtAllAction(ActionEvent event) {
-		
+		Button bt = (Button) (event.getSource());
+		lblOpe.setText(bt.getText());
 	}
 
 	/**
@@ -153,23 +158,30 @@ public class ConversorViewController implements Initializable {
 	public void setEventHandler() {
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
-			
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
 	}
-	public void cmbConversoresOnAction(ActionEvent event) {
-		String valorCmb = cmbConversores.getSelectionModel().getSelectedItem();
+
+	public void cmbConverEntradaOnAction(ActionEvent event) {
+		String valorCmb = cmbConverEntrada.getSelectionModel().getSelectedItem();
+		setCostraintLblOperacoes(valorCmb);
+		lblRes.setText(valorCmb);
+	}
+
+	public void cmbConverSaidaOnAction(ActionEvent event) {
+		String valorCmb = cmbConverSaida.getSelectionModel().getSelectedItem();
 		lblRes.setText(valorCmb);
 	}
 
 	private void escolherFuncao(String digito) {
-		
+
 	}
 
 	private void setLblResAndOpe(String code) {
-	
+
 	}
 
 	private void destacarIgual() {
@@ -184,7 +196,6 @@ public class ConversorViewController implements Initializable {
 		lblRes.setTextFill(Paint.valueOf("RED"));
 	}
 
-
 	private void getStyleFontLbls() {
 		lblOpeFontName = lblOpe.getFont().getName();
 		lblResFontName = lblRes.getFont().getName();
@@ -198,34 +209,7 @@ public class ConversorViewController implements Initializable {
 			salvarHistorico();
 		});
 	}
-
-	private void salvarHistorico() {
-		if (obsHistorico != null)
-			listHistorico.setItems(obsHistorico);
-
-	}
-
-	private void setObsHistorico() {
-		if (historico != null)
-			obsHistorico.add(historico.getHisdado());
-
-	}
-	private void inicializarObservableConversores() {
-		obsConversores = FXCollections.observableArrayList();
-		setObsConversores();
-		setCmbConversores();
-		
 	
-	}
-	private void setObsConversores() {
-			obsConversores.addAll(Arrays.asList("Decimal","Binario","Hexa-Decimal"));
-	}
-	private void setCmbConversores() {
-			cmbConversores.getItems().addAll(obsConversores);
-			ViewUtils.setColorItemsComboBox(cmbConversores);
-			cmbConversores.getSelectionModel().selectFirst();
-	}
-
 	private void getDadosHistorico() {
 		if (historico != null) {
 			historico.setHisdado(lblOpe.getText() + "\n" + lblRes.getText());
@@ -233,8 +217,56 @@ public class ConversorViewController implements Initializable {
 		}
 	}
 
-	private void setSaveHistorico(String code) {
+	private void salvarHistorico() {
+		if (obsHistorico != null)
+			listHistorico.setItems(obsHistorico);
+
+	}
 	
+	private void setObsHistorico() {
+		if (historico != null)
+			obsHistorico.add(historico.getHisdado());
+
+	}
+	private void setSaveHistorico(String code) {
+
+	}
+
+	private void showKeyCode(String code) {
+		lblOpe.setText(code);
+	}
+
+	private void inicializarObservableConversores() {
+		obsConversores = FXCollections.observableArrayList();
+		setObsConversores();
+		setCmbConversores();
+
+	}
+
+	private void setObsConversores() {
+		obsConversores.addAll(Arrays.asList("Decimal", "Binario", "Hexa-Decimal"));
+	}
+
+	private void setCmbConversores() {
+		cmbConverEntrada.getItems().addAll(obsConversores);
+		cmbConverSaida.getItems().addAll(obsConversores);
+		ViewUtils.setColorItemsComboBox(cmbConverEntrada, "#FFDEAD", "#cd853f");
+		ViewUtils.setColorItemsComboBox(cmbConverSaida, "#FFDEAD", "#cd853f");
+		cmbConverEntrada.getSelectionModel().selectFirst();
+		cmbConverSaida.setValue("Binario");
+	}
+
+	private void setCostraintLblOperacoes(String valorCmb) {
+		if ("Hexa-Decimal".equals(valorCmb))
+			Costraints.anyCharLabel(lblOpe);
+		else {
+			 Costraints.onlyIntegerLabel(lblOpe);
+		}
+
+	}
+	private void setCostraintsInLabels() {
+		String valorCmb = cmbConverEntrada.getValue();
+		setCostraintLblOperacoes(valorCmb);
 	}
 
 	public UsuarioService getUsuarioService() {
@@ -274,10 +306,8 @@ public class ConversorViewController implements Initializable {
 		getStyleFontLbls();
 		inicializarObservableHistorico();
 		inicializarObservableConversores();
+		setCostraintsInLabels();
+		
 	}
 
-
-	private void showKeyCode(String code) {
-		lblOpe.setText(code);
-	}
 }

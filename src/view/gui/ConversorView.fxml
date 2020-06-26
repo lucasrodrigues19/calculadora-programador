@@ -20,12 +20,12 @@
          <children>
             <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;" stylesheets="@ConversorView.css">
                <children>
-                  <Label layoutX="5.0" layoutY="27.0" prefHeight="16.0" prefWidth="143.0" text="Converter Para:" textFill="PERU">
+                  <Label layoutX="5.0" layoutY="111.0" prefHeight="16.0" prefWidth="143.0" text="Para:" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox id="cmb_conversores" fx:id="cmbConversores" layoutX="3.0" layoutY="43.0" onAction="#cmbConversoresOnAction" prefWidth="150.0" stylesheets="@ConversorView.css">
+                  <ComboBox fx:id="cmbConverSaida" layoutX="3.0" layoutY="127.0" onAction="#cmbConverSaidaOnAction" prefWidth="150.0" styleClass="cmb_conversores" stylesheets="@ConversorView.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ComboBox>
@@ -231,6 +231,16 @@
             </Pane>
             <Label layoutX="289.0" layoutY="433.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
             <Label layoutX="369.0" layoutY="455.0" text="2020" textFill="BURLYWOOD" />
+            <Label layoutX="114.0" layoutY="69.0" prefHeight="16.0" prefWidth="143.0" text="De:" textFill="PERU">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbConverEntrada" layoutX="112.0" layoutY="85.0" onAction="#cmbConverEntradaOnAction" prefWidth="150.0" styleClass="cmb_conversores" stylesheets="@ConversorView.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
          </children>
       </Pane>
    </children>
