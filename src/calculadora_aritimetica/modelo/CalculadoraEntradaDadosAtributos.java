@@ -1,6 +1,6 @@
 package calculadora_aritimetica.modelo;
 
-import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
+import calculadora_aritimetica.modelo.services.CalculadoraAritimeticaService;
 
 /**
  * Quaquer sub-classe alem de herdar os atributos necessarios para definir a

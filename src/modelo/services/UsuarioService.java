@@ -31,7 +31,6 @@ public class UsuarioService {
 			else
 				getUsuarioDAO().update(usuario);
 		} catch (MySQLException e) {
-			e.printStackTrace();
 			throw new MySQLException(e.getMessage());
 		}
 

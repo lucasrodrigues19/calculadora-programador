@@ -16,10 +16,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import view.gui.helper.ViewHelper;
+import utils.TryParseUtils;
+import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
-import view.gui.utils.ViewUtils;
-import view.gui.utils.Costraints;
+import view.gui.utils.costraints.Costraints;
 
 public class CadastroViewController implements Initializable {
 
@@ -77,8 +77,17 @@ public class CadastroViewController implements Initializable {
 			Alerts.showAlertInformations("Dados salvos!!");
 
 		} catch (MySQLException e) {
-			e.printStackTrace();
-			Alerts.showAlertError(e.getMessage());
+			String msg = e.getMessage();
+			if(msg.contains("Duplicate")) {
+				if(msg.contains("uk_email"))
+					msg = "Email ja cadastrado";
+				else if(msg.contains("uk_telefone"))
+					msg = "Telefone ja cadastrado";
+				
+				Alerts.showAlertError(msg);
+			}else
+				e.printStackTrace();
+			
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
@@ -147,7 +156,7 @@ public class CadastroViewController implements Initializable {
 			throw new IllegalArgumentException("usuario nulo");
 
 		MyRuntimeException runtimeEx = new MyRuntimeException();
-		usuario.setUsuid(ViewUtils.tryParseInt(txtId.getText()));
+		usuario.setUsuid(TryParseUtils.tryParseInt(txtId.getText()));
 
 		if (txtEmail.getText().length() <= 0 || "".trim().equals(txtEmail.getText()) || txtEmail == null)
 			runtimeEx.addErros("email", "Vazio");
@@ -196,10 +205,10 @@ public class CadastroViewController implements Initializable {
 	}
 
 	private void initializeNodesConstraints() {
-		Costraints.textFieldInteger(txtTelefone);
-		Costraints.textFieldMaxLength(txtEmail, 40);
-		Costraints.textFieldMaxLength(txtNome, 30);
-		Costraints.textFieldMaxLength(txtTelefone, 11);
+		Costraints.onlyInteger(txtTelefone, false);
+		Costraints.maxLength(txtEmail, 40,false);
+		Costraints.maxLength(txtNome, 30,false);
+		Costraints.maxLength(txtTelefone, 11,false);
 	}
 
 	private void fecharView(Stage stageAtual) {

@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import view.gui.helper.ViewHelper;
+import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class OperacoesViewController implements Initializable {

@@ -79,11 +79,9 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				e.printStackTrace();
 				throw new MySQLException("Erro na transanção: " + e.getMessage());
 			} catch (SQLException e2) {
-				e2.printStackTrace();
-				throw new MySQLException("Erro no rollback: " + e.getMessage());
+				throw new MySQLException("Erro no rollback: " + e2.getMessage());
 			}
 		} finally {
 			DB.closeStatment(ps);
@@ -114,7 +112,6 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				e.printStackTrace();
 				throw new MySQLException("Erro na transanção");
 			} catch (SQLException e2) {
 				e2.printStackTrace();
@@ -146,10 +143,8 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				e.printStackTrace();
 				throw new MySQLException("Erro na transanção");
 			} catch (SQLException e2) {
-				e2.printStackTrace();
 				throw new MySQLException("Erro no rollback");
 			}
 		} finally {
@@ -193,7 +188,6 @@ public class UsuarioDAOI implements UsuarioDAO {
 				con.rollback();
 				System.out.println("Erro na transanção");
 			} catch (SQLException e2) {
-				e2.printStackTrace();
 				System.out.println("Erro no rollback");
 			}
 			e.printStackTrace();

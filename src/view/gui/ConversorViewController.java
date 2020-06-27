@@ -23,12 +23,12 @@ import javafx.scene.text.FontWeight;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import view.gui.utils.Costraints;
-import view.gui.utils.ViewUtils;
+import view.gui.helpers.ViewHelper;
+import view.gui.utils.costraints.Costraints;
 
 public class ConversorViewController implements Initializable {
 
-	// private ViewHelper helper = new ViewHelper();
+	private ViewHelper helper = new ViewHelper();
 
 	private UsuarioService usuarioService;
 
@@ -250,17 +250,17 @@ public class ConversorViewController implements Initializable {
 	private void setCmbConversores() {
 		cmbConverEntrada.getItems().addAll(obsConversores);
 		cmbConverSaida.getItems().addAll(obsConversores);
-		ViewUtils.setColorItemsComboBox(cmbConverEntrada, "#FFDEAD", "#cd853f");
-		ViewUtils.setColorItemsComboBox(cmbConverSaida, "#FFDEAD", "#cd853f");
+		helper.setColorItemsComboBox(cmbConverEntrada, "#FFDEAD", "#cd853f");
+		helper.setColorItemsComboBox(cmbConverSaida, "#FFDEAD", "#cd853f");
 		cmbConverEntrada.getSelectionModel().selectFirst();
 		cmbConverSaida.setValue("Binario");
 	}
 
 	private void setCostraintLblOperacoes(String valorCmb) {
 		if ("Hexa-Decimal".equals(valorCmb))
-			Costraints.anyCharLabel(lblOpe);
+			Costraints.anyChar(lblOpe,true);
 		else {
-			 Costraints.onlyIntegerLabel(lblOpe);
+			 Costraints.onlyInteger(lblOpe,true);
 		}
 
 	}

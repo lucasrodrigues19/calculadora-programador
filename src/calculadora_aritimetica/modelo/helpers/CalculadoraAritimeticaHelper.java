@@ -1,8 +1,8 @@
-package calculadora_aritimetica.modelo.helper;
+package calculadora_aritimetica.modelo.helpers;
 
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
+import utils.TryParseUtils;
 import view.gui.utils.Alerts;
-import view.gui.utils.ViewUtils;
 
 public class CalculadoraAritimeticaHelper {
 
@@ -15,7 +15,7 @@ public class CalculadoraAritimeticaHelper {
 	public Double adicao() {
 		Double tmpRes = null;
 		if (dadosEntrada.getStrNum() != null) {
-			Double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
+			Double tmpNum = TryParseUtils.tryParseDouble(dadosEntrada.getStrNum());
 			tmpRes = dadosEntrada.getRes() + tmpNum;
 		}
 		return tmpRes;
@@ -24,7 +24,7 @@ public class CalculadoraAritimeticaHelper {
 	public Double divisao() {
 		Double tmpRes = null;
 		if (dadosEntrada.getStrNum() != null) {
-			double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
+			double tmpNum = TryParseUtils.tryParseDouble(dadosEntrada.getStrNum());
 			if (tmpNum == 0) {
 				dadosEntrada.iniciarAtributosaCalc(dadosEntrada);
 				Alerts.showAlertError("Não é possivel dividir por 0");
@@ -37,7 +37,7 @@ public class CalculadoraAritimeticaHelper {
 	public Double multilplicacao() {
 		Double tmpRes = null;
 		if (dadosEntrada.getStrNum() != null) {
-			Double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
+			Double tmpNum = TryParseUtils.tryParseDouble(dadosEntrada.getStrNum());
 			tmpRes = dadosEntrada.getRes() * tmpNum;
 		}
 		return tmpRes;
@@ -46,7 +46,7 @@ public class CalculadoraAritimeticaHelper {
 	public Double subtracao() {
 		Double tmpRes = null;
 		if (dadosEntrada.getStrNum() != null) {
-			Double tmpNum = ViewUtils.tryParseDouble(dadosEntrada.getStrNum());
+			Double tmpNum = TryParseUtils.tryParseDouble(dadosEntrada.getStrNum());
 			tmpRes = dadosEntrada.getRes() - tmpNum;
 		}
 		return tmpRes;
@@ -82,7 +82,7 @@ public class CalculadoraAritimeticaHelper {
 		dadosEntrada.setIsPrimeiraOpe(false);
 		String strResTmp = dadosEntrada.getStrLblRes().substring(1);
 		setDadosContinueDigOpe(strResTmp);
-		dadosEntrada.setRes(ViewUtils.tryParseDouble(strResTmp));
+		dadosEntrada.setRes(TryParseUtils.tryParseDouble(strResTmp));
 
 	}
 

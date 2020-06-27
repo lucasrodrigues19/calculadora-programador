@@ -24,7 +24,7 @@ import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
 import subject.NotificaDadoAlteradoListner;
-import view.gui.helper.ViewHelper;
+import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class MenuViewController implements Initializable, NotificaDadoAlteradoListner {

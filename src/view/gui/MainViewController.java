@@ -17,7 +17,7 @@ import modelo.entites.Logs;
 import modelo.entites.Usuario;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
-import view.gui.helper.ViewHelper;
+import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class MainViewController implements Initializable {

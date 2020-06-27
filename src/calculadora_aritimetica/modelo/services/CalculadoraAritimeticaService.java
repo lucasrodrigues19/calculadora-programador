@@ -1,7 +1,7 @@
-package calculadora_aritimetica.modelo.service;
+package calculadora_aritimetica.modelo.services;
 
 import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
-import calculadora_aritimetica.modelo.helper.CalculadoraAritimeticaHelper;
+import calculadora_aritimetica.modelo.helpers.CalculadoraAritimeticaHelper;
 
 public class CalculadoraAritimeticaService {
 

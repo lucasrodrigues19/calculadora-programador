@@ -22,7 +22,7 @@ import javafx.scene.text.FontWeight;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
 import modelo.services.UsuarioService;
-import view.gui.helper.ViewHelper;
+import view.gui.helpers.ViewHelper;
 
 public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos implements Initializable {
 

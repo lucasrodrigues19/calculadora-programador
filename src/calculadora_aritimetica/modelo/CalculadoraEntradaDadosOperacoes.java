@@ -2,9 +2,9 @@ package calculadora_aritimetica.modelo;
 
 import java.util.Locale;
 
-import calculadora_aritimetica.modelo.service.CalculadoraAritimeticaService;
+import calculadora_aritimetica.modelo.services.CalculadoraAritimeticaService;
 import javafx.scene.input.KeyCode;
-import view.gui.utils.ViewUtils;
+import utils.TryParseUtils;
 
 /**
  * Essa interface foi criada para ser implementada especialmente na classe

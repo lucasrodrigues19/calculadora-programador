@@ -22,9 +22,9 @@ import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
 import utils.DataUtils;
-import view.gui.helper.ViewHelper;
+import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
-import view.gui.utils.Costraints;
+import view.gui.utils.costraints.Costraints;
 
 public class LoginViewController implements Initializable, DadoAlteradoListener {
 
@@ -184,9 +184,9 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	}
 
 	private void initializeNodesConstraints() {
-		Costraints.textFieldInteger(txtTelefone);
-		Costraints.textFieldMaxLength(txtEmail, 40);
-		Costraints.textFieldMaxLength(txtTelefone, 11);
+		Costraints.onlyInteger(txtTelefone,false);
+		Costraints.maxLength(txtEmail, 40,false);
+		Costraints.maxLength(txtTelefone, 11,false);
 
 	}
 
