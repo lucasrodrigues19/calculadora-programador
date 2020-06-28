@@ -5,16 +5,25 @@ import conversor_numerico.modelo.helpers.ConversorHelper;
 public class ConversorService {
 
 	private ConversorEntradaDadosAtributos dadosEntrada;
-	private ConversorHelper helper = new ConversorHelper();
+	private ConversorHelper helper;
+
 	public ConversorService(ConversorEntradaDadosAtributos dadosEntrada) {
 		this.dadosEntrada = dadosEntrada;
-		this.helper = new ConversorHelper(dadosEntrada);
+
 	}
-	
+
 	public String convertDecToBin() {
+		this.helper = new ConversorHelper(dadosEntrada);
 		return helper.convertDecToBin();
 	}
+
 	public String convertBinToDec() {
+		this.helper = new ConversorHelper(dadosEntrada);
 		return helper.convertBinToDec();
+	}
+
+	public String convertBinToHex() {
+		this.helper = new ConversorHelper(dadosEntrada);
+		return helper.convertBinToHex();
 	}
 }

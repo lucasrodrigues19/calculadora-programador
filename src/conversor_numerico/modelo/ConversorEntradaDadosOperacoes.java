@@ -6,7 +6,7 @@ public interface ConversorEntradaDadosOperacoes {
 		
 		obj.setStrNum(obj.getStrNum()+str);
 		obj.setStrOpe(obj.getStrOpe()+str);
-		String tmpRes = obj.getService().convertBinToDec();
+		String tmpRes = obj.getService().convertBinToHex();
 		obj.setStrRes(tmpRes);
 	}
 	default void inicializarElementos(ConversorEntradaDadosAtributos obj) {
