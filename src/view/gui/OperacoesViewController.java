@@ -71,6 +71,7 @@ public class OperacoesViewController implements Initializable {
 				controller.setHistorico(new Historico());
 				controller.setScenePai(helper.getSceneAtual(event));
 				controller.setEventHandler();
+				controller.inicializarElementos(controller);
 			});
 		} catch (MyException e) {
 			e.printStackTrace();

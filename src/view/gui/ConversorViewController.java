@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import conversor_numerico.modelo.ConversorEntradaDadosAtributos;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ import modelo.services.UsuarioService;
 import view.gui.helpers.ViewHelper;
 import view.gui.utils.costraints.Costraints;
 
-public class ConversorViewController implements Initializable {
+public class ConversorViewController extends ConversorEntradaDadosAtributos implements Initializable {
 
 	private ViewHelper helper = new ViewHelper();
 
@@ -149,7 +150,9 @@ public class ConversorViewController implements Initializable {
 	@FXML
 	private void onBtAllAction(ActionEvent event) {
 		Button bt = (Button) (event.getSource());
-		lblOpe.setText(bt.getText());
+		String str = bt.getText();
+		setDadosEntrada(str, this);
+		setLblOpeAndRes();
 	}
 
 	/**
@@ -268,7 +271,10 @@ public class ConversorViewController implements Initializable {
 		String valorCmb = cmbConverEntrada.getValue();
 		setCostraintLblOperacoes(valorCmb);
 	}
-
+	private void setLblOpeAndRes() {
+		lblOpe.setText(getStrOpe());
+		lblRes.setText(getStrRes());
+	}
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
