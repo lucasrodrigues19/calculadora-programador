@@ -278,6 +278,9 @@ public class ViewHelper {
 		cmb.setButtonCell(factory.call(null));
 	
 	}
+	public  <T> T getItemComboBox (ComboBox<T> cmb){
+		return cmb.getSelectionModel().getSelectedItem();
+	}
 
 	
 }

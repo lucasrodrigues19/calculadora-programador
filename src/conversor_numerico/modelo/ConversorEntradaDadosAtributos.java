@@ -5,7 +5,8 @@ public abstract class ConversorEntradaDadosAtributos implements ConversorEntrada
 	private String strNum;
 	private String strOpe;
 	private String strRes;
-	private String opeDaVez;
+	private String opeEntrada;
+	private String opeSaida;
 	private ConversorService service;
 	
 	public String getStrNum() {
@@ -26,11 +27,17 @@ public abstract class ConversorEntradaDadosAtributos implements ConversorEntrada
 	public void setStrRes(String strRes) {
 		this.strRes = strRes;
 	}
-	public String getOpeDaVez() {
-		return opeDaVez;
+	public String getOpeEntrada() {
+		return opeEntrada;
 	}
-	public void setOpeDaVez(String opeDaVez) {
-		this.opeDaVez = opeDaVez;
+	public void setOpeEntrada(String opeEntrada) {
+		this.opeEntrada = opeEntrada;
+	}
+	public String getOpeSaida() {
+		return opeSaida;
+	}
+	public void setOpeSaida(String opeSaida) {
+		this.opeSaida = opeSaida;
 	}
 	public ConversorService getService() {
 		return service;

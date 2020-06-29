@@ -167,14 +167,13 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	public void cmbConverEntradaOnAction(ActionEvent event) {
-		String valorCmb = cmbConverEntrada.getSelectionModel().getSelectedItem();
-		setCostraintLblOperacoes(valorCmb);
-		lblRes.setText(valorCmb);
+		setCostraintLblOperacoes(helper.getItemComboBox(cmbConverEntrada));
+		inicializarElementos(this);
+		setOperacoes(helper.getItemComboBox(cmbConverEntrada), null);
 	}
 
 	public void cmbConverSaidaOnAction(ActionEvent event) {
-		String valorCmb = cmbConverSaida.getSelectionModel().getSelectedItem();
-		lblRes.setText(valorCmb);
+		setOperacoes(null, helper.getItemComboBox(cmbConverSaida));
 	}
 
 	private void escolherFuncao(String digito) {
@@ -188,10 +187,10 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 					lblOpe.setText(digito);
 					String str = lblOpe.getText();
 					setDadosEntrada(str, this);
-					
+
 				}
 				setLblResAndOpe();
-			}else {
+			} else {
 				System.out.println(digito);
 			}
 		}
@@ -294,6 +293,13 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		lblOpe.setText(getStrOpe());
 	}
 
+	private void setOperacoes(String opeEntrada, String opeSaida) {
+		if (opeEntrada != null)
+			setOpeEntrada(opeEntrada);
+		if (opeSaida != null)
+			setOpeSaida(opeSaida);
+	}
+
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
@@ -332,6 +338,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		inicializarObservableHistorico();
 		inicializarObservableConversores();
 		setCostraintsInLabels();
+		setOperacoes(helper.getItemComboBox(cmbConverEntrada), helper.getItemComboBox(cmbConverSaida));
 
 	}
 
