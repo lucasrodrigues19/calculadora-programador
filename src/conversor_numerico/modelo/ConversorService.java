@@ -12,10 +12,7 @@ public class ConversorService {
 
 	}
 
-	public String convertDecToBin() {
-		this.helper = new ConversorHelper(dadosEntrada);
-		return helper.convertDecToBin();
-	}
+	
 
 	public String convertBinToDec() {
 		this.helper = new ConversorHelper(dadosEntrada);
@@ -25,5 +22,22 @@ public class ConversorService {
 	public String convertBinToHex() {
 		this.helper = new ConversorHelper(dadosEntrada);
 		return helper.convertBinToHex();
+	}
+
+	public String convertDecToHex() {
+		this.helper = new ConversorHelper(dadosEntrada);
+		return helper.convertDecToHex();
+	}
+	public String convertDecToBin() {
+		this.helper = new ConversorHelper(dadosEntrada);
+		return helper.convertDecToBin();
+	}
+	public String convertHexToBin() {
+		this.helper = new ConversorHelper(dadosEntrada);
+		return helper.convertHexToBin();
+	}
+	public String convertHexToDec() {
+		this.helper = new ConversorHelper(dadosEntrada);
+		return helper.convertHexToDec();
 	}
 }
