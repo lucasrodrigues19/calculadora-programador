@@ -4,8 +4,8 @@ public interface ConversorEntradaDadosOperacoes {
 
 	default void setDadosEntrada(String str, ConversorEntradaDadosAtributos obj) {
 		
-		obj.setStrNum(obj.getStrNum()+str);
-		obj.setStrOpe(obj.getStrOpe()+str);
+		obj.setStrNum(obj.getStrNum()+str.toUpperCase());
+		obj.setStrOpe(obj.getStrOpe()+str.toUpperCase());
 		String tmpRes = obj.getService().convertHexToDec();
 		obj.setStrRes(tmpRes);
 	}

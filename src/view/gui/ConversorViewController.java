@@ -150,9 +150,10 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	@FXML
 	private void onBtAllAction(ActionEvent event) {
 		Button bt = (Button) (event.getSource());
-		String str = bt.getText();
+		lblOpe.setText(bt.getText());
+		String str = lblOpe.getText();
 		setDadosEntrada(str, this);
-		setLblOpeAndRes();
+		setLblResAndOpe();
 	}
 
 	/**
@@ -271,9 +272,9 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		String valorCmb = cmbConverEntrada.getValue();
 		setCostraintLblOperacoes(valorCmb);
 	}
-	private void setLblOpeAndRes() {
-		lblOpe.setText(getStrOpe());
+	private void setLblResAndOpe() {
 		lblRes.setText(getStrRes());
+		lblOpe.setText(getStrOpe());
 	}
 	public UsuarioService getUsuarioService() {
 		return usuarioService;

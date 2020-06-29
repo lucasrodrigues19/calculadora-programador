@@ -29,15 +29,15 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ComboBox>
-                  <ScrollPane layoutX="160.0" layoutY="3.0" prefHeight="132.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
+                  <ScrollPane layoutX="160.0" layoutY="3.0" prefHeight="115.0" prefWidth="204.0" style="-fx-background-color: #FFDEAD;">
                      <content>
-                        <ListView fx:id="listHistorico" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="202.0" style="-fx-border-radius: 20;" styleClass="list-cell" stylesheets="@ConversorView.css">
+                        <ListView fx:id="listHistorico" nodeOrientation="LEFT_TO_RIGHT" prefHeight="113.0" prefWidth="202.0" style="-fx-border-radius: 20;" styleClass="list-cell" stylesheets="@ConversorView.css">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></ListView>
                      </content>
                   </ScrollPane>
-                  <VBox layoutX="160.0" layoutY="135.0" prefHeight="41.0" prefWidth="204.0">
+                  <VBox layoutX="160.0" layoutY="127.0" prefHeight="49.0" prefWidth="204.0">
                      <children>
                         <Label fx:id="lblOpe" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="204.0" textFill="#dd6f07">
                            <font>

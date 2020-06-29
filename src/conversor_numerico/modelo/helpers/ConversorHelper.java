@@ -22,7 +22,6 @@ public class ConversorHelper {
 
 	}
 	/**
-	 * 
 	 * Dec -> bin
 	 * @return
 	 */
@@ -76,14 +75,14 @@ public class ConversorHelper {
 		return String.format("%.0f", soma);
 	}
 	/**
-	 * Bin -> dec-> hex
+	 * Bin -> hex
 	 * @return
 	 */
 	public String convertBinToHex() {
 
-		PilhaDinamica<String> pilhaTmp = new PilhaDinamicaI<String>();
+		PilhaDinamica<String> pilha = new PilhaDinamicaI<String>();
 		String str = dadosEntrada.getStrNum();
-		String numTemp = dadosEntrada.getStrNum();
+		String binTmp = "";//dadosEntrada.getStrNum();
 		if (!str.equals("") && str.length() > 0) {
 			str = completarBinario(str);
 			int casas = str.length() / 4; // divide o numero binario a cada 4 digitos(pega a quantidade de quarteto no
@@ -93,27 +92,27 @@ public class ConversorHelper {
 				casas++;
 
 			for (int i = 0; i < casas; i++) { // pecorre cada quarteto na Stirng do numero binario
-				dadosEntrada.setStrNum(""); 
+				binTmp = "";
 				for (int k = 0; k < 4; k++) { // pecorre o numero binario do quarteto de tras para frente
 					if (length >= 0) {
 						String tmp = Character.toString(str.charAt(length));
-						dadosEntrada.setStrNum(tmp + dadosEntrada.getStrNum()); // pega o numero binario no quarteto
+						binTmp = tmp + binTmp; // pega o numero binario no quarteto
 					} else// caso acabe de iterar a String não faz mais nada
 						break;
 					length--;
 				}
-				String res = convertBinToDec(); // converte o numero binario do quarteto
-				res = getDigHexIsDec(res); // pega o digito hexa-decimal
+				binTmp = completarBinario(binTmp);
+				String res = getDigHexIsBin(binTmp); // pega o digito do quarteto
+				 // pega o digito hexa-decimal
 				// ja que esta iterando a string de numero binario de tras pra frente, o
 				// primeiro digito hexa decimal tem q ser o
 				// ultimo a sair
-				pilhaTmp.push(res);
+				pilha.push(res);
 			}
 			String result = "";
-			while (!pilhaTmp.isEmpty()) {
-				result += pilhaTmp.pop();
+			while (!pilha.isEmpty()) {
+				result += pilha.pop();
 			}
-			dadosEntrada.setStrNum(numTemp); //pega a string binaria original
 			return result;
 		}
 
@@ -125,11 +124,10 @@ public class ConversorHelper {
 	 */
 	public String convertHexToBin() {
 		PilhaDinamica<String> pilha = new PilhaDinamicaI<>();
-		String strTmp =  dadosEntrada.getStrNum();
-		int length = strTmp.length() -1;
+		String str =  dadosEntrada.getStrNum();
+		int length = str.length() -1;
 		for(int i=length;i>=0;i--) {
-			dadosEntrada.setStrNum(getDigDecIsHex(Character.toString(strTmp.charAt(i))));	
-			String bin = convertDecToBin();
+			String bin = getDigBinIsHex(Character.toString(str.charAt(i)));	
 			pilha.push(bin);
 			bin = "";
 		}
@@ -138,7 +136,6 @@ public class ConversorHelper {
 			res+=pilha.pop();
 		}
 			
-		dadosEntrada.setStrNum(strTmp);
 		return res;
 	}
 	/**
@@ -182,25 +179,78 @@ public class ConversorHelper {
 
 	}
 
-	private String getDigHexIsDec(String str) {
+//	private String getDigHexIsDec(String str) {
+//		if (str != null) {
+//			switch (str) {
+//			case "10":
+//				str = "A";
+//				break;
+//			case "11":
+//				str = "B";
+//				break;
+//			case "12":
+//				str = "C";
+//				break;
+//			case "13":
+//				str = "D";
+//				break;
+//			case "14":
+//				str = "E";
+//				break;
+//			case "15":
+//				str = "F";
+//				break;
+//			}
+//
+//		}
+//		return str;
+//	}
+	private String getDigHexIsBin(String str) {
 		if (str != null) {
 			switch (str) {
-			case "10":
+			case "0001":
+				str = "1";
+				break;
+			case "0010":
+				str = "2";
+				break;
+			case "0011":
+				str = "3";
+				break;
+			case "0100":
+				str = "4";
+				break;
+			case "0101":
+				str = "5";
+				break;
+			case "0110":
+				str = "6";
+				break;
+			case "0111":
+				str = "7";
+				break;
+			case "1000":
+				str = "8";
+				break;
+			case "1001":
+				str = "9";
+				break;
+			case "1010":
 				str = "A";
 				break;
-			case "11":
+			case "1011":
 				str = "B";
 				break;
-			case "12":
+			case "1100":
 				str = "C";
 				break;
-			case "13":
+			case "1101":
 				str = "D";
 				break;
-			case "14":
+			case "1110":
 				str = "E";
 				break;
-			case "15":
+			case "1111":
 				str = "F";
 				break;
 			}
@@ -209,26 +259,79 @@ public class ConversorHelper {
 		return str;
 	}
 
-	private String getDigDecIsHex(String str) {
+//	private String getDigDecIsHex(String str) {
+//		if (str != null) {
+//			switch (str) {
+//			case "A":
+//				str = "10";
+//				break;
+//			case "B":
+//				str = "11";
+//				break;
+//			case "C":
+//				str = "12";
+//				break;
+//			case "D":
+//				str = "13";
+//				break;
+//			case "E":
+//				str = "14";
+//				break;
+//			case "F":
+//				str = "15";
+//				break;
+//			}
+//
+//		}
+//		return str;
+//	}
+	private String getDigBinIsHex(String str) {
 		if (str != null) {
 			switch (str) {
+			case "1":
+				str = "0001";
+				break;
+			case "2":
+				str = "0010";
+				break;
+			case "3":
+				str = "0011";
+				break;
+			case "4":
+				str = "0100";
+				break;
+			case "5":
+				str = "0101";
+				break;
+			case "6":
+				str = "0110";
+				break;
+			case "7":
+				str = "0111";
+				break;
+			case "8":
+				str = "1000";
+				break;
+			case "9":
+				str = "1001";
+				break;
 			case "A":
-				str = "10";
+				str = "1010";
 				break;
 			case "B":
-				str = "11";
+				str = "1011";
 				break;
 			case "C":
-				str = "12";
+				str = "1100";
 				break;
 			case "D":
-				str = "13";
+				str = "1101";
 				break;
 			case "E":
-				str = "14";
+				str = "1110";
 				break;
 			case "F":
-				str = "15";
+				str = "1111";
 				break;
 			}
 
