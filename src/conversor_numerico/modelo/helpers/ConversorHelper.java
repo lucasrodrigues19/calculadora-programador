@@ -205,6 +205,7 @@ public class ConversorHelper {
 //		}
 //		return str;
 //	}
+	
 	private String getDigHexIsBin(String str) {
 		if (str != null) {
 			switch (str) {

@@ -150,10 +150,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	@FXML
 	private void onBtAllAction(ActionEvent event) {
 		Button bt = (Button) (event.getSource());
-		lblOpe.setText(bt.getText());
-		String str = lblOpe.getText();
-		setDadosEntrada(str, this);
-		setLblResAndOpe();
+		escolherFuncao(bt.getText());
 	}
 
 	/**
@@ -181,6 +178,23 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void escolherFuncao(String digito) {
+		if (digito != null && digito.length() >= 0) {
+			if (!digito.equals(btIgual)) {
+				if (digito.equals(btApagarLetra.getText())) {
+					limparDigito(digito, this);
+				} else if (digito.toUpperCase().equals(btApagarTudo.getText())) {
+					limparTudo(this);
+				} else {
+					lblOpe.setText(digito);
+					String str = lblOpe.getText();
+					setDadosEntrada(str, this);
+					
+				}
+				setLblResAndOpe();
+			}else {
+				System.out.println(digito);
+			}
+		}
 
 	}
 
@@ -213,7 +227,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 			salvarHistorico();
 		});
 	}
-	
+
 	private void getDadosHistorico() {
 		if (historico != null) {
 			historico.setHisdado(lblOpe.getText() + "\n" + lblRes.getText());
@@ -226,12 +240,13 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 			listHistorico.setItems(obsHistorico);
 
 	}
-	
+
 	private void setObsHistorico() {
 		if (historico != null)
 			obsHistorico.add(historico.getHisdado());
 
 	}
+
 	private void setSaveHistorico(String code) {
 
 	}
@@ -262,20 +277,23 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	private void setCostraintLblOperacoes(String valorCmb) {
 		if ("Hexa-Decimal".equals(valorCmb))
-			Costraints.anyChar(lblOpe,true);
+			Costraints.anyChar(lblOpe, true);
 		else {
-			 Costraints.onlyInteger(lblOpe,true);
+			Costraints.onlyInteger(lblOpe, true);
 		}
 
 	}
+
 	private void setCostraintsInLabels() {
 		String valorCmb = cmbConverEntrada.getValue();
 		setCostraintLblOperacoes(valorCmb);
 	}
+
 	private void setLblResAndOpe() {
 		lblRes.setText(getStrRes());
 		lblOpe.setText(getStrOpe());
 	}
+
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
@@ -314,7 +332,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		inicializarObservableHistorico();
 		inicializarObservableConversores();
 		setCostraintsInLabels();
-		
+
 	}
 
 }
