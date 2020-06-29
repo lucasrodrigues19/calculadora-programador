@@ -174,19 +174,22 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	public void cmbConverSaidaOnAction(ActionEvent event) {
 		setOperacoes(null, helper.getItemComboBox(cmbConverSaida));
+		inicializarElementos(this);
+		setDadosEntrada(lblOpe.getText(), this);
+		setLblResAndOpe();
 	}
 
 	private void escolherFuncao(String digito) {
 		if (digito != null && digito.length() >= 0) {
 			if (!digito.equals(btIgual)) {
 				if (digito.equals(btApagarLetra.getText())) {
-					limparDigito(digito, this);
+					limparDigito(this);
 				} else if (digito.toUpperCase().equals(btApagarTudo.getText())) {
 					limparTudo(this);
 				} else {
-					lblOpe.setText(digito);
-					String str = lblOpe.getText();
-					setDadosEntrada(str, this);
+					setStrOpe(getStrOpe() + digito);
+					lblOpe.setText(getStrOpe());
+					setDadosEntrada(lblOpe.getText(), this);
 
 				}
 				setLblResAndOpe();
@@ -289,8 +292,15 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void setLblResAndOpe() {
-		lblRes.setText(getStrRes());
-		lblOpe.setText(getStrOpe());
+		if (getStrRes().length() >= 0)
+			lblRes.setText(getStrRes());
+		else
+			lblRes.setText("");
+		
+		if (getStrRes().length() >= 0)
+			lblOpe.setText(getStrOpe());
+		else
+			lblOpe.setText("");
 	}
 
 	private void setOperacoes(String opeEntrada, String opeSaida) {
