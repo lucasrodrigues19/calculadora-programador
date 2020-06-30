@@ -170,37 +170,36 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		setCostraintLblOperacoes(helper.getItemComboBox(cmbConverEntrada));
 		inicializarElementos(this);
 		setOperacoes(helper.getItemComboBox(cmbConverEntrada), null);
+		setLblResAndOpe();
 	}
 
 	public void cmbConverSaidaOnAction(ActionEvent event) {
 		setOperacoes(null, helper.getItemComboBox(cmbConverSaida));
 		inicializarElementos(this);
-		setDadosEntrada(lblOpe.getText(), this);
-		setLblResAndOpe();
+		escolherFuncao(lblOpe.getText());
 	}
 
 	private void escolherFuncao(String digito) {
 		if (digito != null && digito.length() >= 0) {
-			if (!digito.equals(btIgual)) {
+			if (!digito.equals(btIgual.getText())) {
 				if (digito.equals(btApagarLetra.getText())) {
 					limparDigito(this);
 				} else if (digito.toUpperCase().equals(btApagarTudo.getText())) {
 					limparTudo(this);
 				} else {
 					setStrOpe(getStrOpe() + digito);
-					lblOpe.setText(getStrOpe());
+					lblOpe.setText(getStrOpe()); // lblOpe esta com a constraint se é pra aceiar apenas numeros, ou nao.
+													// De acordo com a opção escolhida na comboEntrada
 					setDadosEntrada(lblOpe.getText(), this);
 
 				}
+				setSaveHistorico(digito);
 				setLblResAndOpe();
+
 			} else {
-				System.out.println(digito);
+				setSaveHistorico(digito);
 			}
 		}
-
-	}
-
-	private void setLblResAndOpe(String code) {
 
 	}
 
@@ -232,7 +231,8 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	private void getDadosHistorico() {
 		if (historico != null) {
-			historico.setHisdado(lblOpe.getText() + "\n" + lblRes.getText());
+			historico.setHisdado(helper.getItemComboBox(cmbConverEntrada) + ": " + lblOpe.getText() + "\n"//
+					+ helper.getItemComboBox(cmbConverSaida) + ": " + lblRes.getText() + ".");
 			historico.setHisusuario(getUsuario());
 		}
 	}
@@ -250,7 +250,19 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void setSaveHistorico(String code) {
-
+		if (code != null) {
+			if (code.equals(btIgual.getText())) {
+				if (!jaSalvou) {
+					getDadosHistorico();
+					setObsHistorico();
+					destacarIgual();
+					jaSalvou = true;
+				}
+			} else {
+				reniciarIgual();
+				jaSalvou = false;
+			}
+		}
 	}
 
 	private void showKeyCode(String code) {
@@ -296,7 +308,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 			lblRes.setText(getStrRes());
 		else
 			lblRes.setText("");
-		
+
 		if (getStrRes().length() >= 0)
 			lblOpe.setText(getStrOpe());
 		else
