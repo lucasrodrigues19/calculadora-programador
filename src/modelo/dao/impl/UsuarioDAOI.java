@@ -164,6 +164,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		Map<Integer, Usuario> mapUsuairo = new HashMap<Integer, Usuario>();
 		Usuario usuario = null;
 		Logs logs = null;
+		Historico his = null;
 		try {
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, usuid);
@@ -173,6 +174,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 				// usuario 1 - N historico
 				// um unico usuario vai apontar para varios logs que ele tem
 				logs = getLogsRS(rs);
+				his = getHistoricoRS(rs);
 				usuario = mapUsuairo.get(rs.getInt("usuid"));
 				if (usuario == null) {
 					usuario = getUsuarioRS(rs);
@@ -180,7 +182,9 @@ public class UsuarioDAOI implements UsuarioDAO {
 				}
 
 				logs.setLogusuario(usuario);
+				his.setHisusuario(usuario);
 				usuario.getUsulogs().add(logs);
+				usuario.getUsuhistorico().add(his);
 			}
 
 		} catch (SQLException e) {
@@ -207,6 +211,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		Map<Integer, Usuario> mapUsuairo = new HashMap<Integer, Usuario>();
 		Logs logs = null;
 		Usuario usuario = null;
+		Historico his = null;
 		try {
 			st = (Statement) con.createStatement();
 			rs = st.executeQuery(sql);
@@ -215,6 +220,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 				// usuario 1 - N historico
 				// um unico usuario vai apontar para varios logs que ele tem
 				logs = getLogsRS(rs);
+				his = getHistoricoRS(rs);
 				usuario = mapUsuairo.get(rs.getInt("usuid"));
 				if (usuario == null) {
 					usuario = getUsuarioRS(rs);
@@ -223,7 +229,9 @@ public class UsuarioDAOI implements UsuarioDAO {
 				}
 
 				logs.setLogusuario(usuario);
+				his.setHisusuario(usuario);
 				usuario.getUsulogs().add(logs);
+				usuario.getUsuhistorico().add(his);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,12 +243,20 @@ public class UsuarioDAOI implements UsuarioDAO {
 		return result;
 	}
 
-//	private Historico getHistoricoRS(ResultSet rs) throws SQLException {
-//		Historico historico = new Historico();
-//		historico.setHisid(rs.getInt("hisid"));
-//		historico.setHisdado(rs.getString("hisdado"));
-//		return historico;
-//	}
+	private Historico getHistoricoRS(ResultSet rs) throws SQLException {
+		Historico historico = new Historico();
+		Integer hisid = rs.getInt("historico.hisid");
+		String hisdado = rs.getString("historico.hisdado");
+		if(hisid != null) 
+				historico.setHisid(hisid);
+		
+		if(hisdado != null)
+			 historico.setHisdado(hisdado);
+		
+		
+	
+		return historico;
+	}
 
 	private Usuario getUsuarioRS(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();

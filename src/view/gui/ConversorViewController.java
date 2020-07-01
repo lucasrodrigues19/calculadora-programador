@@ -193,12 +193,10 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 					setDadosEntrada(lblOpe.getText(), this);
 
 				}
-				setSaveHistorico(digito);
 				setLblResAndOpe();
 
-			} else {
-				setSaveHistorico(digito);
 			}
+			setSaveHistorico(digito);
 		}
 
 	}
@@ -257,6 +255,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 					setObsHistorico();
 					destacarIgual();
 					jaSalvou = true;
+					
 				}
 			} else {
 				reniciarIgual();
