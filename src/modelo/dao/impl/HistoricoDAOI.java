@@ -94,7 +94,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public Historico findByID(Integer hisid) {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.fkhisusuid = usuario.usuid WHERE historico.hisid = ?";
+		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE historico.hisid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -120,7 +120,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findByUser(Usuario usuario) {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.fkhisusuid = usuario.usuid WHERE fkhisusuid = ?";
+		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE hisusuid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -133,7 +133,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				
-				user = mapUser.get(rs.getInt("fkhisusuid"));
+				user = mapUser.get(rs.getInt("hisusuid"));
 				if(user == null) {
 					user = getUsuario(rs);
 					mapUser.put(user.getUsuid(), user);
@@ -154,7 +154,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findAll() {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.fkhisusuid = usuario.usuid";
+		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid";
 		ResultSet rs = null;
 		Statement st = null;
 		Historico obj = null;
@@ -166,7 +166,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				
-				user = mapUser.get(rs.getInt("fkhisusuid"));
+				user = mapUser.get(rs.getInt("hisusuid"));
 				if(user == null) {
 					user = getUsuario(rs);
 					mapUser.put(user.getUsuid(), user);
@@ -187,7 +187,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	private Usuario getUsuario(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
-		Integer usuid = rs.getInt("fkhisusuid");
+		Integer usuid = rs.getInt("hisusuid");
 
 		if (usuid != null)
 			usuario.setUsuid(usuid);

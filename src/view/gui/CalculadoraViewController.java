@@ -215,6 +215,9 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	}
 
 	private void salvarHistorico() {
+		if (historico != null)
+			historicoService.save(historico);
+
 		if (obsHistorico != null)
 			listHistorico.setItems(obsHistorico);
 
@@ -305,5 +308,4 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		lblOpe.setText(code);
 	}
 
-	
 }

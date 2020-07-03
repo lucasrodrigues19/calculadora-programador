@@ -36,7 +36,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	private Usuario usuario;
 
-    private HistoricoService historicoService;
+	private HistoricoService historicoService;
 
 	private Historico historico;
 
@@ -237,6 +237,9 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void salvarHistorico() {
+		if (historico != null)
+			historicoService.save(historico);
+
 		if (obsHistorico != null)
 			listHistorico.setItems(obsHistorico);
 
@@ -256,7 +259,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 					setObsHistorico();
 					destacarIgual();
 					jaSalvou = true;
-					
+
 				}
 			} else {
 				reniciarIgual();
@@ -371,7 +374,5 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		setOperacoes(helper.getItemComboBox(cmbConverEntrada), helper.getItemComboBox(cmbConverSaida));
 
 	}
-
-	
 
 }
