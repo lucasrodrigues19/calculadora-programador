@@ -16,8 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
@@ -36,9 +38,13 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 
 	private Logs logs;
 
+	private Historico historico;
+
 	private LogsService logsService;
 
 	private UsuarioService usuarioService;
+
+	private HistoricoService historicoService;
 
 	@FXML
 	private Label lblEmail;
@@ -77,6 +83,8 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 							controller.setLogsService(getLogsService());
 							controller.setUsuario(getUsuario());
 							controller.setUsuarioService(getUsuarioService());
+							controller.setHistorico(getHistorico());
+							controller.setHistoricoService(getHistoricoService());	
 							controller.setInfoUsuario();
 							controller.salvarLog();
 							inscreverMeSubject(controller);
@@ -184,9 +192,9 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	}
 
 	private void initializeNodesConstraints() {
-		Costraints.onlyInteger(txtTelefone,false);
-		Costraints.maxLength(txtEmail, 40,false);
-		Costraints.maxLength(txtTelefone, 11,false);
+		Costraints.onlyInteger(txtTelefone, false);
+		Costraints.maxLength(txtEmail, 40, false);
+		Costraints.maxLength(txtTelefone, 11, false);
 
 	}
 
@@ -227,6 +235,22 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 		this.logsService = logsService;
 	}
 
+	public Historico getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(Historico historico) {
+		this.historico = historico;
+	}
+
+	public HistoricoService getHistoricoService() {
+		return historicoService;
+	}
+
+	public void setHistoricoService(HistoricoService historicoService) {
+		this.historicoService = historicoService;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeNodesConstraints();
@@ -242,7 +266,13 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	public void onDadosAlterados() {
 		resetLabelsErros();
 		usuario = new Usuario();
+		usuarioService = new UsuarioService();
+		
 		logs = new Logs();
+		logsService = new LogsService();
+		
+		historico = new Historico();
+		historicoService = new HistoricoService();
 	}
 
 }

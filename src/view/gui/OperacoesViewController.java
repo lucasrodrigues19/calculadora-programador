@@ -13,115 +13,126 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.UsuarioService;
 import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
 
 public class OperacoesViewController implements Initializable {
-	
+
 	private ViewHelper helper = new ViewHelper();
-	
+
 	private UsuarioService usuarioService;
 
 	private Usuario usuario;
+
+	private HistoricoService historicoService;
+
+	private Historico historico;
 	
 	private String btStyle;
 
-	//private HistoricoService historicoService;
-
 	private Scene scenePai;
-	
-	private Historico historico;
-	
+
 	@FXML
 	private ToolBar toolBarMenu;
-	
+
 	@FXML
 	private Button btCalculadora;
-	
+
 	@FXML
 	private Button btConversor;
-	
+
 	@FXML
 	private Button btHistorico;
-	
+
 	@FXML
 	private void onBtCalculadoraAction(ActionEvent event) {
 		try {
-			helper.loadView("/view/gui/CalculadoraView.fxml", helper.getSceneAtual(event),2, (CalculadoraViewController controller)->{
-				controller.setUsuario(getUsuario());
-				controller.setUsuarioService(getUsuarioService());
-				controller.setHistorico(new Historico());
-				controller.setScenePai(helper.getSceneAtual(event));
-				controller.setEventHandler();
-				controller.iniciarAtributosaCalc(controller);
-				controller.iniciarLabels();
-			});
+			helper.loadView("/view/gui/CalculadoraView.fxml", helper.getSceneAtual(event), 2,
+					(CalculadoraViewController controller) -> {
+						controller.setUsuario(getUsuario());
+						controller.setUsuarioService(getUsuarioService());
+						controller.setHistorico(getHistorico());
+						controller.setHistoricoService(getHistoricoService());
+						controller.setScenePai(helper.getSceneAtual(event));
+						controller.setEventHandler();
+						controller.iniciarAtributosaCalc(controller);
+						controller.iniciarLabels();
+					});
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onBtConversorAction(ActionEvent event) {
 		try {
-			helper.loadView("/view/gui/ConversorView.fxml", helper.getSceneAtual(event),2, (ConversorViewController controller)->{
-				controller.setUsuario(getUsuario());
-				controller.setUsuarioService(getUsuarioService());
-				controller.setHistorico(new Historico());
-				controller.setScenePai(helper.getSceneAtual(event));
-				controller.setEventHandler();
-				controller.inicializarElementos(controller);
-			});
+			helper.loadView("/view/gui/ConversorView.fxml", helper.getSceneAtual(event), 2,
+					(ConversorViewController controller) -> {
+						controller.setUsuario(getUsuario());
+						controller.setUsuarioService(getUsuarioService());
+						controller.setHistorico(getHistorico());
+						controller.setHistoricoService(getHistoricoService());						
+						controller.setScenePai(helper.getSceneAtual(event));
+						controller.setEventHandler();
+						controller.inicializarElementos(controller);
+					});
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onMouseBtCalculadoraHouver(MouseEvent event) {
 		try {
 			btStyle = btCalculadora.getStyle();
-			btCalculadora.setStyle(btCalculadora.getStyle()+"-fx-background-color: gray");
-			
+			btCalculadora.setStyle(btCalculadora.getStyle() + "-fx-background-color: gray");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onMouseBtCalculadoraOut(MouseEvent event) {
 		try {
 			btCalculadora.setStyle(btStyle);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
-	
+
 	}
+
 	@FXML
 	private void onMouseBtConversorHouver(MouseEvent event) {
 		try {
 			btStyle = btConversor.getStyle();
-			btConversor.setStyle(btConversor.getStyle()+"-fx-background-color: gray");
-			
+			btConversor.setStyle(btConversor.getStyle() + "-fx-background-color: gray");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onMouseBtConversorOut(MouseEvent event) {
 		try {
 			btConversor.setStyle(btStyle);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
-	
+
 	}
+
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
@@ -154,10 +165,21 @@ public class OperacoesViewController implements Initializable {
 		this.historico = historico;
 	}
 
+	public HistoricoService getHistoricoService() {
+		return historicoService;
+	}
+	
+
+	public void setHistoricoService(HistoricoService historicoService) {
+		this.historicoService = historicoService;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 
 }

@@ -21,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.UsuarioService;
 import view.gui.helpers.ViewHelper;
 
@@ -32,7 +33,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 
 	private Usuario usuario;
 
-	// private HistoricoService historicoService;
+	private HistoricoService historicoService;
 
 	private Historico historico;
 
@@ -280,6 +281,14 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 		this.historico = historico;
 	}
 
+	public HistoricoService getHistoricoService() {
+		return historicoService;
+	}
+
+	public void setHistoricoService(HistoricoService historicoService) {
+		this.historicoService = historicoService;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		hiddenLogo();
@@ -295,4 +304,6 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	private void showKeyCode(String code) {
 		lblOpe.setText(code);
 	}
+
+	
 }

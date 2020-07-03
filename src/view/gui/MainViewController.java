@@ -13,8 +13,10 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
+import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import view.gui.helpers.ViewHelper;
@@ -54,6 +56,8 @@ public class MainViewController implements Initializable {
 				controller.setUsuarioService(new UsuarioService());
 				controller.setLogs(new Logs());
 				controller.setLogsService(new LogsService());
+				controller.setHistorico(new Historico());
+				controller.setHistoricoService(new HistoricoService());	
 			});
 			menuItemHome.setVisible(true);
 		} catch (MyException e) {

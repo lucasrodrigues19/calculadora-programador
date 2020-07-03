@@ -23,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import modelo.entites.Historico;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.UsuarioService;
 import view.gui.helpers.ViewHelper;
 import view.gui.utils.costraints.Costraints;
@@ -35,7 +36,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	private Usuario usuario;
 
-	// private HistoricoService historicoService;
+    private HistoricoService historicoService;
 
 	private Historico historico;
 
@@ -353,6 +354,14 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		this.historico = historico;
 	}
 
+	public HistoricoService getHistoricoService() {
+		return historicoService;
+	}
+
+	public void setHistoricoService(HistoricoService historicoService) {
+		this.historicoService = historicoService;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		getStyleFontLbls();
@@ -362,5 +371,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		setOperacoes(helper.getItemComboBox(cmbConverEntrada), helper.getItemComboBox(cmbConverSaida));
 
 	}
+
+	
 
 }

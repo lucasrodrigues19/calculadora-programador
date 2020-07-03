@@ -214,7 +214,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 				historico.setHisid(hisid);
 		
 		if(hisdado != null)
-			 historico.setHisdado(hisdado);
+			historico.setHisdado(hisdado);
 		
 		
 	

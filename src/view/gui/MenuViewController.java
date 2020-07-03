@@ -20,6 +20,7 @@ import javafx.scene.control.ToolBar;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
+import modelo.services.HistoricoService;
 import modelo.services.LogsService;
 import modelo.services.UsuarioService;
 import observer.DadoAlteradoListener;
@@ -41,6 +42,10 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 
 	private Logs logs;
 
+	private HistoricoService historicoService;
+	
+	private Historico historico;
+	
 	@FXML
 	ScrollPane menuScrollPane;
 
@@ -83,7 +88,8 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 			helper.backView("/view/gui/MenuView.fxml", getMenuViewScene(), (MenuViewController controller)->{
 				controller.setUsuario(getUsuario());
 				controller.setUsuarioService(getUsuarioService());
-				//controller.setHistorico(new Historico());
+				controller.setHistorico(getHistorico());
+				controller.setHistoricoService(getHistoricoService());
 				controller.setInfoUsuario();
 			});
 			btVoltar.setVisible(false);
@@ -102,6 +108,8 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 					(OperacoesViewController controller) -> {
 						controller.setUsuario(getUsuario());
 						controller.setUsuarioService(getUsuarioService());
+						controller.setHistorico(getHistorico());
+						controller.setHistoricoService(getHistoricoService());
 						controller.setScenePai(getMenuViewScene());
 						controller.setHistorico(new Historico());
 					});
@@ -149,6 +157,30 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 
 	public void setLogs(Logs logs) {
 		this.logs = logs;
+	}
+
+	public Historico getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(Historico historico) {
+		this.historico = historico;
+	}
+
+	public ToolBar getToolBarMenu() {
+		return toolBarMenu;
+	}
+
+	public void setToolBarMenu(ToolBar toolBarMenu) {
+		this.toolBarMenu = toolBarMenu;
+	}
+
+	public HistoricoService getHistoricoService() {
+		return historicoService;
+	}
+
+	public void setHistoricoService(HistoricoService historicoService) {
+		this.historicoService = historicoService;
 	}
 
 	@Override
