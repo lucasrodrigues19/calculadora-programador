@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@HistoricoView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@HistoricoView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.HistoricoViewController">
    <children>
       <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0" stylesheets="@ConversorView.css">
          <children>
@@ -15,11 +15,11 @@
                <children>
                   <ScrollPane layoutX="49.0" layoutY="11.0" prefHeight="372.0" prefWidth="458.0" style="-fx-background-color: #FFDEAD#FFDEAD;">
                      <content>
-                        <TableView prefHeight="370.0" prefWidth="456.0" styleClass="table_view">
+                        <TableView fx:id="tableViewHistorico" prefHeight="370.0" prefWidth="456.0" styleClass="table_view">
                            <columns>
-                              <TableColumn prefWidth="229.0" styleClass="column_tb" text="HISTORICO" />
-                              <TableColumn minWidth="4.0" prefWidth="132.0" styleClass="column_tb" text="Usuario" />
-                              <TableColumn prefWidth="94.0" styleClass="column_tb" text="BOTAO" />
+                              <TableColumn fx:id="tableColumnHisDado" prefWidth="229.0" styleClass="column_tb" text="HISTORICO" />
+                              <TableColumn fx:id="tableColumnUsu" minWidth="4.0" prefWidth="132.0" styleClass="column_tb" text="Usuario" />
+                              <TableColumn fx:id="tableColumnBtRemover" prefWidth="94.0" styleClass="column_tb" text="BOTAO" />
                            </columns>
                         </TableView>
                      </content>
