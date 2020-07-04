@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@HistoricoView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0" stylesheets="@ConversorView.css">
+         <children>
+            <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;" stylesheets="@ConversorView.css">
+               <children>
+                  <ScrollPane layoutX="49.0" layoutY="11.0" prefHeight="372.0" prefWidth="458.0" style="-fx-background-color: #FFDEAD#FFDEAD;">
+                     <content>
+                        <TableView prefHeight="370.0" prefWidth="456.0" styleClass="table_view">
+                           <columns>
+                              <TableColumn prefWidth="229.0" styleClass="column_tb" text="HISTORICO" />
+                              <TableColumn minWidth="4.0" prefWidth="132.0" styleClass="column_tb" text="Usuario" />
+                              <TableColumn prefWidth="94.0" styleClass="column_tb" text="BOTAO" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
+            <Label layoutX="289.0" layoutY="433.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
+            <Label layoutX="369.0" layoutY="455.0" text="2020" textFill="BURLYWOOD" />
+         </children>
+      </Pane>
+   </children>
 </VBox>
-
