@@ -64,14 +64,14 @@ public class HistoricoDAOI implements HistoricoDAO {
 	@Override
 	public void delete(Historico historico) {
 		if (historico == null)
-			throw new IllegalArgumentException("Log nulo");
+			throw new IllegalArgumentException("Historico nulo");
 
-		sql = "DELETE FROM historico WHERE logid = ?";
+		sql = "DELETE FROM historico WHERE hisid = ?";
 		PreparedStatement ps = null;
 		try {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
-			ps.setInt(1, historico.getHisusuid());
+			ps.setInt(1, historico.getHisid());
 			int rows = ps.executeUpdate();
 			if (rows <= 0)
 				throw new SQLException("Nemhum registro deletado");
@@ -94,7 +94,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public Historico findByID(Integer hisid) {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE historico.hisid = ?";
+		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE historico.hisid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -120,7 +120,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findByUser(Usuario usuario) {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE hisusuid = ?";
+		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE hisusuid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -154,7 +154,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findAll() {
-		sql = "SELECT  historico.* usuario.nome FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid";
+		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid";
 		ResultSet rs = null;
 		Statement st = null;
 		Historico obj = null;
@@ -192,14 +192,14 @@ public class HistoricoDAOI implements HistoricoDAO {
 		if (usuid != null)
 			usuario.setUsuid(usuid);
 
-		if (rs.getString("usuario.usunome") != null)
-			usuario.setUsunome(rs.getString("usuario.usunome"));
+//		if (rs.getString("usuario.usunome") != null)
+//			usuario.setUsunome(rs.getString("usuario.usunome"));
 
 		if (rs.getString("usuario.usuemail") != null)
 			usuario.setUsuemail(rs.getString("usuario.usuemail"));
-
-		if (rs.getString("usuario.usutelefone") != null)
-			usuario.setUsutelefone(rs.getString("usuario.usutelefone"));
+//
+//		if (rs.getString("usuario.usutelefone") != null)
+//			usuario.setUsutelefone(rs.getString("usuario.usutelefone"));
 
 		usuario.setUsulogs(new ArrayList<Logs>());
 		usuario.setUsuhistorico(new ArrayList<Historico>());

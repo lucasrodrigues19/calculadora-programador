@@ -29,13 +29,17 @@ import javafx.util.Callback;
 public class ViewHelper {
 
 	/**
-	 * Metodo responsavel por carregar qualquer view, no scene da view pai
-	 * 
+	 *  Metodo responsavel por carregar qualquer view, no scene da view pai
 	 * @param <T>
 	 * @param path
+	 * 			Caminho da view
 	 * @param mainScene
+	 * 			Secne da view pai que, a view filha sera carregada
+	 * @param qtdNodesViewPai
+	 * 			quantidades de elementos que serao pegos da scena pai, de cima para baixo, em ordem
 	 * @param execut
-	 * 
+	 * 			função que sera executada na controller da view carregada
+	 * @throws MyException
 	 */
 	public synchronized <T> void loadView(String path, Scene mainScene, int qtdNodesViewPai, Consumer<T> execut)
 			throws MyException {

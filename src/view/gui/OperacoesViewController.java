@@ -84,7 +84,23 @@ public class OperacoesViewController implements Initializable {
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
-
+	@FXML
+	private void onBtHistoricoAction(ActionEvent event) {
+		try {
+			helper.loadView("/view/gui/HistoricoView.fxml", helper.getSceneAtual(event), 2,
+					(HistoricoViewController controller) -> {
+						controller.setUsuario(getUsuario());
+						controller.setHistorico(getHistorico());
+						controller.setHistoricoService(getHistoricoService());
+						controller.setScenePai(helper.getSceneAtual(event));
+						controller.inicializarTableView();
+						controller.updateTableView();
+					});
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	}
 	@FXML
 	private void onMouseBtCalculadoraHouver(MouseEvent event) {
 		try {
@@ -125,6 +141,29 @@ public class OperacoesViewController implements Initializable {
 	private void onMouseBtConversorOut(MouseEvent event) {
 		try {
 			btConversor.setStyle(btStyle);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+
+	}
+	@FXML
+	private void onMouseBtHistoricoHouver(MouseEvent event) {
+		try {
+			btStyle = btHistorico.getStyle();
+			btHistorico.setStyle(btHistorico.getStyle() + "-fx-background-color: gray");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+	}
+
+	@FXML
+	private void onMouseBtHistoricoOut(MouseEvent event) {
+		try {
+			btHistorico.setStyle(btStyle);
 
 		} catch (Exception e) {
 			e.printStackTrace();

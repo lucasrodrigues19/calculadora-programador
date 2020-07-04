@@ -1,24 +1,20 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .table_view { 
-   -fx-padding: 3 3 3 3; 
    -fx-background-color:#FFDEAD; 
    -fx-text-fill: #fff; 
    -fx-font: DejaVu Sans Bold;
+   -fx-alignment: CENTER;
  }
- .table_view: selected { 
-   -fx-background-color: #fff; 
-   -fx-text-fill: #000;
-  
- }
- .bt_remover{
- 	-fx-background-color:#cd853f; 
- 	-fx-background-radius: 15;
- 	-fx-border-radius:15;
- 	-fx-text-fill:#fff;
- }
-.column_tb{
-	-fx-background-color:#cd853f; 
-	-fx-color:#fff;
-	-border-color: #fff;
+
+#column_tb_his{
+	-fx-background-color:#FFDEAD; 
+	-fx-text-fill:#cd853f;
+}
+
+#column_tb_bt{
+	-fx-background-color:#FFDEAD; 
+	-fx-text-fill:#fff;
+	-fx-alignment: CENTER;
+	
 }

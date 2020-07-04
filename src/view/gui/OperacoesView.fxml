@@ -29,10 +29,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btHistorico" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Historico" textFill="BURLYWOOD">
+            <Button fx:id="btHistorico" mnemonicParsing="false" onAction="#onBtHistoricoAction" onMouseEntered="#onMouseBtHistoricoHouver" onMouseExited="#onMouseBtHistoricoOut" style="-fx-background-color: #fff;" text="Historico" textFill="BURLYWOOD">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
         </items>
       </ToolBar>
