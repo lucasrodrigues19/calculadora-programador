@@ -232,12 +232,13 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		if (historico != null) {
 			historico.setHisdado(helper.getItemComboBox(cmbConverEntrada) + ": " + lblOpe.getText() + "\n"//
 					+ helper.getItemComboBox(cmbConverSaida) + ": " + lblRes.getText() + ".");
-			historico.setHisusuario(getUsuario());
+			if (usuario != null)
+				historico.setHisusuario(getUsuario());
 		}
 	}
 
 	private void salvarHistorico() {
-		if (historico != null)
+		if (historico != null && usuario != null)
 			historicoService.save(historico);
 
 		if (obsHistorico != null)

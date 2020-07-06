@@ -3,6 +3,7 @@ package view.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import ex.MyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class OperacoesViewController implements Initializable {
 	private HistoricoService historicoService;
 
 	private Historico historico;
-	
+
 	private String btStyle;
 
 	private Scene scenePai;
@@ -45,6 +46,9 @@ public class OperacoesViewController implements Initializable {
 
 	@FXML
 	private Button btHistorico;
+
+	@FXML
+	private Button btSair;
 
 	@FXML
 	private void onBtCalculadoraAction(ActionEvent event) {
@@ -74,7 +78,7 @@ public class OperacoesViewController implements Initializable {
 						controller.setUsuario(getUsuario());
 						controller.setUsuarioService(getUsuarioService());
 						controller.setHistorico(getHistorico());
-						controller.setHistoricoService(getHistoricoService());						
+						controller.setHistoricoService(getHistoricoService());
 						controller.setScenePai(helper.getSceneAtual(event));
 						controller.setEventHandler();
 						controller.inicializarElementos(controller);
@@ -84,6 +88,7 @@ public class OperacoesViewController implements Initializable {
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onBtHistoricoAction(ActionEvent event) {
 		try {
@@ -101,6 +106,7 @@ public class OperacoesViewController implements Initializable {
 			Alerts.showAlertError(e.getMessage());
 		}
 	}
+
 	@FXML
 	private void onMouseBtCalculadoraHouver(MouseEvent event) {
 		try {
@@ -148,6 +154,7 @@ public class OperacoesViewController implements Initializable {
 		}
 
 	}
+
 	@FXML
 	private void onMouseBtHistoricoHouver(MouseEvent event) {
 		try {
@@ -170,6 +177,27 @@ public class OperacoesViewController implements Initializable {
 			Alerts.showAlertError(e.getMessage());
 		}
 
+	}
+
+	@FXML
+	private void onButtonSairAction(ActionEvent event) {
+		try {
+			helper.openMainView(helper.getStageAtual(event), Main.mainScene);
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		}
+
+	}
+
+	protected void hiddenBts() {
+		if ((usuario != null && usuarioService != null) && (historico != null && historicoService != null)) {
+			btHistorico.setVisible(true);
+			btSair.setVisible(false);
+		} else {
+			btHistorico.setVisible(false);
+			btSair.setVisible(true);
+		}
 	}
 
 	public UsuarioService getUsuarioService() {
@@ -207,7 +235,6 @@ public class OperacoesViewController implements Initializable {
 	public HistoricoService getHistoricoService() {
 		return historicoService;
 	}
-	
 
 	public void setHistoricoService(HistoricoService historicoService) {
 		this.historicoService = historicoService;
@@ -218,7 +245,5 @@ public class OperacoesViewController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
-
-	
 
 }

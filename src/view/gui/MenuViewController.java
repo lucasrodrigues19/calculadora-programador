@@ -112,6 +112,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 						controller.setHistoricoService(getHistoricoService());
 						controller.setScenePai(getMenuViewScene());
 						controller.setHistorico(new Historico());
+						controller.hiddenBts();
 					});
 			btVoltar.setVisible(true);
 		} catch (MyException e) {

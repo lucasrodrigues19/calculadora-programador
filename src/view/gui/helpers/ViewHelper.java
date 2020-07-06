@@ -23,22 +23,22 @@ import javafx.util.Callback;
 
 /**
  * Classe criada para auxiliar as views
+ * 
  * @author lucas.rodrigues
  *
  */
 public class ViewHelper {
 
 	/**
-	 *  Metodo responsavel por carregar qualquer view, no scene da view pai
+	 * Metodo responsavel por carregar qualquer view, no scene da view pai
+	 * 
 	 * @param <T>
-	 * @param path
-	 * 			Caminho da view
-	 * @param mainScene
-	 * 			Secne da view pai que, a view filha sera carregada
-	 * @param qtdNodesViewPai
-	 * 			quantidades de elementos que serao pegos da scena pai, de cima para baixo, em ordem
-	 * @param execut
-	 * 			função que sera executada na controller da view carregada
+	 * @param path            Caminho da view
+	 * @param mainScene       Secne da view pai que, a view filha sera carregada
+	 * @param qtdNodesViewPai quantidades de elementos que serao pegos da scena pai,
+	 *                        de cima para baixo, em ordem
+	 * @param execut          função que sera executada na controller da view
+	 *                        carregada
 	 * @throws MyException
 	 */
 	public synchronized <T> void loadView(String path, Scene mainScene, int qtdNodesViewPai, Consumer<T> execut)
@@ -50,9 +50,15 @@ public class ViewHelper {
 		List<Node> nodesMain = new ArrayList<Node>();
 		try {
 			VBox newView = loader.load();
-			ScrollPane scrolPane = ((ScrollPane) mainScene.getRoot());
+			ScrollPane scrolPane = null;
+			VBox mainVBox = null;
+			if (mainScene.getRoot() instanceof ScrollPane) {
+				scrolPane = (ScrollPane) mainScene.getRoot();
+				mainVBox = (VBox) scrolPane.getContent();
+			}else if  (mainScene.getRoot() instanceof VBox) {
+				mainVBox = (VBox) mainScene.getRoot();
+			}
 
-			VBox mainVBox = (VBox) scrolPane.getContent();
 			for (int i = 0; i < qtdNodesViewPai; i++) {
 				nodesMain.add(mainVBox.getChildren().get(i));
 			}
@@ -84,7 +90,7 @@ public class ViewHelper {
 	 * 
 	 * @param path
 	 * @param mainScene
-	 * @param execut 
+	 * @param execut
 	 */
 	public synchronized <T> void backView(String path, Scene mainScene, Consumer<T> execut) throws MyException {
 		if (path == null || mainScene == null)
@@ -184,6 +190,7 @@ public class ViewHelper {
 
 		return (Stage) scene.getWindow();
 	}
+
 	/**
 	 * Retorna a scene da view de acordo com o evento
 	 * 
@@ -193,7 +200,6 @@ public class ViewHelper {
 	public Scene getSceneAtual(ActionEvent event) {
 		return (Scene) ((Node) event.getSource()).getScene();
 	}
-
 
 	/**
 	 * Retorna para a view Pai e fechar a view Atual
@@ -258,39 +264,42 @@ public class ViewHelper {
 		}
 
 	}
+
 	/**
 	 * Define a cor dos items da ComboBox
+	 * 
 	 * @param cmb
 	 * @param background_color
 	 * @param text_fill_color
 	 */
-	public  void setColorItemsComboBox(ComboBox<String> cmb, String background_color, String text_fill_color) {
+	public void setColorItemsComboBox(ComboBox<String> cmb, String background_color, String text_fill_color) {
 		Callback<ListView<String>, ListCell<String>> factory = lv -> new ListCell<String>() {
 			@Override
 			protected void updateItem(String item, boolean empty) {
-				
+
 				super.updateItem(item, empty);
-				if(empty || item == null)
-					setStyle("-fx-text-fill:"+text_fill_color+"; -fx-background-color:"+background_color);
+				if (empty || item == null)
+					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
 				else {
-					setStyle("-fx-text-fill:"+text_fill_color+"; -fx-background-color:"+background_color);
+					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
 					setText(item.toString());
 				}
 			}
 		};
 		cmb.setCellFactory(factory);
 		cmb.setButtonCell(factory.call(null));
-	
+
 	}
+
 	/**
 	 * retorna o item selcionado de uma Combo
+	 * 
 	 * @param <T>
 	 * @param cmb
 	 * @return
 	 */
-	public  <T> T getItemComboBox (ComboBox<T> cmb){
+	public <T> T getItemComboBox(ComboBox<T> cmb) {
 		return cmb.getSelectionModel().getSelectedItem();
 	}
 
-	
 }

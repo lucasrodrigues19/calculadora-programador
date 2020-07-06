@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="566.0" maxWidth="770.0" minHeight="566.0" minWidth="770.0" prefHeight="566.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.OperacoesViewController">
+<VBox alignment="TOP_RIGHT" maxHeight="566.0" maxWidth="770.0" minHeight="566.0" minWidth="770.0" prefHeight="566.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.OperacoesViewController">
    <children>
       <ToolBar fx:id="toolBarMenu" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #DEB887;;">
         <items>
@@ -39,8 +39,19 @@
             </Button>
         </items>
       </ToolBar>
-      <AmbientLight color="CHARTREUSE" lightOn="true" />
-      <Pane prefHeight="524.0" prefWidth="770.0" style="-fx-border-color: #deb887; -fx-background-radius: 7; -fx-border-radius: 7;">
+        <Button fx:id="btSair" mnemonicParsing="false" onAction="#onButtonSairAction" style="-fx-background-color: #FFDEAD; -fx-background-radius: 7px; -fx-border-color: #ffff; -fx-border-radius: 7px;" text="Sair" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+      <AmbientLight color="CHARTREUSE" lightOn="true" opacity="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></AmbientLight>
+      <Pane prefHeight="465.0" prefWidth="770.0" style="-fx-border-color: #deb887; -fx-background-radius: 7; -fx-border-radius: 7;">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="155.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
                <font>

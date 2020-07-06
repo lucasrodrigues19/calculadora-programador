@@ -31,10 +31,10 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private ToolBar toolBarMenu;
-	
+
 	@FXML
 	private MenuButton menuButtonOpcoes;
-	
+
 	@FXML
 	private MenuItem menuItemSobre;
 
@@ -50,14 +50,14 @@ public class MainViewController implements Initializable {
 	@FXML
 	private void onBtLoginAction() {
 		try {
-			System.out.println(btEntrar.getText());
-			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene,1, (LoginViewController controller)->{
+			System.out.println(btLogin.getText());
+			helper.loadView("/view/gui/LoginView.fxml", Main.mainScene, 1, (LoginViewController controller) -> {
 				controller.setUsuario(new Usuario());
 				controller.setUsuarioService(new UsuarioService());
 				controller.setLogs(new Logs());
 				controller.setLogsService(new LogsService());
 				controller.setHistorico(new Historico());
-				controller.setHistoricoService(new HistoricoService());	
+				controller.setHistoricoService(new HistoricoService());
 			});
 			menuItemHome.setVisible(true);
 		} catch (MyException e) {
@@ -70,9 +70,13 @@ public class MainViewController implements Initializable {
 	private void onBtEntrarAction(ActionEvent event) {
 
 		try {
-			System.out.println(btEntrar.getText());
-
-		} catch (Exception e) {
+			helper.openParentView("/view/gui/OperacoesView.fxml", helper.getStageAtual(event),
+					(OperacoesViewController controller) -> {
+						controller.setHistorico(new Historico());
+						controller.hiddenBts();
+					});
+			menuItemHome.setVisible(true);
+		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
 		}
@@ -95,7 +99,7 @@ public class MainViewController implements Initializable {
 	private void onMenuItemHomeAction() {
 		System.out.println(menuItemHome.getText());
 		try {
-			helper.backView("/view/gui/MainView.fxml", Main.mainScene,null);
+			helper.backView("/view/gui/MainView.fxml", Main.mainScene, null);
 			menuItemHome.setVisible(false);
 		} catch (MyException e) {
 			Alerts.showAlertError(e.getMessage());

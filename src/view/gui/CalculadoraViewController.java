@@ -215,7 +215,7 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	}
 
 	private void salvarHistorico() {
-		if (historico != null)
+		if (historico != null && usuario != null)
 			historicoService.save(historico);
 
 		if (obsHistorico != null)
@@ -232,7 +232,8 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	private void getDadosHistorico() {
 		if (historico != null) {
 			historico.setHisdado(lblOpe.getText() + "\n" + lblRes.getText());
-			historico.setHisusuario(getUsuario());
+			if (usuario != null)
+				historico.setHisusuario(getUsuario());
 		}
 	}
 
