@@ -14,7 +14,7 @@ public class ConversorService {
 	}
 
 	public String convertBinToDec() {
-		String res = checkBinario();
+		String res = checkBinario(dadosEntrada.getStrNum());
 		if (!res.equals(""))
 			return res;
 
@@ -22,7 +22,7 @@ public class ConversorService {
 	}
 
 	public String convertBinToHex() {
-		String res = checkBinario();
+		String res = checkBinario(dadosEntrada.getStrNum());
 		if (!res.equals(""))
 			return res;
 
@@ -45,9 +45,9 @@ public class ConversorService {
 		return helper.convertHexToDec();
 	}
 
-	private String checkBinario() {
+	protected String checkBinario(String str) {
 		boolean temDecHex = false;
-		int length = dadosEntrada.getStrNum().length();
+		int length = str.length();
 		for (int i = 0; i < length; i++) {
 			String dig = Character.toString(dadosEntrada.getStrNum().charAt(i));
 			if (!dig.equals("1") && dig.equals("0"))

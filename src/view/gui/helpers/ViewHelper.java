@@ -267,15 +267,16 @@ public class ViewHelper {
 
 	/**
 	 * Define a cor dos items da ComboBox
+	 * @param <T>
 	 * 
 	 * @param cmb
 	 * @param background_color
 	 * @param text_fill_color
 	 */
-	public void setColorItemsComboBox(ComboBox<String> cmb, String background_color, String text_fill_color) {
-		Callback<ListView<String>, ListCell<String>> factory = lv -> new ListCell<String>() {
+	public <T> void setColorItemsComboBox(ComboBox<T> cmb, String background_color, String text_fill_color) {
+		Callback<ListView<T>, ListCell<T>> factory = lv -> new ListCell<T>() {
 			@Override
-			protected void updateItem(String item, boolean empty) {
+			protected void updateItem(T item, boolean empty) {
 
 				super.updateItem(item, empty);
 				if (empty || item == null)

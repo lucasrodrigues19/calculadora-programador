@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import conversor_numerico.modelo.ConversorEntradaDadosAtributos;
+import conversor_numerico.modelo.OperacoesConversores;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -67,13 +68,13 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	private Label lblStyleProg;
 
 	@FXML
-	private ComboBox<String> cmbConverEntrada;
+	private ComboBox<OperacoesConversores> cmbConverEntrada;
 
 	@FXML
-	private ComboBox<String> cmbConverSaida;
+	private ComboBox<OperacoesConversores> cmbConverSaida;
 
 	@FXML
-	ObservableList<String> obsConversores;
+	ObservableList<OperacoesConversores> obsConversores;
 
 	@FXML
 	private Button btNum1;
@@ -281,7 +282,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void setObsConversores() {
-		obsConversores.addAll(Arrays.asList("Decimal", "Binario", "Hexa-Decimal"));
+		obsConversores.addAll(Arrays.asList(OperacoesConversores.DECIMAL,OperacoesConversores.BINARIO,OperacoesConversores.HEXA_DECIMAL));
 	}
 
 	private void setCmbConversores() {
@@ -290,11 +291,11 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 		helper.setColorItemsComboBox(cmbConverEntrada, "#FFDEAD", "#cd853f");
 		helper.setColorItemsComboBox(cmbConverSaida, "#FFDEAD", "#cd853f");
 		cmbConverEntrada.getSelectionModel().selectFirst();
-		cmbConverSaida.setValue("Binario");
+		cmbConverSaida.setValue(OperacoesConversores.BINARIO);
 	}
 
-	private void setCostraintLblOperacoes(String valorCmb) {
-		if ("Hexa-Decimal".equals(valorCmb))
+	private void setCostraintLblOperacoes(OperacoesConversores valorCmb) {
+		if (OperacoesConversores.HEXA_DECIMAL.equals(valorCmb))
 			Costraints.anyChar(lblOpe, true);
 		else {
 			Costraints.onlyInteger(lblOpe, true);
@@ -303,7 +304,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	}
 
 	private void setCostraintsInLabels() {
-		String valorCmb = cmbConverEntrada.getValue();
+		OperacoesConversores valorCmb = cmbConverEntrada.getValue();
 		setCostraintLblOperacoes(valorCmb);
 	}
 
@@ -319,7 +320,7 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 			lblOpe.setText("");
 	}
 
-	private void setOperacoes(String opeEntrada, String opeSaida) {
+	private void setOperacoes(OperacoesConversores opeEntrada, OperacoesConversores opeSaida) {
 		if (opeEntrada != null)
 			setOpeEntrada(opeEntrada);
 		if (opeSaida != null)

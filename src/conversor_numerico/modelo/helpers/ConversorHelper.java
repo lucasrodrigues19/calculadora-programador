@@ -9,20 +9,21 @@ import utils.TryParseUtils;
 public class ConversorHelper {
 
 	private ConversorEntradaDadosAtributos dadosEntrada;
-	
 
 	public ConversorHelper(ConversorEntradaDadosAtributos dadosEntrada) {
-		if(dadosEntrada ==null)
+		if (dadosEntrada == null)
 			throw new MyRuntimeException("Entrada de dados para a conversão de numero nula");
-		
+
 		this.dadosEntrada = dadosEntrada;
 	}
 
 	public ConversorHelper() {
 
 	}
+
 	/**
 	 * Dec -> bin
+	 * 
 	 * @return
 	 */
 	public String convertDecToBin() {
@@ -45,19 +46,23 @@ public class ConversorHelper {
 		}
 		return completarBinario(res);
 	}
+
 	/**
 	 * Dec-> Bin -> hex
+	 * 
 	 * @return
 	 */
 	public String convertDecToHex() {
-		String str = dadosEntrada.getStrNum();//pega strNUm para não perdcer a string original
-		dadosEntrada.setStrNum(convertDecToBin()); //convert a string de entrada decimal pra um binario
+		String str = dadosEntrada.getStrNum();// pega strNUm para não perdcer a string original
+		dadosEntrada.setStrNum(convertDecToBin()); // convert a string de entrada decimal pra um binario
 		String res = convertBinToHex();
-		dadosEntrada.setStrNum(str); //pega a string de entrada decimal original
+		dadosEntrada.setStrNum(str); // pega a string de entrada decimal original
 		return res;
 	}
+
 	/**
 	 * Bin -> hex
+	 * 
 	 * @return
 	 */
 	public String convertBinToDec() {
@@ -74,15 +79,17 @@ public class ConversorHelper {
 
 		return String.format("%.0f", soma);
 	}
+
 	/**
 	 * Bin -> hex
+	 * 
 	 * @return
 	 */
 	public String convertBinToHex() {
 
 		PilhaDinamica<String> pilha = new PilhaDinamicaI<String>();
 		String str = dadosEntrada.getStrNum();
-		String binTmp = "";//dadosEntrada.getStrNum();
+		String binTmp = "";// dadosEntrada.getStrNum();
 		if (!str.equals("") && str.length() > 0) {
 			str = completarBinario(str);
 			int casas = str.length() / 4; // divide o numero binario a cada 4 digitos(pega a quantidade de quarteto no
@@ -103,7 +110,7 @@ public class ConversorHelper {
 				}
 				binTmp = completarBinario(binTmp);
 				String res = getDigHexIsBin(binTmp); // pega o digito do quarteto
-				 // pega o digito hexa-decimal
+				// pega o digito hexa-decimal
 				// ja que esta iterando a string de numero binario de tras pra frente, o
 				// primeiro digito hexa decimal tem q ser o
 				// ultimo a sair
@@ -118,42 +125,65 @@ public class ConversorHelper {
 
 		return "";
 	}
+
 	/**
 	 * Hex -> Bin
+	 * 
 	 * @return
 	 */
 	public String convertHexToBin() {
 		PilhaDinamica<String> pilha = new PilhaDinamicaI<>();
-		String str =  dadosEntrada.getStrNum();
-		int length = str.length() -1;
-		for(int i=length;i>=0;i--) {
-			String bin = getDigBinIsHex(Character.toString(str.charAt(i)));	
+		String str = dadosEntrada.getStrNum();
+		int length = str.length() - 1;
+		for (int i = length; i >= 0; i--) {
+			String bin = getDigBinIsHex(Character.toString(str.charAt(i)));
 			pilha.push(bin);
 			bin = "";
 		}
 		String res = "";
-		while(!pilha.isEmpty()) {
-			res+=pilha.pop();
+		while (!pilha.isEmpty()) {
+			res += pilha.pop();
 		}
-			
+
 		return res;
 	}
+
 	/**
 	 * Hex -> Bin -> Dec
+	 * 
 	 * @return
 	 */
 	public String convertHexToDec() {
-		String strTmp =  dadosEntrada.getStrNum();
+		String strTmp = dadosEntrada.getStrNum();
 		dadosEntrada.setStrNum(convertHexToBin());
 		String res = convertBinToDec();
 		dadosEntrada.setStrNum(strTmp);
 		return res;
 	}
+
 	private String completarBinario(String str) {
 		if (str != null) {
 			switch (str) {
+			case "0":
+				str = "000" + str;
+				break;
+			case "00":
+				str = "00" + str;
+				break;
+			case "000":
+				str = "0" + str;
+				break;
 			case "1":
 				str = "000" + str;
+				break;
+			case "01":
+				str = "00" + str;
+				break;
+			case "001":
+				str = "0" + str;
+				break;
+			case "010":
+				str = "0" + str;
 				break;
 			case "10":
 				str = "00" + str;
@@ -205,10 +235,13 @@ public class ConversorHelper {
 //		}
 //		return str;
 //	}
-	
+
 	private String getDigHexIsBin(String str) {
 		if (str != null) {
 			switch (str) {
+			case "0000":
+				str = "0";
+				break;
 			case "0001":
 				str = "1";
 				break;
@@ -286,6 +319,7 @@ public class ConversorHelper {
 //		}
 //		return str;
 //	}
+	
 	private String getDigBinIsHex(String str) {
 		if (str != null) {
 			switch (str) {
@@ -339,6 +373,5 @@ public class ConversorHelper {
 		}
 		return str;
 	}
-	
 
 }

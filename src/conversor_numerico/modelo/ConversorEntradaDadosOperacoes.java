@@ -7,26 +7,29 @@ public interface ConversorEntradaDadosOperacoes {
 			obj.setStrNum(str);
 			obj.setStrOpe(str);
 			String tmpRes = "";
-			String opeEnt = obj.getOpeEntrada();
-			String opeSai = obj.getOpeSaida();
+			OperacoesConversores opeEnt = obj.getOpeEntrada();
+			OperacoesConversores opeSai = obj.getOpeSaida();
 			if (opeEnt.equals(opeSai)) {
+				if (opeEnt.equals(OperacoesConversores.BINARIO)) {
+					obj.getService().checkBinario(obj.getStrNum());
+				}
 				tmpRes = obj.getStrNum();
-			} else if (opeEnt.toUpperCase().equals("BINARIO")) {
-				if (opeSai.toUpperCase().equals("DECIMAL"))
+			} else if (opeEnt.equals(OperacoesConversores.BINARIO)) {
+				if (opeSai.equals(OperacoesConversores.DECIMAL))
 					tmpRes = obj.getService().convertBinToDec();
-				else if (opeSai.toUpperCase().equals("HEXA-DECIMAL"))
+				else if (opeSai.equals(OperacoesConversores.HEXA_DECIMAL))
 					tmpRes = obj.getService().convertBinToHex();
 			} // end if binario
-			else if (opeEnt.toUpperCase().equals("DECIMAL")) {
-				if (opeSai.toUpperCase().equals("BINARIO"))
+			else if (opeEnt.equals(OperacoesConversores.DECIMAL)) {
+				if (opeSai.equals(OperacoesConversores.BINARIO))
 					tmpRes = obj.getService().convertDecToBin();
-				else if (opeSai.toUpperCase().equals("HEXA-DECIMAL"))
+				else if (opeSai.equals(OperacoesConversores.HEXA_DECIMAL))
 					tmpRes = obj.getService().convertDecToHex();
 			} // end if decimal
-			else if (opeEnt.toUpperCase().equals("HEXA-DECIMAL")) {
-				if (opeSai.toUpperCase().equals("BINARIO"))
+			else if (opeEnt.equals(OperacoesConversores.HEXA_DECIMAL)) {
+				if (opeSai.equals(OperacoesConversores.BINARIO))
 					tmpRes = obj.getService().convertHexToBin();
-				else if (opeSai.toUpperCase().equals("DECIMAL"))
+				else if (opeSai.equals(OperacoesConversores.DECIMAL))
 					tmpRes = obj.getService().convertHexToDec();
 			} // end if hexa
 
@@ -35,7 +38,7 @@ public interface ConversorEntradaDadosOperacoes {
 	}
 
 	default void limparDigito(ConversorEntradaDadosAtributos obj) {
-		if (obj!= null) {
+		if (obj != null) {
 			if (!obj.getStrNum().equals("") && obj.getStrNum().length() >= 0) {
 				String tmp = obj.getStrNum().substring(0, (obj.getStrNum().length() - 1));
 				inicializarElementos(obj);
