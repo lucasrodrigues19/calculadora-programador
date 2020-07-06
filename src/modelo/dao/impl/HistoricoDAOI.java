@@ -72,10 +72,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, historico.getHisid());
-			int rows = ps.executeUpdate();
-			if (rows <= 0)
-				throw new SQLException("Nemhum registro deletado");
-
+			ps.execute();
 			con.commit();
 		} catch (SQLException e) {
 			try {
@@ -219,6 +216,34 @@ public class HistoricoDAOI implements HistoricoDAO {
 		
 	
 		return historico;
+	}
+
+	@Override
+	public void deleteByUser(Usuario usuario) {
+		if (usuario == null)
+			throw new IllegalArgumentException("usuario nulo");
+
+		sql = "DELETE FROM historico WHERE hisusuid = ?";
+		PreparedStatement ps = null;
+		try {
+			con.setAutoCommit(false);
+			ps = (PreparedStatement) con.prepareStatement(sql);
+			ps.setInt(1, usuario.getUsuid());
+			ps.execute();
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+				e.printStackTrace();
+				throw new MySQLException("Erro na transanção: " + e.getMessage());
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				throw new MySQLException("Erro no rollback: " + e.getMessage());
+			}
+		} finally {
+			DB.closeStatment(ps);
+		}
+		
 	}
 
 }

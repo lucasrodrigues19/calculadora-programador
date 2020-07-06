@@ -35,7 +35,7 @@
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtId" disable="true" editable="false" promptText="ID" GridPane.rowIndex="1">
+                  <TextField fx:id="txtId" disable="true" editable="false" promptText="ID" style="-fx-border-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" GridPane.rowIndex="1">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font></TextField>
@@ -44,7 +44,7 @@
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNome" onKeyTyped="#onKeyTxtNomeAction" promptText="NOME" GridPane.rowIndex="3">
+                  <TextField fx:id="txtNome" onKeyTyped="#onKeyTxtNomeAction" promptText="NOME" style="-fx-border-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" GridPane.rowIndex="3">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font></TextField>
@@ -54,7 +54,7 @@
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtEmail" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" GridPane.rowIndex="5">
+                  <TextField fx:id="txtEmail" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-border-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" GridPane.rowIndex="5">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font></TextField>
@@ -64,14 +64,19 @@
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtTelefone" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" GridPane.rowIndex="7">
+                  <TextField fx:id="txtTelefone" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" style="-fx-border-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" GridPane.rowIndex="7">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font></TextField>
                   <Label fx:id="lblTelefoneErro" textFill="#e80505" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
-            <Button fx:id="btSalvar" layoutX="142.0" layoutY="314.0" mnemonicParsing="false" onAction="#onButtonSalvarAction" style="-fx-background-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px;" text="SALVAR" textFill="WHITE">
+            <Button fx:id="btSalvar" layoutX="142.0" layoutY="314.0" mnemonicParsing="false" onAction="#onButtonSalvarAction" style="-fx-background-color: CD853F; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: #fff;" text="SALVAR" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btExcluir" layoutX="224.0" layoutY="4.0" mnemonicParsing="false" onAction="#onButtonExcluirAction" style="-fx-background-color: #fff; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: CD853F;" text="EXCLUIR PERFIL" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>

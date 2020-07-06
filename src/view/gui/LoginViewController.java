@@ -112,6 +112,7 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 				controller.setUsuarioService(usuarioService);
 				controller.atualizarDadosFormCadastro();
 				controller.setTextFields();
+				controller.hidenBtExcluir(false);
 			}, helper.getStageAtual(event));
 		} catch (MyException e) {
 			e.printStackTrace();

@@ -12,6 +12,8 @@ public interface HistoricoDAO {
 
 	void delete(Historico historico);
 
+	void deleteByUser(Usuario usuario);
+	
 	Historico findByID(Integer hisid);
 
 	List<Historico> findByUser(Usuario usuario);

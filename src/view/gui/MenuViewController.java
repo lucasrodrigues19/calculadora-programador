@@ -28,7 +28,7 @@ import subject.NotificaDadoAlteradoListner;
 import view.gui.helpers.ViewHelper;
 import view.gui.utils.Alerts;
 
-public class MenuViewController implements Initializable, NotificaDadoAlteradoListner {
+public class MenuViewController implements Initializable, NotificaDadoAlteradoListner, DadoAlteradoListener {
 
 	private ViewHelper helper = new ViewHelper();
 
@@ -43,9 +43,9 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	private Logs logs;
 
 	private HistoricoService historicoService;
-	
+
 	private Historico historico;
-	
+
 	@FXML
 	ScrollPane menuScrollPane;
 
@@ -85,7 +85,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	@FXML
 	private void onButtonVoltarAction(ActionEvent event) {
 		try {
-			helper.backView("/view/gui/MenuView.fxml", getMenuViewScene(), (MenuViewController controller)->{
+			helper.backView("/view/gui/MenuView.fxml", getMenuViewScene(), (MenuViewController controller) -> {
 				controller.setUsuario(getUsuario());
 				controller.setUsuarioService(getUsuarioService());
 				controller.setHistorico(getHistorico());
@@ -104,7 +104,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	@FXML
 	private void onMenuItemOperacoesAction() {
 		try {
-			helper.loadView("/view/gui/OperacoesView.fxml", getMenuViewScene(),1,
+			helper.loadView("/view/gui/OperacoesView.fxml", getMenuViewScene(), 1,
 					(OperacoesViewController controller) -> {
 						controller.setUsuario(getUsuario());
 						controller.setUsuarioService(getUsuarioService());
@@ -114,6 +114,28 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 						controller.setHistorico(new Historico());
 						controller.hiddenBts();
 					});
+			btVoltar.setVisible(true);
+		} catch (MyException e) {
+			e.printStackTrace();
+			Alerts.showAlertError(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@FXML
+	private void onMenuItemPeriflAction() {
+		try {
+			helper.loadViewDialog("/view/gui/CadastroView.fxml", //
+					(CadastroViewController controller) -> {
+						controller.setUsuario(getUsuario());
+						controller.setUsuarioService(getUsuarioService());
+						controller.hidenBtExcluir(true);
+						controller.atualizarDadosFormCadastro();
+						controller.setTextFields();
+						inscreverMeSubject(controller);
+					}, helper.getStageAtual(getMenuViewScene()));
 			btVoltar.setVisible(true);
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -211,6 +233,21 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	@Override
 	public List<DadoAlteradoListener> getListeners() {
 		return listeners;
+	}
+
+	@Override
+	public void onDadosAlterados() {
+		try {
+			usuario = usuarioService.findByID(usuario.getUsuid());
+			if (usuario == null) {
+				helper.openMainView(helper.getStageAtual(getMenuViewScene()), Main.mainScene);
+				notificarListener();
+			}else
+				setInfoUsuario();
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

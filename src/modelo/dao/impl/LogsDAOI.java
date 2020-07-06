@@ -77,9 +77,7 @@ public class LogsDAOI implements LogsDAO {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, logs.getLogid());
-			int rows = ps.executeUpdate();
-			if (rows <= 0)
-				throw new SQLException("Nemhum registro deletado");
+			ps.execute();
 
 			con.commit();
 		} catch (SQLException e) {
@@ -294,5 +292,33 @@ public class LogsDAOI implements LogsDAO {
 
 	private UsuarioDAO getUsuarioDAO() {
 		return DaoFactory.getUsuarioDAO();
+	}
+
+	@Override
+	public void deleteByUser(Usuario usuario) {
+		if (usuario == null)
+			throw new IllegalArgumentException("Log nulo");
+
+		sql = "DELETE FROM logs WHERE logusuid = ?";
+		PreparedStatement ps = null;
+		try {
+			con.setAutoCommit(false);
+			ps = (PreparedStatement) con.prepareStatement(sql);
+			ps.setInt(1, usuario.getUsuid());
+			ps.execute();
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+				e.printStackTrace();
+				throw new MySQLException("Erro na transanção: " + e.getMessage());
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				throw new MySQLException("Erro no rollback: " + e.getMessage());
+			}
+		} finally {
+			DB.closeStatment(ps);
+		}
+		
 	}
 }

@@ -93,7 +93,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 
-		sql = "UPDATE usuario set usunome = ?,usuemail = ?,usutlefone = ? WHERE usuid = ?";
+		sql = "UPDATE usuario set usunome = ?, usuemail = ?, usutelefone = ? WHERE usuid = ?";
 		PreparedStatement ps = null;
 		try {
 			con.setAutoCommit(false);
@@ -112,10 +112,10 @@ public class UsuarioDAOI implements UsuarioDAO {
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				throw new MySQLException("Erro na transanção");
+				throw new MySQLException("Erro na transanção: "+e.getMessage());
 			} catch (SQLException e2) {
 				e2.printStackTrace();
-				throw new MySQLException("Erro no rollback");
+				throw new MySQLException("Erro no rollback: "+e2.getMessage());
 			}
 
 		} finally {
@@ -134,18 +134,16 @@ public class UsuarioDAOI implements UsuarioDAO {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setInt(1, usuario.getUsuid());
-			int rows = ps.executeUpdate();
-			if (rows == 0)
-				throw new SQLException("Nemhum registro deletado");
+			ps.execute();
 
 			con.commit();
 
 		} catch (SQLException e) {
 			try {
 				con.rollback();
-				throw new MySQLException("Erro na transanção");
+				throw new MySQLException("Erro na transanção: "+e.getMessage());
 			} catch (SQLException e2) {
-				throw new MySQLException("Erro no rollback");
+				throw new MySQLException("Erro no rollback: "+e2.getMessage());
 			}
 		} finally {
 			DB.closeStatment(ps);
@@ -174,7 +172,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 				// usuario 1 - N historico
 				// um unico usuario vai apontar para varios logs que ele tem
 				logs = getLogsRS(rs);
-				his = getHistoricoRS(rs);
+			//	his = getHistoricoRS(rs);
 				usuario = mapUsuairo.get(rs.getInt("usuid"));
 				if (usuario == null) {
 					usuario = getUsuarioRS(rs);
@@ -182,18 +180,12 @@ public class UsuarioDAOI implements UsuarioDAO {
 				}
 
 				logs.setLogusuario(usuario);
-				his.setHisusuario(usuario);
+				//his.setHisusuario(usuario);
 				usuario.getUsulogs().add(logs);
-				usuario.getUsuhistorico().add(his);
+				//usuario.getUsuhistorico().add(his);
 			}
 
 		} catch (SQLException e) {
-			try {
-				con.rollback();
-				System.out.println("Erro na transanção");
-			} catch (SQLException e2) {
-				System.out.println("Erro no rollback");
-			}
 			e.printStackTrace();
 		} finally {
 			DB.closeStatment(ps);

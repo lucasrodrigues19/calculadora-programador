@@ -3,6 +3,8 @@ package modelo.services;
 import java.util.List;
 
 import db.ex.MySQLException;
+import modelo.dao.HistoricoDAO;
+import modelo.dao.LogsDAO;
 import modelo.dao.UsuarioDAO;
 import modelo.dao.factory.DaoFactory;
 import modelo.entites.Usuario;
@@ -40,6 +42,8 @@ public class UsuarioService {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 		try {
+			getHistoricoDAO().deleteByUser(usuario);
+			getLogsDAO().deleteByUser(usuario);;
 			getUsuarioDAO().delete(usuario);
 		} catch (MySQLException e) {
 			e.printStackTrace();
@@ -69,5 +73,11 @@ public class UsuarioService {
 
 	private UsuarioDAO getUsuarioDAO() {
 		return DaoFactory.getUsuarioDAO();
+	}
+	private HistoricoDAO getHistoricoDAO() {
+		return DaoFactory.getHistoricoDAO();
+	}
+	private LogsDAO getLogsDAO() {
+		return DaoFactory.getLogsDAO();
 	}
 }

@@ -11,6 +11,8 @@ public interface LogsDAO {
 	void save(Logs logs);
 
 	void delete(Logs logs);
+	
+	void deleteByUser(Usuario usuario);
 
 	Logs findByID(Integer logid);
 

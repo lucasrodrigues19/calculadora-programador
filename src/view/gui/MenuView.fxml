@@ -42,7 +42,7 @@
               <items>
                   <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opçoes" textFill="PERU">
                     <items>
-                      <MenuItem fx:id="menuItemPerfil" mnemonicParsing="false" text="Perfil" />
+                      <MenuItem fx:id="menuItemPerfil" mnemonicParsing="false" onAction="#onMenuItemPeriflAction" text="Perfil" />
                       <MenuItem fx:id="menuItemOperacoes" mnemonicParsing="false" onAction="#onMenuItemOperacoesAction" text="Operaçoes" />
                     </items>
                      <cursor>

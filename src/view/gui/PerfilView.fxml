@@ -2,13 +2,11 @@
 
 <?import javafx.scene.AmbientLight?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -17,27 +15,6 @@
    <content>
       <VBox maxHeight="566.0" maxWidth="770.0" minHeight="566.0" minWidth="770.0" prefHeight="566.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD;">
          <children>
-            <AnchorPane prefHeight="40.0" prefWidth="770.0">
-               <children>
-                  <Button fx:id="btSair" layoutX="706.0" layoutY="3.0" mnemonicParsing="false" onAction="#onButtonSairAction" style="-fx-background-color: #FFDEAD; -fx-background-radius: 7px; -fx-border-color: #ffff; -fx-border-radius: 7px;" text="Sair" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btVoltar" layoutX="631.0" layoutY="2.0" mnemonicParsing="false" onAction="#onButtonVoltarAction" style="-fx-background-color: #fff; -fx-background-radius: 7px; -fx-border-color: #DEB887; -fx-border-radius: 7px;" text="Voltar" textFill="BURLYWOOD">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label layoutX="7.0" layoutY="33.0" maxHeight="0.0" minHeight="6.0" prefHeight="0.0" prefWidth="744.0" />
-               </children>
-            </AnchorPane>
             <ToolBar fx:id="toolBarMenu" prefHeight="38.0" prefWidth="673.0" style="-fx-background-color: #DEB887;;">
               <items>
                   <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opçoes" textFill="PERU">
