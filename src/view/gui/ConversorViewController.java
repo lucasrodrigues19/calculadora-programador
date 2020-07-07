@@ -161,7 +161,9 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 	public void setEventHandler() {
 		scenePai.addEventHandler((KeyEvent.KEY_PRESSED), (KeyEvent event) -> {
 			try {
-
+				String digito = getNameKeyCodeCalc(this, event.getCode());
+				escolherFuncao(digito);
+				 //showKeyCode(event.getCode().getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

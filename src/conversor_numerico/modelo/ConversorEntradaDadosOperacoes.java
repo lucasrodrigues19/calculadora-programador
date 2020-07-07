@@ -1,5 +1,8 @@
 package conversor_numerico.modelo;
 
+import calculadora_aritimetica.modelo.CalculadoraEntradaDadosAtributos;
+import javafx.scene.input.KeyCode;
+
 public interface ConversorEntradaDadosOperacoes {
 
 	default void setDadosEntrada(String str, ConversorEntradaDadosAtributos obj) {
@@ -67,4 +70,57 @@ public interface ConversorEntradaDadosOperacoes {
 		obj.setStrOpe("");
 		obj.setService(new ConversorService(obj));
 	}
+	/**
+	 * Retorna uma string com o digito do teclado, de acordo com codigo.
+	 * 
+	 * @param obj
+	 * @param code KeyCode
+	 * @return
+	 */
+	default String getNameKeyCodeCalc(ConversorEntradaDadosAtributos obj, KeyCode code) {
+		String nameCode = code.getName();
+
+		if (code == KeyCode.DIGIT1 || code == KeyCode.NUMPAD1)
+			return KeyCode.DIGIT1.getName();
+
+		else if (code == KeyCode.DIGIT2 || code == KeyCode.NUMPAD2)
+			return KeyCode.DIGIT2.getName();
+
+		else if (code == KeyCode.DIGIT3 || code == KeyCode.NUMPAD3)
+			return KeyCode.DIGIT3.getName();
+
+		else if (code == KeyCode.DIGIT4 || code == KeyCode.NUMPAD4)
+			return KeyCode.DIGIT4.getName();
+
+		else if (code == KeyCode.DIGIT5 || code == KeyCode.NUMPAD5)
+			return KeyCode.DIGIT5.getName();
+
+		else if (code == KeyCode.DIGIT6 || code == KeyCode.NUMPAD6)
+			return KeyCode.DIGIT6.getName();
+
+		else if (code == KeyCode.DIGIT7 || code == KeyCode.NUMPAD7)
+			return KeyCode.DIGIT7.getName();
+
+		else if (code == KeyCode.DIGIT8 || code == KeyCode.NUMPAD8)
+			return KeyCode.DIGIT8.getName();
+
+		else if (code == KeyCode.DIGIT9 || code == KeyCode.NUMPAD9)
+			return KeyCode.DIGIT9.getName();
+
+		else if (code == KeyCode.DIGIT0 || code == KeyCode.NUMPAD0)
+			return KeyCode.DIGIT0.getName();
+
+		else if (code == KeyCode.BACK_SPACE)
+			return "<X";
+		
+		else if (code == KeyCode.EQUALS)
+			return "=";
+
+		else if (nameCode.matches("[A-F]"))
+			return nameCode;
+		
+		return null;
+
+	}
+
 }
