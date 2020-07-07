@@ -131,9 +131,9 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 					(CadastroViewController controller) -> {
 						controller.setUsuario(getUsuario());
 						controller.setUsuarioService(getUsuarioService());
-						controller.hidenBtExcluir(true);
+						controller.setVisibleBtExcluir(true);
 						controller.atualizarDadosFormCadastro();
-						controller.setTextFields();
+						controller.setVisibleLabels();
 						inscreverMeSubject(controller);
 					}, helper.getStageAtual(getMenuViewScene()));
 			btVoltar.setVisible(true);

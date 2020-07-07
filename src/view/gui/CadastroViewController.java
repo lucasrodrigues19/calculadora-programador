@@ -178,7 +178,7 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 		lblNome.setVisible(false);
 	}
 	
-	protected void hidenBtExcluir(Boolean rsp) {
+	protected void setVisibleBtExcluir(Boolean rsp) {
 		btExcluir.setVisible(rsp);
 	}
 	public void setMsgErros(MyRuntimeException e) {
@@ -229,7 +229,7 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 			txtTelefone.setText(usuario.getUsutelefone());
 	}
 
-	public void setTextFields() {
+	public void setVisibleLabels() {
 		if (txtTelefone.getText().length() > 0)
 			lblTelefone.setVisible(true);
 

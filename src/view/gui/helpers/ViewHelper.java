@@ -84,11 +84,13 @@ public class ViewHelper {
 	}
 
 	/**
-	 * Metodo responsavel por carregar uma view e adicionar o content(Root) no scene
-	 * 
+	 * Metodo responsavel por carregar uma view e adicionar o content(Root) da view carregada no scene da view Pai
+	 * Retorna para uma view carregada antes dessa atual
+	 * Troca a scene do stage
 	 * @param <T>
 	 * 
 	 * @param path
+	 * 			Caminho da view
 	 * @param mainScene
 	 * @param execut
 	 */
@@ -112,14 +114,113 @@ public class ViewHelper {
 			throw new MyException(e.getMessage());
 		}
 	}
+	/**
+	 * Retorna para a view Pai e fechar a view Atual
+	 * 
+	 * @param stageThis stage da sua view atual
+	 * @param mainScene
+	 * @throws MyException
+	 */
+	public void openMainView(Stage stageThis, Scene mainScene) throws MyException {
+		try {
+			stageThis.close();
+			Stage stageParent = new Stage();
+			stageParent.setScene(mainScene);
+			stageParent.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		}
 
+	}
+
+	/**
+	 * Carrega e abre uma nova view e fecha a atual
+	 * 
+	 * @param <T>
+	 * @param pathParent caminho da view para abrir
+	 * @param stageThis  stage da view para fechar
+	 * @throws MyException
+	 */
+	public <T> void openParentView(String pathParent, Stage stageThis, Consumer<T> executar) throws MyException {
+
+		try {
+
+			FXMLLoader loaderParent = new FXMLLoader(getClass().getResource(pathParent));
+			Parent nodeParent = loaderParent.load();
+
+			if (nodeParent instanceof ScrollPane) {
+				((ScrollPane) nodeParent).setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
+				((ScrollPane) nodeParent).setFitToWidth(true);
+			}
+			// executa a fuçao passada como parametro da controler que ira ser aberta
+			if (executar != null) {
+				T controller = loaderParent.getController();
+				executar.accept(controller);
+			}
+			Scene sceneParent = new Scene(nodeParent);
+
+			Stage stageParent = new Stage();
+			stageParent.setScene(sceneParent);
+			stageParent.setResizable(false);// para não ser maximizada
+			// stageParent.initStyle(StageStyle.UNDECORATED); //desbilita os 3
+			// botoes(maximizar,minimizar e fechar)
+			stageThis.close();
+			stageParent.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MyException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Define a cor dos items da ComboBox
+	 * @param <T>
+	 * 
+	 * @param cmb
+	 * @param background_color
+	 * @param text_fill_color
+	 */
+	public <T> void setColorItemsComboBox(ComboBox<T> cmb, String background_color, String text_fill_color) {
+		Callback<ListView<T>, ListCell<T>> factory = lv -> new ListCell<T>() {
+			@Override
+			protected void updateItem(T item, boolean empty) {
+
+				super.updateItem(item, empty);
+				if (empty || item == null)
+					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
+				else {
+					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
+					setText(item.toString());
+				}
+			}
+		};
+		cmb.setCellFactory(factory);
+		cmb.setButtonCell(factory.call(null));
+
+	}
+
+	/**
+	 * retorna o item selcionado de uma Combo
+	 * 
+	 * @param <T>
+	 * @param cmb
+	 * @return
+	 */
+	public <T> T getItemComboBox(ComboBox<T> cmb) {
+		return cmb.getSelectionModel().getSelectedItem();
+	}
 	/**
 	 * Metodo responsavel para gerar uma caixa de dialog, a mesma aparecera em cima
 	 * da view Pai
 	 * 
 	 * @param <T>
 	 * @param path        caminho da view
-	 * @param with
 	 * @param executar    função que executara algum metodo da controle da view
 	 *                    carregada
 	 * @param parentStage stage pai que a dialog aparecera em cima
@@ -201,106 +302,6 @@ public class ViewHelper {
 		return (Scene) ((Node) event.getSource()).getScene();
 	}
 
-	/**
-	 * Retorna para a view Pai e fechar a view Atual
-	 * 
-	 * @param stageThis stage da sua view atual
-	 * @param mainScene
-	 * @throws MyException
-	 */
-	public void openMainView(Stage stageThis, Scene mainScene) throws MyException {
-		try {
-			stageThis.close();
-			Stage stageParent = new Stage();
-			stageParent.setScene(mainScene);
-			stageParent.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new MyException(e.getMessage());
-		}
 
-	}
-
-	/**
-	 * Abre uma nova view e fecha a atual
-	 * 
-	 * @param <T>
-	 * @param pathParent caminho da view para abrir
-	 * @param stageThis  stage da view para fechar
-	 * @throws MyException
-	 */
-	public <T> void openParentView(String pathParent, Stage stageThis, Consumer<T> executar) throws MyException {
-
-		try {
-
-			FXMLLoader loaderParent = new FXMLLoader(getClass().getResource(pathParent));
-			Parent nodeParent = loaderParent.load();
-
-			if (nodeParent instanceof ScrollPane) {
-				((ScrollPane) nodeParent).setFitToHeight(true); // para que o scrollPane acompanhe o conteudo
-				((ScrollPane) nodeParent).setFitToWidth(true);
-			}
-			// executa a fuçao passada como parametro da controler que ira ser aberta
-			if (executar != null) {
-				T controller = loaderParent.getController();
-				executar.accept(controller);
-			}
-			Scene sceneParent = new Scene(nodeParent);
-
-			Stage stageParent = new Stage();
-			stageParent.setScene(sceneParent);
-			stageParent.setResizable(false);// para não ser maximizada
-			// stageParent.initStyle(StageStyle.UNDECORATED); //desbilita os 3
-			// botoes(maximizar,minimizar e fechar)
-			stageThis.close();
-			stageParent.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new MyException(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new MyException(e.getMessage());
-		}
-
-	}
-
-	/**
-	 * Define a cor dos items da ComboBox
-	 * @param <T>
-	 * 
-	 * @param cmb
-	 * @param background_color
-	 * @param text_fill_color
-	 */
-	public <T> void setColorItemsComboBox(ComboBox<T> cmb, String background_color, String text_fill_color) {
-		Callback<ListView<T>, ListCell<T>> factory = lv -> new ListCell<T>() {
-			@Override
-			protected void updateItem(T item, boolean empty) {
-
-				super.updateItem(item, empty);
-				if (empty || item == null)
-					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
-				else {
-					setStyle("-fx-text-fill:" + text_fill_color + "; -fx-background-color:" + background_color);
-					setText(item.toString());
-				}
-			}
-		};
-		cmb.setCellFactory(factory);
-		cmb.setButtonCell(factory.call(null));
-
-	}
-
-	/**
-	 * retorna o item selcionado de uma Combo
-	 * 
-	 * @param <T>
-	 * @param cmb
-	 * @return
-	 */
-	public <T> T getItemComboBox(ComboBox<T> cmb) {
-		return cmb.getSelectionModel().getSelectedItem();
-	}
 
 }

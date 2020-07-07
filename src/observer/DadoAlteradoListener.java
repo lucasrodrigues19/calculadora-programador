@@ -25,6 +25,7 @@ public interface DadoAlteradoListener {
 	 * Metodo para inscrever-me, no subject
 	 * 
 	 * @param subject
+	 * 			subject que vou me inscrever
 	 */
 	default void inscreverMeSubject(NotificaDadoAlteradoListner subject) {
 		subject.addListener(this);
