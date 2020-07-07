@@ -30,10 +30,16 @@ public class ConversorService {
 	}
 
 	public String convertDecToHex() {
+		if (checkDecimal(dadosEntrada.getStrNum()))
+			return "";
+
 		return helper.convertDecToHex();
 	}
 
 	public String convertDecToBin() {
+		if (checkDecimal(dadosEntrada.getStrNum()))
+			return "";
+
 		return helper.convertDecToBin();
 	}
 
@@ -66,5 +72,19 @@ public class ConversorService {
 			return dadosEntrada.getStrRes();
 		}
 		return "";
+	}
+
+	protected Boolean checkDecimal(String str) {
+		boolean noDec = false;
+		// int length = str.length();
+		String charFirst = Character.toString(str.charAt(0));
+		if ("0".equals(charFirst))
+			noDec = true;
+		if (noDec) {
+			String tmp = dadosEntrada.getStrNum().substring(1);
+			dadosEntrada.setStrNum(tmp);
+			dadosEntrada.setStrOpe(tmp);
+		}
+		return noDec;
 	}
 }
