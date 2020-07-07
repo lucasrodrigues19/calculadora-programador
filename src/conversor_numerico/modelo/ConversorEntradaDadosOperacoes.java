@@ -9,28 +9,38 @@ public interface ConversorEntradaDadosOperacoes {
 			String tmpRes = "";
 			OperacoesConversores opeEnt = obj.getOpeEntrada();
 			OperacoesConversores opeSai = obj.getOpeSaida();
-			if (opeEnt.equals(opeSai)) {
-				if (opeEnt.equals(OperacoesConversores.BINARIO)) {
-					obj.getService().checkBinario(obj.getStrNum());
-				}
-				tmpRes = obj.getStrNum();
-			} else if (opeEnt.equals(OperacoesConversores.BINARIO)) {
+			
+			if (opeEnt.equals(OperacoesConversores.BINARIO)) {
+				String binTmp = obj.getService().checkBinario(obj.getStrNum());
+				tmpRes = binTmp;
+				if("".equals(binTmp)) {
 				if (opeSai.equals(OperacoesConversores.DECIMAL))
 					tmpRes = obj.getService().convertBinToDec();
 				else if (opeSai.equals(OperacoesConversores.HEXA_DECIMAL))
 					tmpRes = obj.getService().convertBinToHex();
+				else
+					tmpRes = obj.getStrNum();
+				}
+					
 			} // end if binario
 			else if (opeEnt.equals(OperacoesConversores.DECIMAL)) {
+				boolean noDec = obj.getService().checkDecimal(obj.getStrNum());
+				if(!noDec) {
 				if (opeSai.equals(OperacoesConversores.BINARIO))
 					tmpRes = obj.getService().convertDecToBin();
 				else if (opeSai.equals(OperacoesConversores.HEXA_DECIMAL))
 					tmpRes = obj.getService().convertDecToHex();
+				else
+					tmpRes = obj.getStrNum();
+				}
 			} // end if decimal
 			else if (opeEnt.equals(OperacoesConversores.HEXA_DECIMAL)) {
 				if (opeSai.equals(OperacoesConversores.BINARIO))
 					tmpRes = obj.getService().convertHexToBin();
 				else if (opeSai.equals(OperacoesConversores.DECIMAL))
 					tmpRes = obj.getService().convertHexToDec();
+				else
+					tmpRes = obj.getStrNum();
 			} // end if hexa
 
 			obj.setStrRes(tmpRes);

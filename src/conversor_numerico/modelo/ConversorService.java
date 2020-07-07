@@ -14,18 +14,10 @@ public class ConversorService {
 	}
 
 	public String convertBinToDec() {
-		String res = checkBinario(dadosEntrada.getStrNum());
-		if (!res.equals(""))
-			return res;
-
 		return helper.convertBinToDec();
 	}
 
 	public String convertBinToHex() {
-		String res = checkBinario(dadosEntrada.getStrNum());
-		if (!res.equals(""))
-			return res;
-
 		return helper.convertBinToHex();
 	}
 
