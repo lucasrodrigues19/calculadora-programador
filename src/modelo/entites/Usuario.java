@@ -8,6 +8,7 @@ public class Usuario {
 	private String 				usunome;
 	private String 				usuemail;
 	private String 				usutelefone;
+	private String 				ususenha;
 	private List<Historico> 	usuhistorico;
 	private List<Logs> usulogs;
 
@@ -70,6 +71,14 @@ public class Usuario {
 
 	public void setUsutelefone(String usutelefone) {
 		this.usutelefone = usutelefone;
+	}
+
+	public String getUsusenha() {
+		return ususenha;
+	}
+
+	public void setUsusenha(String ususenha) {
+		this.ususenha = ususenha;
 	}
 
 	public List<Historico> getUsuhistorico() {

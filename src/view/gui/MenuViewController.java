@@ -45,6 +45,9 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 	private HistoricoService historicoService;
 
 	private Historico historico;
+	
+	@FXML
+	private Label lblTitle;
 
 	@FXML
 	ScrollPane menuScrollPane;
@@ -91,6 +94,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 				controller.setHistorico(getHistorico());
 				controller.setHistoricoService(getHistoricoService());
 				controller.setInfoUsuario();
+				helper.setLblTitle(controller.getLblTitle(), "");
 			});
 			btVoltar.setVisible(false);
 			notificarListener();
@@ -113,6 +117,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 						controller.setScenePai(getMenuViewScene());
 						controller.setHistorico(new Historico());
 						controller.hiddenBts();
+						helper.setLblTitle(controller.getLblTitle(), "");
 					});
 			btVoltar.setVisible(true);
 		} catch (MyException e) {
@@ -135,6 +140,7 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 						controller.atualizarDadosFormCadastro();
 						controller.setVisibleLabels();
 						inscreverMeSubject(controller);
+						helper.setLblTitle(controller.getLblTitle(), "Editar Perfil");
 					}, helper.getStageAtual(getMenuViewScene()));
 			btVoltar.setVisible(true);
 		} catch (MyException e) {
@@ -188,6 +194,10 @@ public class MenuViewController implements Initializable, NotificaDadoAlteradoLi
 
 	public void setHistorico(Historico historico) {
 		this.historico = historico;
+	}
+
+	public Label getLblTitle() {
+		return lblTitle;
 	}
 
 	public ToolBar getToolBarMenu() {

@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -35,6 +36,9 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 	private UsuarioService usuarioService;
 
 	private ViewHelper helper = new ViewHelper();
+	
+	@FXML
+	private Label lblTitle;
 	// id
 	@FXML
 	private Label lblId;
@@ -72,9 +76,18 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 	@FXML
 	private TextField txtTelefone;
 
+	// senha
+	@FXML
+	private Label lblSenha;
+
+	@FXML
+	private Label lblSenhaErro;
+
+	@FXML
+	private PasswordField psfSenha;
 	@FXML
 	private Button btSalvar;
-	
+
 	@FXML
 	private Button btExcluir;
 
@@ -90,16 +103,16 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 			notificarListener();
 		} catch (MySQLException e) {
 			String msg = e.getMessage();
-			if(msg.contains("Duplicate")) {
-				if(msg.contains("uk_email"))
+			if (msg.contains("Duplicate")) {
+				if (msg.contains("uk_email"))
 					msg = "Email ja cadastrado";
-				else if(msg.contains("uk_telefone"))
+				else if (msg.contains("uk_telefone"))
 					msg = "Telefone ja cadastrado";
-				
+
 				Alerts.showAlertError(msg);
-			}else
+			} else
 				e.printStackTrace();
-			
+
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
@@ -107,20 +120,21 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 			setMsgErros(e);
 		}
 	}
+
 	@FXML
 	private void onButtonExcluirAction(ActionEvent event) {
 		try {
 			Optional<ButtonType> bt = Alerts.mostrarConfirmacao("Deseja Excluir seu perfil?");
-			if(bt.get() == ButtonType.OK) {
-			getDadosCadastro();
-			usuarioService.delete(usuario);
-			fecharView(helper.getStageAtual(event));
-			notificarListener();
-			Alerts.showAlertInformations("Perifl Excluido!!");
+			if (bt.get() == ButtonType.OK) {
+				getDadosCadastro();
+				usuarioService.delete(usuario);
+				fecharView(helper.getStageAtual(event));
+				notificarListener();
+				Alerts.showAlertInformations("Perifl Excluido!!");
 			}
 		} catch (MySQLException e) {
-				e.printStackTrace();
-			
+			e.printStackTrace();
+
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
@@ -170,21 +184,37 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 	private void onMouseClickLblTelefoneAction(KeyEvent event) {
 		lblTelefone.setVisible(false);
 	}
+	// senhaAction
+		@FXML
+		private void onKeyTxtSenhaAction(KeyEvent event) {
+			if (psfSenha.getText().length() > 0)
+				lblSenha.setVisible(true);
+			else
+				lblSenha.setVisible(false);
+		}
+
+		@FXML
+		private void onMouseClickLblSenhaAction(KeyEvent event) {
+			lblSenha.setVisible(false);
+		}
 
 	private void hidenControls() {
 		lblEmail.setVisible(false);
 		lblTelefone.setVisible(false);
 		lblId.setVisible(false);
 		lblNome.setVisible(false);
+		lblSenha.setVisible(false);
 	}
-	
+
 	protected void setVisibleBtExcluir(Boolean rsp) {
 		btExcluir.setVisible(rsp);
 	}
+
 	public void setMsgErros(MyRuntimeException e) {
 		lblNomeErro.setText((e.getErros().containsKey("nome") ? e.getErros().get("nome") : ""));
 		lblEmailErro.setText((e.getErros().containsKey("email") ? e.getErros().get("email") : ""));
 		lblTelefoneErro.setText((e.getErros().containsKey("telefone") ? e.getErros().get("telefone") : ""));
+		lblSenhaErro.setText((e.getErros().containsKey("senha") ? e.getErros().get("senha") : ""));
 	}
 
 	private void getDadosCadastro() {
@@ -203,13 +233,16 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 		if (txtNome.getText().length() <= 0 || "".trim().equals(txtNome.getText()) || txtNome == null)
 			runtimeEx.addErros("nome", "Vazio");
 
+		if (psfSenha.getText().length() <= 0 || "".trim().equals(psfSenha.getText()) || psfSenha == null)
+			runtimeEx.addErros("senha", "Vazio");
+		
 		if (runtimeEx.getErros().size() > 0)
 			throw runtimeEx;
 
 		usuario.setUsunome(txtNome.getText());
 		usuario.setUsuemail(txtEmail.getText());
 		usuario.setUsutelefone(txtTelefone.getText());
-
+		usuario.setUsusenha(psfSenha.getText());
 	}
 
 	public void atualizarDadosFormCadastro() {
@@ -227,7 +260,11 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 
 		if (usuario.getUsutelefone() != null)
 			txtTelefone.setText(usuario.getUsutelefone());
+	
+		if (usuario.getUsusenha() != null)
+			psfSenha.setText(usuario.getUsusenha());
 	}
+	
 
 	public void setVisibleLabels() {
 		if (txtTelefone.getText().length() > 0)
@@ -238,13 +275,17 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 
 		if (txtEmail.getText().length() > 0)
 			lblEmail.setVisible(true);
+		
+		if (psfSenha.getText().length() > 0)
+			lblSenha.setVisible(true);
 	}
 
 	private void initializeNodesConstraints() {
 		Costraints.onlyInteger(txtTelefone, false);
-		Costraints.maxLength(txtEmail, 40,false);
-		Costraints.maxLength(txtNome, 30,false);
-		Costraints.maxLength(txtTelefone, 11,false);
+		Costraints.maxLength(txtEmail, 40, false);
+		Costraints.maxLength(txtNome, 30, false);
+		Costraints.maxLength(txtTelefone, 11, false);
+		Costraints.maxLength(psfSenha, 12, false);
 	}
 
 	private void fecharView(Stage stageAtual) {
@@ -267,11 +308,16 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 		this.usuarioService = usuarioService;
 	}
 
+	public Label getLblTitle() {
+		return lblTitle;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeNodesConstraints();
 		hidenControls();
 	}
+
 	@Override
 	public List<DadoAlteradoListener> getListeners() {
 		return listeners;

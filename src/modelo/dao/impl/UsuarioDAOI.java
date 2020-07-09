@@ -34,14 +34,14 @@ public class UsuarioDAOI implements UsuarioDAO {
 		if (con == null)
 			throw new IllegalArgumentException("Conexao nula");
 
-		sql = "SELECT * FROM usuario WHERE usuemail = ? AND usutelefone = ?";
+		sql = "SELECT * FROM usuario WHERE usuemail = ? AND ususenha = ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 			ps = (PreparedStatement) con.prepareStatement(sql);
 			ps.setString(1, usuario.getUsuemail());
-			ps.setString(2, usuario.getUsutelefone());
+			ps.setString(2, usuario.getUsusenha());
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				usuario = getUsuarioRS(rs);
@@ -61,7 +61,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 
-		sql = "INSERT INTO usuario VALUES (default,?,?,?)";
+		sql = "INSERT INTO usuario VALUES (default,?,?,?,?)";
 		PreparedStatement ps = null;
 		try {
 			con.setAutoCommit(false);
@@ -69,6 +69,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 			ps.setString(1, usuario.getUsunome());
 			ps.setString(2, usuario.getUsuemail());
 			ps.setString(3, usuario.getUsutelefone());
+			ps.setString(4, usuario.getUsusenha());
 
 			int rows = ps.executeUpdate();
 			if (rows == 0)
@@ -93,16 +94,17 @@ public class UsuarioDAOI implements UsuarioDAO {
 		if (usuario == null)
 			throw new IllegalArgumentException("usuario nulo");
 
-		sql = "UPDATE usuario set usunome = ?, usuemail = ?, usutelefone = ? WHERE usuid = ?";
+		sql = "UPDATE usuario set usunome = ?, usuemail = ?, usutelefone = ?, ususenha = ? WHERE usuid = ?";
 		PreparedStatement ps = null;
 		try {
 			con.setAutoCommit(false);
 			ps = (PreparedStatement) con.prepareStatement(sql);
-			ps.setInt(4, usuario.getUsuid());
+			ps.setInt(5, usuario.getUsuid());
 			ps.setString(1, usuario.getUsunome());
 			ps.setString(2, usuario.getUsuemail());
 			ps.setString(3, usuario.getUsutelefone());
-
+			ps.setString(4, usuario.getUsusenha());
+			
 			int rows = ps.executeUpdate();
 			if (rows == 0)
 				throw new SQLException("Nemhum registro atualizado");
@@ -212,7 +214,6 @@ public class UsuarioDAOI implements UsuarioDAO {
 				// usuario 1 - N historico
 				// um unico usuario vai apontar para varios logs que ele tem
 				logs = getLogsRS(rs);
-				his = getHistoricoRS(rs);
 				usuario = mapUsuairo.get(rs.getInt("usuid"));
 				if (usuario == null) {
 					usuario = getUsuarioRS(rs);
@@ -221,9 +222,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 				}
 
 				logs.setLogusuario(usuario);
-				his.setHisusuario(usuario);
 				usuario.getUsulogs().add(logs);
-				usuario.getUsuhistorico().add(his);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -257,6 +256,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		usuario.setUsunome(rs.getString("usunome"));
 		usuario.setUsuemail(rs.getString("usuemail"));
 		usuario.setUsutelefone(rs.getString("usutelefone"));
+		usuario.setUsusenha(rs.getString("ususenha"));
 		usuario.setUsulogs(new ArrayList<Logs>());
 		usuario.setUsuhistorico(new ArrayList<Historico>());
 		return usuario;

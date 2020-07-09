@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -10,31 +11,42 @@
 
 <VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.LoginViewController">
    <children>
-      <Pane prefHeight="313.0" prefWidth="296.0">
+      <Pane prefHeight="340.0" prefWidth="293.0">
          <children>
-            <Label fx:id="lblEmail" layoutX="52.0" layoutY="69.0" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU">
+            <Label fx:id="lblTitle" layoutY="6.0" textFill="PERU">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEmail" layoutX="52.0" layoutY="39.0" onMouseClicked="#onMouseClickLblEmailAction" text="EMAIL" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="95.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-color: #CD853F;">
+            <TextField fx:id="txtEmail" layoutX="52.0" layoutY="65.0" onKeyTyped="#onKeyTxtEmailAction" promptText="EMAIL" style="-fx-color: #CD853F;">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </TextField>
             <Label fx:id="lblErroEmail" layoutX="243.0" layoutY="100.0" textFill="#e81212" />
-            <Label fx:id="lblTelefone" layoutX="53.0" layoutY="135.0" onMouseClicked="#onMouseClickLblTelefoneAction" text="TELEFONE" textFill="PERU">
+            <Label fx:id="lblSenha" layoutX="53.0" layoutY="105.0" onMouseClicked="#onMouseClickLblSenhaAction" text="PIN" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTelefone" layoutX="52.0" layoutY="158.0" onKeyTyped="#onKeyTxtTelefoneAction" promptText="TELEFONE" style="-fx-color: #CD853F;">
+            <PasswordField fx:id="psfSenha" layoutX="52.0" layoutY="129.0" onKeyTyped="#onKeyPsfSenhaAction" prefHeight="26.0" prefWidth="188.0" promptText="PIN">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
-            </TextField>
-            <Label fx:id="lblErroTelefone" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
-            <Button fx:id="btLogin" layoutX="104.0" layoutY="203.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </PasswordField>
+            <Label fx:id="lblErroSenha" layoutX="245.0" layoutY="164.0" textFill="#ee1111" />
+            <Button fx:id="btLogin" layoutX="104.0" layoutY="173.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
@@ -42,7 +54,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btCadastro" layoutX="87.0" layoutY="249.0" mnemonicParsing="false" onAction="#onBtCadastroAction" style="-fx-background-color: white; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="CADASTRO" textFill="PERU">
+            <Button fx:id="btCadastro" layoutX="87.0" layoutY="219.0" mnemonicParsing="false" onAction="#onBtCadastroAction" style="-fx-background-color: white; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="CADASTRO" textFill="PERU">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
@@ -50,6 +62,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label layoutX="49.0" layoutY="280.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
          </children>
       </Pane>
    </children>

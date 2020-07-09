@@ -14,6 +14,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,6 +35,9 @@ public class HistoricoViewController implements Initializable {
 
 	private Scene scenePai;
 
+	@FXML
+	private Label lblTitle;
+	
 	@FXML
 	private TableView<Historico> tableViewHistorico;
 
@@ -142,6 +146,10 @@ public class HistoricoViewController implements Initializable {
 
 	protected void setHistorico(Historico historico) {
 		this.historico = historico;
+	}
+
+	public Label getLblTitle() {
+		return lblTitle;
 	}
 
 	public Scene getScenePai() {

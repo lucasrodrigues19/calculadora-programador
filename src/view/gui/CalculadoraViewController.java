@@ -52,6 +52,9 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 	private Pane calculadoraPane;
 
 	@FXML
+	private Label lblTitle;
+	
+	@FXML
 	private Label lblStyleMais;
 
 	@FXML
@@ -267,6 +270,10 @@ public class CalculadoraViewController extends CalculadoraEntradaDadosAtributos 
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Label getLblTitle() {
+		return lblTitle;
 	}
 
 	public Scene getScenePai() {

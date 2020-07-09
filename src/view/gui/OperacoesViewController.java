@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
@@ -34,6 +35,9 @@ public class OperacoesViewController implements Initializable {
 	private String btStyle;
 
 	private Scene scenePai;
+
+	@FXML
+	private Label lblTitle;
 
 	@FXML
 	private ToolBar toolBarMenu;
@@ -63,6 +67,7 @@ public class OperacoesViewController implements Initializable {
 						controller.setEventHandler();
 						controller.iniciarAtributosaCalc(controller);
 						controller.iniciarLabels();
+						helper.setLblTitle(controller.getLblTitle(), "");
 					});
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -82,6 +87,7 @@ public class OperacoesViewController implements Initializable {
 						controller.setScenePai(helper.getSceneAtual(event));
 						controller.setEventHandler();
 						controller.inicializarElementos(controller);
+						helper.setLblTitle(controller.getLblTitle(), "");
 					});
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -100,6 +106,7 @@ public class OperacoesViewController implements Initializable {
 						controller.setScenePai(helper.getSceneAtual(event));
 						controller.inicializarTableView();
 						controller.updateTableView();
+						helper.setLblTitle(controller.getLblTitle(), "");
 					});
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -238,6 +245,10 @@ public class OperacoesViewController implements Initializable {
 
 	public void setHistoricoService(HistoricoService historicoService) {
 		this.historicoService = historicoService;
+	}
+
+	public Label getLblTitle() {
+		return lblTitle;
 	}
 
 	@Override

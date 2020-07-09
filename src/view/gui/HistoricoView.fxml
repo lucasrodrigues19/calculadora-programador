@@ -6,11 +6,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="569.0" prefWidth="772.0" style="-fx-background-color: #FFDEAD;" stylesheets="@HistoricoView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.HistoricoViewController">
    <children>
       <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0" stylesheets="@HistoricoView.css">
          <children>
+            <Label fx:id="lblTitle" textFill="PERU">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Label>
             <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;" stylesheets="@HistoricoView.css" />
             <TableView fx:id="tableViewHistorico" layoutX="146.0" layoutY="38.0" prefHeight="370.0" prefWidth="482.0" styleClass="table_view">
                <columns>

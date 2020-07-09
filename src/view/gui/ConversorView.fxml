@@ -18,6 +18,11 @@
    <children>
       <Pane fx:id="calculadoraPane" prefHeight="558.0" prefWidth="772.0" stylesheets="@ConversorView.css">
          <children>
+            <Label fx:id="lblTitle" layoutY="10.0" textFill="PERU">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Label>
             <Pane layoutX="110.0" layoutY="27.0" prefHeight="394.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 20;" stylesheets="@ConversorView.css">
                <children>
                   <Label layoutX="5.0" layoutY="111.0" prefHeight="16.0" prefWidth="143.0" text="Para:" textFill="PERU">

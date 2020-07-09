@@ -2,31 +2,69 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="scrollMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="297.0" prefHeight="368.0" prefWidth="297.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
+<ScrollPane fx:id="scrollMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="296.0" prefHeight="376.0" prefWidth="300.0" style="-fx-border-radius: 10;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.gui.MainViewController">
    <content>
-      <VBox prefHeight="365.0" prefWidth="293.0" style="-fx-background-color: #FFDEAD;">
+      <VBox prefHeight="374.0" prefWidth="298.0" style="-fx-background-color: #FFDEAD;">
          <children>
-            <ToolBar fx:id="toolBarMenu" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #DEB887;">
-               <items>
-                  <MenuButton fx:id="menuButtonOpcoes" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Opções" textFill="PERU">
-                    <items>
-                        <MenuItem fx:id="menuItemHome" mnemonicParsing="false" onAction="#onMenuItemHomeAction" text="HOME" />
-                    <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="SOBRE" />
-                    </items>
-                  </MenuButton>
-               </items>
-            </ToolBar>
-            <Pane prefHeight="313.0" prefWidth="296.0">
+            <HBox prefHeight="46.0" prefWidth="298.0">
                <children>
-                  <Button fx:id="btLogin" layoutX="108.0" layoutY="111.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
+                  <AnchorPane prefHeight="36.0" prefWidth="297.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="19.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #fff;" text="+" textFill="BURLYWOOD" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="20.0" prefHeight="40.0" prefWidth="20.0" style="-fx-background-color: #DEB887;" text="=" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="52.0" layoutY="5.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 7px;" text="* Programador" textFill="BURLYWOOD">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Label>
+                        <MenuButton fx:id="menuButtonOpcoes" layoutX="258.0" layoutY="7.0" mnemonicParsing="false" onMouseEntered="#onBtOpcoesMouseHover" onMouseExited="#onBtOpcoesMouseOut" style="-fx-background-color: #FFDEAD;" textFill="WHITE">
+                          <items>
+                            <MenuItem fx:id="menuItemHome" mnemonicParsing="false" onAction="#onMenuItemHomeAction" text="Home" />
+                            <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />
+                          </items>
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <Pane prefHeight="321.0" prefWidth="298.0">
+               <children>
+                  <Button fx:id="btLogin" layoutX="118.0" layoutY="96.0" mnemonicParsing="false" onAction="#onBtLoginAction" style="-fx-background-color: #CD853F; -fx-border-radius: 7px; -fx-border-color: #FFF; -fx-background-radius: 7px;" text="LOGIN" textFill="WHITE">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
@@ -34,7 +72,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btEntrar" layoutX="104.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
+                  <Button fx:id="btEntrar" layoutX="112.0" layoutY="156.0" mnemonicParsing="false" onAction="#onBtEntrarAction" style="-fx-background-color: #FFF; -fx-border-radius: 7px; -fx-border-color: #CD853F; -fx-background-radius: 7px;" text="ENTRAR" textFill="PERU">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
@@ -42,6 +80,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label layoutX="49.0" layoutY="257.0" text="\@copyrigth - Lucas Rodrigues" textFill="BURLYWOOD" />
                </children>
             </Pane>
          </children>

@@ -51,8 +51,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></AmbientLight>
-      <Pane prefHeight="465.0" prefWidth="770.0" style="-fx-border-color: #deb887; -fx-background-radius: 7; -fx-border-radius: 7;">
+      <Pane prefHeight="465.0" prefWidth="770.0" style="-fx-background-radius: 7; -fx-border-radius: 7;">
          <children>
+            <Label fx:id="lblTitle" textFill="PERU">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="155.0" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: #fff;" text="-" textFill="BURLYWOOD" wrapText="true">
                <font>
                   <Font name="System Bold" size="25.0" />

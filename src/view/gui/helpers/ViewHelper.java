@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -55,7 +56,7 @@ public class ViewHelper {
 			if (mainScene.getRoot() instanceof ScrollPane) {
 				scrolPane = (ScrollPane) mainScene.getRoot();
 				mainVBox = (VBox) scrolPane.getContent();
-			}else if  (mainScene.getRoot() instanceof VBox) {
+			} else if (mainScene.getRoot() instanceof VBox) {
 				mainVBox = (VBox) mainScene.getRoot();
 			}
 
@@ -84,13 +85,13 @@ public class ViewHelper {
 	}
 
 	/**
-	 * Metodo responsavel por carregar uma view e adicionar o content(Root) da view carregada no scene da view Pai
-	 * Retorna para uma view carregada antes dessa atual
-	 * Troca a scene do stage
+	 * Metodo responsavel por carregar uma view e adicionar o content(Root) da view
+	 * carregada no scene da view Pai Retorna para uma view carregada antes dessa
+	 * atual Troca a scene do stage
+	 * 
 	 * @param <T>
 	 * 
-	 * @param path
-	 * 			Caminho da view
+	 * @param path      Caminho da view
 	 * @param mainScene
 	 * @param execut
 	 */
@@ -114,6 +115,7 @@ public class ViewHelper {
 			throw new MyException(e.getMessage());
 		}
 	}
+
 	/**
 	 * Retorna para a view Pai e fechar a view Atual
 	 * 
@@ -180,6 +182,7 @@ public class ViewHelper {
 
 	/**
 	 * Define a cor dos items da ComboBox
+	 * 
 	 * @param <T>
 	 * 
 	 * @param cmb
@@ -215,6 +218,7 @@ public class ViewHelper {
 	public <T> T getItemComboBox(ComboBox<T> cmb) {
 		return cmb.getSelectionModel().getSelectedItem();
 	}
+
 	/**
 	 * Metodo responsavel para gerar uma caixa de dialog, a mesma aparecera em cima
 	 * da view Pai
@@ -302,6 +306,14 @@ public class ViewHelper {
 		return (Scene) ((Node) event.getSource()).getScene();
 	}
 
-
+	/**
+	 * define o texto da label referente ao titulo da view
+	 * @param lbl
+	 * @param str
+	 */
+	public void setLblTitle(Label lbl, String str) {
+		if (lbl != null && str != null)
+			lbl.setText(str);
+	}
 
 }

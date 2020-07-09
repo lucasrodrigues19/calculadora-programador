@@ -52,8 +52,13 @@
               </items>
             </ToolBar>
             <AmbientLight color="CHARTREUSE" lightOn="true" />
-            <Pane prefHeight="506.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 8px; -fx-border-color: #deb887; -fx-background-radius: 7px;">
+            <Pane prefHeight="506.0" prefWidth="770.0" style="-fx-background-color: #FFDEAD; -fx-border-radius: 8px; -fx-background-radius: 7px;">
                <children>
+                  <Label fx:id="lblTitle" textFill="PERU">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                  </Label>
                   <Label fx:id="lblInfoUsuario" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="6.0" prefHeight="16.0" prefWidth="282.0" textAlignment="CENTER" textFill="BURLYWOOD">
                      <font>
                         <Font name="DejaVu Sans Bold" size="13.0" />

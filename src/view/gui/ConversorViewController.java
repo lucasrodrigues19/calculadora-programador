@@ -51,6 +51,9 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	private Scene scenePai;
 
+	@FXML
+	private Label lblTitle;
+	
 	private Boolean jaSalvou;
 	@FXML
 	private Pane calculadoraPane;
@@ -367,6 +370,10 @@ public class ConversorViewController extends ConversorEntradaDadosAtributos impl
 
 	public void setHistoricoService(HistoricoService historicoService) {
 		this.historicoService = historicoService;
+	}
+
+	public Label getLblTitle() {
+		return lblTitle;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.MouseEvent;
 import modelo.entites.Historico;
 import modelo.entites.Logs;
 import modelo.entites.Usuario;
@@ -24,7 +25,9 @@ import view.gui.utils.Alerts;
 
 public class MainViewController implements Initializable {
 
-	ViewHelper helper = new ViewHelper();
+	private ViewHelper helper = new ViewHelper();
+
+	private String getStyleBtOpcoes;
 
 	@FXML
 	private ScrollPane scrollMain;
@@ -58,8 +61,10 @@ public class MainViewController implements Initializable {
 				controller.setLogsService(new LogsService());
 				controller.setHistorico(new Historico());
 				controller.setHistoricoService(new HistoricoService());
+				helper.setLblTitle(controller.getLblTitle(), "");
 			});
 			menuItemHome.setVisible(true);
+			menuItemSobre.setVisible(false);
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
@@ -74,11 +79,34 @@ public class MainViewController implements Initializable {
 					(OperacoesViewController controller) -> {
 						controller.setHistorico(new Historico());
 						controller.hiddenBts();
+						helper.setLblTitle(controller.getLblTitle(), "");
 					});
-			menuItemHome.setVisible(true);
+			menuItemHome.setVisible(false);
+			menuItemSobre.setVisible(true);
 		} catch (MyException e) {
 			e.printStackTrace();
 			Alerts.showAlertError(e.getMessage());
+		}
+	}
+
+	@FXML
+	private void onBtOpcoesMouseHover(MouseEvent event) {
+		try {
+			getStyleBtOpcoes = menuButtonOpcoes.getStyle();
+			menuButtonOpcoes.setStyle(
+					getStyleBtOpcoes + "-fx-border-color: #fff; -fx-border-radius: 7px; -fx-background-radius: 7px");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@FXML
+	private void onBtOpcoesMouseOut(MouseEvent event) {
+		try {
+			menuButtonOpcoes.setStyle(getStyleBtOpcoes);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -101,6 +129,7 @@ public class MainViewController implements Initializable {
 		try {
 			helper.backView("/view/gui/MainView.fxml", Main.mainScene, null);
 			menuItemHome.setVisible(false);
+			menuItemSobre.setVisible(true);
 		} catch (MyException e) {
 			Alerts.showAlertError(e.getMessage());
 		}

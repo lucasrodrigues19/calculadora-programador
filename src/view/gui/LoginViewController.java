@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -47,13 +48,16 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	private HistoricoService historicoService;
 
 	@FXML
+	private Label lblTitle;
+	
+	@FXML
 	private Label lblEmail;
 
 	@FXML
-	private Label lblTelefone;
+	private Label lblSenha;
 
 	@FXML
-	private Label lblErroTelefone;
+	private Label lblErroSenha;
 
 	@FXML
 	private Label lblErroEmail;
@@ -62,7 +66,7 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	private TextField txtEmail;
 
 	@FXML
-	private TextField txtTelefone;
+	private PasswordField psfSenha;
 
 	@FXML
 	private Button btLogin;
@@ -88,9 +92,11 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 							controller.setInfoUsuario();
 							controller.salvarLog();
 							inscreverMeSubject(controller);
+							helper.setLblTitle(controller.getLblTitle(), "");
 						});
 			} else {
 				Alerts.showAlertInformations("Por favor, verifique seus dados!");
+				setMsgErros(new MyRuntimeException());
 			}
 		} catch (MyRuntimeException e) {
 			setMsgErros(e);
@@ -113,6 +119,7 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 				controller.atualizarDadosFormCadastro();
 				controller.setVisibleLabels();
 				controller.setVisibleBtExcluir(false);
+				helper.setLblTitle(controller.getLblTitle(), "Cadastro");
 			}, helper.getStageAtual(event));
 		} catch (MyException e) {
 			e.printStackTrace();
@@ -136,16 +143,16 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	}
 
 	@FXML
-	private void onKeyTxtTelefoneAction(KeyEvent event) {
-		if (txtTelefone.getText().length() > 0)
-			lblTelefone.setVisible(true);
+	private void onKeyPsfSenhaAction(KeyEvent event) {
+		if (psfSenha.getText().length() > 0)
+			lblSenha.setVisible(true);
 		else
-			lblTelefone.setVisible(false);
+			lblSenha.setVisible(false);
 	}
 
 	@FXML
-	private void onMouseClickLblTelefoneAction(MouseEvent event) {
-		lblTelefone.setVisible(false);
+	private void onMouseClickLblSenhaAction(MouseEvent event) {
+		lblSenha.setVisible(false);
 
 	}
 
@@ -159,19 +166,19 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 
 		lblErroEmail.setText("");
 
-		if (txtTelefone.getText().length() <= 0 || "".equals(txtTelefone) || txtTelefone == null)
-			runtimeEx.addErros("telefone", "Vazio");
+		if (psfSenha.getText().length() <= 0 || "".equals(psfSenha) || psfSenha == null)
+			runtimeEx.addErros("senha", "Vazio");
 
 		if (runtimeEx.getErros().size() > 0)
 			throw runtimeEx;
 
 		getUsuario().setUsuemail(txtEmail.getText());
-		getUsuario().setUsutelefone(txtTelefone.getText());
+		getUsuario().setUsusenha(psfSenha.getText());
 	}
 
 	private void setMsgErros(MyRuntimeException erros) {
 
-		lblErroTelefone.setText(erros.getErros().containsKey("telefone") ? erros.getErros().get("telefone") : "");
+		lblErroSenha.setText(erros.getErros().containsKey("senha") ? erros.getErros().get("senha") : "");
 		lblErroEmail.setText(erros.getErros().containsKey("email") ? erros.getErros().get("email") : "");
 	}
 
@@ -179,8 +186,8 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 		if (txtEmail != null)
 			usuario.setUsuemail(txtEmail.getText());
 
-		if (txtTelefone != null)
-			usuario.setUsutelefone(txtTelefone.getText());
+		if (psfSenha != null)
+			usuario.setUsusenha(psfSenha.getText());
 	}
 
 	private void setDadosLog() throws MyException {
@@ -193,15 +200,15 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 	}
 
 	private void initializeNodesConstraints() {
-		Costraints.onlyInteger(txtTelefone, false);
+		Costraints.onlyInteger(psfSenha, false);
 		Costraints.maxLength(txtEmail, 40, false);
-		Costraints.maxLength(txtTelefone, 11, false);
+		Costraints.maxLength(psfSenha, 12, false);
 
 	}
 
 	private void hidenControls() {
 		lblEmail.setVisible(false);
-		lblTelefone.setVisible(false);
+		lblSenha.setVisible(false);
 	}
 
 	public Usuario getUsuario() {
@@ -252,6 +259,10 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 		this.historicoService = historicoService;
 	}
 
+	public Label getLblTitle() {
+		return lblTitle;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeNodesConstraints();
@@ -260,12 +271,13 @@ public class LoginViewController implements Initializable, DadoAlteradoListener 
 
 	public void resetLabelsErros() {
 		lblErroEmail.setText("");
-		lblErroTelefone.setText("");
+		lblErroSenha.setText("");
 	}
 
 	@Override
 	public void onDadosAlterados() {
 		resetLabelsErros();
+		lblTitle.setText("");
 		usuario = new Usuario();
 		usuarioService = new UsuarioService();
 		
