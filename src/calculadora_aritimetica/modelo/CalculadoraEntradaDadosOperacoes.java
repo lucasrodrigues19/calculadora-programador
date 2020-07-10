@@ -56,6 +56,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 
 	/**
 	 * quando limpa um caracter, renicia os atributos, e refaz toda a operacao
+	 * 
 	 * @param obj
 	 * @param digito
 	 */
@@ -75,7 +76,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 						}
 					}
 				}
-			}else if (digito.equals("C")) {
+			} else if (digito.equals("C")) {
 				if (!obj.getStrLblOpe().equals("")) {
 					iniciarAtributosaCalc(obj);
 				}
@@ -84,11 +85,9 @@ public interface CalculadoraEntradaDadosOperacoes {
 		}
 	}
 
-
 	/**
-	 * Retorna o ultimo digito de operador de uma string 
-	 *  EX: 70*10+100
-	 *  	return +
+	 * Retorna o ultimo digito de operador de uma string EX: 70*10+100 return +
+	 * 
 	 * @param obj
 	 * @param strLblOpe
 	 * @return
@@ -106,9 +105,8 @@ public interface CalculadoraEntradaDadosOperacoes {
 	}
 
 	/**
-	 * Pega o ultimo numero da operacao 
-	 * 	EX: 
-	 *  70*80*90 return 90
+	 * Pega o ultimo numero da operacao EX: 70*80*90 return 90
+	 * 
 	 * @param obj
 	 * @param strLblOpe
 	 * @return
@@ -146,7 +144,7 @@ public interface CalculadoraEntradaDadosOperacoes {
 	}
 
 	/**
-	 * seta as strings do objeto realcionado a calculadora.
+	 * define as strings do objeto realcionado a calculadora antes de fazer as operações.
 	 * 
 	 * @param content
 	 * @param isOpe
@@ -160,8 +158,9 @@ public interface CalculadoraEntradaDadosOperacoes {
 				} else {
 					obj.setStrNum(obj.getStrNum() + content);
 				}
-				obj.setStrLblRes(obj.getStrLblRes() + content); // res vai pegar essa string caso for a primeira
-																// operacao
+				if (!content.equals("."))
+					obj.setStrLblRes(obj.getStrLblRes() + content); // res vai pegar essa string caso for a primeira
+																	// operacao
 			} else {
 				checkLastCharInStrNum(obj);
 			}
@@ -212,7 +211,8 @@ public interface CalculadoraEntradaDadosOperacoes {
 	 */
 	default void checkLastCharInStrNum(CalculadoraEntradaDadosAtributos obj) {
 		if (obj.getStrNum() != null && !obj.getStrNum().equals("") && obj.getStrNum().length() > 0) {
-			if (obj.getStrNum().charAt(obj.getStrNum().length() - 1) == ',') {
+			if (Character.toString(obj.getStrNum().charAt(obj.getStrNum().length() - 1))
+					.equals(obj.getDigOpe(obj, 6))) {
 				obj.setStrNum(obj.getStrNum() + "0");
 				obj.setStrLblRes(obj.getStrLblRes() + "0");
 				obj.setStrLblOpe(obj.getStrLblOpe() + "0");
@@ -272,10 +272,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 
 		else if (code == KeyCode.EQUALS)
 			return getDigOpe(obj, 5);
-		
+
 		else if (code == KeyCode.ENTER)
 			return getDigOpe(obj, 5);
-		
+
 		else if (code == KeyCode.PROPS)
 			return getDigOpe(obj, 0);
 
@@ -290,10 +290,10 @@ public interface CalculadoraEntradaDadosOperacoes {
 
 		else if (code == KeyCode.MINUS)
 			return getDigOpe(obj, 3);
-		
+
 		else if (code == KeyCode.SLASH)
 			return getDigOpe(obj, 1);
-		
+
 		else if (code == KeyCode.BACK_SPACE)
 			return "X";
 
