@@ -9,7 +9,7 @@ import modelo.dao.impl.LogsDAOI;
 import modelo.dao.impl.UsuarioDAOI;
 
 public class DaoFactory {
-	private static final String db_properties = "db-prod.propierties";
+	private static final String db_properties = "db-dev.propierties";
 
 	public static UsuarioDAO getUsuarioDAO() {
 		return new UsuarioDAOI(DB.getConnection(db_properties));
