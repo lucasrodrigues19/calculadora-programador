@@ -9,14 +9,17 @@ import modelo.dao.impl.LogsDAOI;
 import modelo.dao.impl.UsuarioDAOI;
 
 public class DaoFactory {
+	private static final String db_properties = "db-prod.propierties";
 
 	public static UsuarioDAO getUsuarioDAO() {
-		return new UsuarioDAOI(DB.getConnection("db.propierties"));
+		return new UsuarioDAOI(DB.getConnection(db_properties));
 	}
+
 	public static HistoricoDAO getHistoricoDAO() {
-		return new HistoricoDAOI(DB.getConnection("db.propierties"));
+		return new HistoricoDAOI(DB.getConnection(db_properties));
 	}
+
 	public static LogsDAO getLogsDAO() {
-		return new LogsDAOI(DB.getConnection("db.propierties"));
+		return new LogsDAOI(DB.getConnection(db_properties));
 	}
 }

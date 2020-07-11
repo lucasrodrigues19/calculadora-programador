@@ -2,13 +2,12 @@ package db;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import db.ex.MySQLException;
 import ex.MyException;

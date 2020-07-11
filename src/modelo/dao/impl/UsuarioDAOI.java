@@ -1,15 +1,14 @@
 package modelo.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.ex.MySQLException;
@@ -158,7 +157,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 		if (usuid == null)
 			throw new IllegalArgumentException("usuario nulo");
 
-		sql = "SELECT usuario.* , logs.logid, logs.logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid WHERE usuario.usuid = ?";
+		sql = "SELECT usuario.* , logs.logid AS logid, logs.logdata AS logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid WHERE usuario.usuid = ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Map<Integer, Usuario> mapUsuairo = new HashMap<Integer, Usuario>();
@@ -198,7 +197,7 @@ public class UsuarioDAOI implements UsuarioDAO {
 	@Override
 	public List<Usuario> findAll() {
 
-		sql = "SELECT usuario.* , logs.logid, logs.logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid ORDER by usuario.usuid";
+		sql = "SELECT usuario.* , logs.logid AS logid, logs.logdata AS logdata FROM usuario INNER JOIN logs on logs.logusuid = usuario.usuid ORDER by usuario.usuid";
 		ResultSet rs = null;
 		Statement st = null;
 		List<Usuario> result = new ArrayList<Usuario>();
@@ -236,8 +235,8 @@ public class UsuarioDAOI implements UsuarioDAO {
 
 	private Historico getHistoricoRS(ResultSet rs) throws SQLException {
 		Historico historico = new Historico();
-		Integer hisid = rs.getInt("historico.hisid");
-		String hisdado = rs.getString("historico.hisdado");
+		Integer hisid = rs.getInt("hisid");
+		String hisdado = rs.getString("hisdado");
 		if(hisid != null) 
 				historico.setHisid(hisid);
 		
@@ -265,10 +264,10 @@ public class UsuarioDAOI implements UsuarioDAO {
 	private Logs getLogsRS(ResultSet rs) throws SQLException {
 		Logs logs = new Logs();
 
-		logs.setLogid(rs.getInt("logs.logid"));
+		logs.setLogid(rs.getInt("logid"));
 		try {
 			//formata a data que vim, e depois da um parse
-			logs.setLogdata(DataUtils.parse(DataUtils.format(rs.getDate("logs.logdata"), "dd/MM/yyyy HH:mm:ss"), "dd/MM/yyyy HH:mm:ss"));
+			logs.setLogdata(DataUtils.parse(DataUtils.format(rs.getDate("logdata"), "dd/MM/yyyy HH:mm:ss"), "dd/MM/yyyy HH:mm:ss"));
 		} catch (MyException e) {
 			e.printStackTrace();
 			throw new SQLException(e.getMessage());

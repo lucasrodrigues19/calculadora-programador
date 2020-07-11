@@ -1,16 +1,14 @@
 package modelo.dao.impl;
 
-import java.sql.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.ex.MySQLException;
@@ -99,7 +97,7 @@ public class LogsDAOI implements LogsDAO {
 		if (logid == null)
 			throw new IllegalArgumentException("Log nulo");
 
-		sql = "SELECT logs.* , usuario.usunome FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where logs.logid= ?";
+		sql = "SELECT logs.* , usuario.usuemail AS usuemail FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where logs.logid= ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Logs logs = null;
@@ -114,6 +112,7 @@ public class LogsDAOI implements LogsDAO {
 																			// registradoss
 				logs = getLogsRS(rs);
 				logs.setLogusuario(usuario);
+				usuario.getUsulogs().add(logs);
 
 			}
 		} catch (SQLException e) {
@@ -130,7 +129,7 @@ public class LogsDAOI implements LogsDAO {
 		if (usuario == null)
 			throw new IllegalArgumentException("Usuario nulo");
 
-		sql = "SELECT logs.* , usuario.usunome FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where usuario.usuid = ?";
+		sql = "SELECT logs.* , usuario.usuemail AS usuemail FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where usuario.usuid = ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Logs> result = new ArrayList<Logs>();
@@ -172,7 +171,7 @@ public class LogsDAOI implements LogsDAO {
 		if (logs == null)
 			throw new IllegalArgumentException("Log nulo");
 
-		sql = "SELECT logs.* , usuario.usunome FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where logs.logdate = ? order by logs.logusuid";
+		sql = "SELECT logs.* , usuario.usuemail AS usuemail FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid where logs.logdate = ? order by logs.logusuid";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Logs> result = new ArrayList<Logs>();
@@ -212,7 +211,7 @@ public class LogsDAOI implements LogsDAO {
 
 	@Override
 	public List<Logs> findAll() {
-		sql = "SELECT logs.* , usuario.usunome FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid order by logs.logusuid";
+		sql = "SELECT logs.* , usuario.usuemail AS usuemail FROM logs INNER JOIN usuario on logs.logusuid = usuario.usuid order by logs.logusuid";
 		Statement st = null;
 		ResultSet rs = null;
 		List<Logs> result = new ArrayList<Logs>();
@@ -257,14 +256,14 @@ public class LogsDAOI implements LogsDAO {
 		if (usuid != null)
 			usuario.setUsuid(rs.getInt("logusuid"));
 
-		if (rs.getString("usuario.usunome") != null)
-			usuario.setUsunome(rs.getString("usuario.usunome"));
+//		if (rs.getString("usunome") != null)
+//			usuario.setUsunome(rs.getString("usunome"));
 
-		if (rs.getString("usuario.usuemail") != null)
-			usuario.setUsuemail(rs.getString("usuario.usuemail"));
+		if (rs.getString("usuemail") != null)
+			usuario.setUsuemail(rs.getString("usuemail"));
 
-		if (rs.getString("usuario.usutelefone") != null)
-			usuario.setUsutelefone(rs.getString("usuario.usutelefone"));
+//		if (rs.getString("usutelefone") != null)
+//			usuario.setUsutelefone(rs.getString("usutelefone"));
 
 		usuario.setUsulogs(new ArrayList<Logs>());
 		usuario.setUsuhistorico(new ArrayList<Historico>());

@@ -103,10 +103,10 @@ public class CadastroViewController implements Initializable, NotificaDadoAltera
 			notificarListener();
 		} catch (MySQLException e) {
 			String msg = e.getMessage();
-			if (msg.contains("Duplicate")) {
-				if (msg.contains("uk_email"))
+			if (msg.toLowerCase().contains("duplicate")) {
+				if (msg.toLowerCase().contains("uk_email"))
 					msg = "Email ja cadastrado";
-				else if (msg.contains("uk_telefone"))
+				else if (msg.toLowerCase().contains("uk_telefone"))
 					msg = "Telefone ja cadastrado";
 
 				Alerts.showAlertError(msg);

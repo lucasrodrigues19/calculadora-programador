@@ -1,15 +1,14 @@
 package modelo.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.ex.MySQLException;
@@ -91,7 +90,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public Historico findByID(Integer hisid) {
-		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE historico.hisid = ?";
+		sql = "SELECT  historico.*, usuario.usuemail AS usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE historico.hisid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -117,7 +116,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findByUser(Usuario usuario) {
-		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE hisusuid = ?";
+		sql = "SELECT  historico.*, usuario.usuemail AS usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid WHERE hisusuid = ?";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		Historico obj = null;
@@ -151,7 +150,7 @@ public class HistoricoDAOI implements HistoricoDAO {
 
 	@Override
 	public List<Historico> findAll() {
-		sql = "SELECT  historico.*, usuario.usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid";
+		sql = "SELECT  historico.*, usuario.usuemail AS usuemail FROM historico INNER JOIN usuario on historico.hisusuid = usuario.usuid";
 		ResultSet rs = null;
 		Statement st = null;
 		Historico obj = null;
@@ -192,8 +191,8 @@ public class HistoricoDAOI implements HistoricoDAO {
 //		if (rs.getString("usuario.usunome") != null)
 //			usuario.setUsunome(rs.getString("usuario.usunome"));
 
-		if (rs.getString("usuario.usuemail") != null)
-			usuario.setUsuemail(rs.getString("usuario.usuemail"));
+		if (rs.getString(3) != null)
+			usuario.setUsuemail(rs.getString("usuemail"));
 //
 //		if (rs.getString("usuario.usutelefone") != null)
 //			usuario.setUsutelefone(rs.getString("usuario.usutelefone"));

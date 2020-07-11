@@ -1,0 +1,4 @@
+user=seuuser
+password=suasenha
+dburl=jdbc:postgres://seuserver:5342/seubanco?allowPublicKeyRetrieval=true
+useSSL=false
