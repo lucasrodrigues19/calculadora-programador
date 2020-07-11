@@ -14,7 +14,9 @@
 ## Exemplos de uso
 
 ## Mapa do sistema
-![Mapa do sistema](/-images/mapa_sistema.png)
+<p align="center">
+  <img src="/-images/mapa_sistema.png" width="350" heigth="350" alt="MAPA DO SISTEMA">
+</p>
 
 ## Caso de uso
 
