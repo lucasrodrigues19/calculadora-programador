@@ -20,12 +20,12 @@
 
 ## Caso de uso
 <p align="center">
-  <img src="/-images/caso_de_uso.png" width="700" heigth="700" alt="CASO DE USO" title="CASO DE USO">
+  <img src="/-images/caso_de_uso.png" alt="CASO DE USO" title="CASO DE USO">
 </p>
 
 ## Camadas 
 <p align="center">
-  <img src="/-images/camadas.png" width="500" heigth="500" alt="CAMADAS" title="CAMADAS">
+  <img src="/-images/camadas.png" width="600" heigth="600" alt="CAMADAS" title="CAMADAS">
 </p>
 
 ## Relacionamentos entre as classes
@@ -48,5 +48,5 @@ Lucas Pereira Rodrigues - [Twitter](https://twitter.com/l_Rodrigues20) - [Email]
 
 
 <p align="center">
-  <img src="/-images/icone_java.jpg" width="250" heigth="250" alt="JAVA" title="JAVA">
+  <img src="/-images/icone_java.png" width="250" heigth="250" alt="JAVA" title="JAVA">
 </p>
