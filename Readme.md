@@ -15,14 +15,18 @@
 
 ## Mapa do sistema
 <p align="center">
-  <img src="/-images/mapa_sistema.png" width="350" heigth="350" alt="MAPA DO SISTEMA">
+  <img src="/-images/mapa_sistema.png" width="400" heigth="400" alt="MAPA DO SISTEMA" title="MAPA DO SISTEA">
 </p>
 
 ## Caso de uso
+<p align="center">
+  <img src="/-images/caso_de_uso.png" width="400" heigth="400" alt="CASO DE USO" title="CASO DE USO">
+</p>
 
-
-## Arquitetura 
-
+## Camadas 
+<p align="center">
+  <img src="/-images/camadas.png" width="400" heigth="400" alt="CAMADAS" title="CAMADAS">
+</p>
 
 ## Relacionamentos entre as classes
 
@@ -40,4 +44,9 @@ Lucas Pereira Rodrigues - [Twitter](https://twitter.com/l_Rodrigues20) - [Email]
 **Esta aplicação foi criada com a ideia de que seja usada em um ambiente onde varias pessoas tenha acesso, cada usuario vai ter**
 **seu proprio historico, podendo o mesmo alterar ou excluir seus dados e remover o seu historico**
 
-	
+# Tecnologias
+
+
+<p align="center">
+  <img src="/-images/icone-java.png" width="250" heigth="250" alt="JAVA" title="JAVA">
+</p>
