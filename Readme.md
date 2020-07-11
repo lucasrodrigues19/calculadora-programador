@@ -9,13 +9,12 @@
 - Mysql-connector, caso não tenha sido instalado: [MYSQL CONNECTOR](https://dev.mysql.com/downloads/connector/j/)
 
 ## Requisitos para executar em ambiente de produção
-- Java(JRE) instalado
-- JDK do JavaFX intalado
+
 
 ## Exemplos de uso
 
 ## Mapa do sistema
-![](/-images/WhatsApp Image 2020-07-11 at 00.43.10.jpeg)
+![Mapa do sistema](/-images/mapa_sistema.png)
 
 ## Caso de uso
 
@@ -33,10 +32,10 @@
 - 1.0
 
 # Meta
-Lucas Pereira Rodrigues - [Twitter](https://twitter.com/l_Rodrigues20) - [Email][lucasp.rodrigues@uni9.edu.br]
+Lucas Pereira Rodrigues - [Twitter](https://twitter.com/l_Rodrigues20) - [Email](lucasp.rodrigues@uni9.edu.br)
 
 # Agradecimentos
-**Esta aplicação foi criada com a ideia de que seja usada em um ambiente onde varias pessoas tenha acesso, com cada usuario vai ter**
-**seu historico, podendo o mesmo alterar ou excluir seus dados e remover o seu historico**
+**Esta aplicação foi criada com a ideia de que seja usada em um ambiente onde varias pessoas tenha acesso, cada usuario vai ter**
+**seu proprio historico, podendo o mesmo alterar ou excluir seus dados e remover o seu historico**
 
 	
