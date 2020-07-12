@@ -13,12 +13,9 @@
 
 ## Exemplos de uso
 #### Tela Home:
-<p align="rigth">
-  <img src="/-images/Home.png" width="500" heigth="500" alt="MAPA DO SISTEMA" title="MAPA DO SISTEA">
-</p>
-<p align="center">
-  <img src="/-images/Home_opcao.png" width="500" heigth="500" alt="MAPA DO SISTEMA" title="MAPA DO SISTEA">
-</p>
+<div align="center">
+  <img src="/-images/Home_opcao.png" width="800" heigth="800" alt="MAPA DO SISTEMA" title="MAPA DO SISTEA">
+</div>
 
 ## Mapa do sistema
 <p align="center">
@@ -54,12 +51,12 @@ Nome: Lucas Pereira Rodrigues - [Twitter](https://twitter.com/l_Rodrigues20) - E
 # Tecnologias
 
 
-<p align="rigth">
+<div align="rigth">
   <img src="/-images/icone_java.png" width="150" heigth="150" alt="JAVA" title="JAVA">
-</p>
-<p align="center">
+</div>
+<div align="center">
   <img src="/-images/icone_mysql.png" width="150" heigth="150" alt="JAVA" title="JAVA">
-</p>
-<p align="left">
+</div>
+<div align="left">
   <img src="/-images/icone_postgres.png" width="150" heigth="150" alt="JAVA" title="JAVA">
-</p>
+</div>
